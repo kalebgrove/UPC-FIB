@@ -1,0 +1,12 @@
+n = 4;
+names are:
+dolphins octopuses squid sharks whales piranhas killerwhales fish
+
+names("", 4, 1);
+s = dolphins; ctr = 1;
+names(dolphins, 4, 2);
+    s = octopuses; ctr = 2;
+    names(octopuses, 4, 3);
+        s = squid; ctr = 3;
+        names(squid, 4, 4);
+            s = sharks; ctr = 4;
