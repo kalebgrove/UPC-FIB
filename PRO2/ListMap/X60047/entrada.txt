@@ -1,0 +1,35 @@
+push_back -385
+push_front 450
+push_front -538
+pop_back 
+pop_back 
+pop_front 
+pop_front 
+get_mid_value
+push_front -639
+pop_back 
+pop_front 
+push_front -157
+push_front -387
+pop_front 
+push_front 137
+pop_back 
+get_mid_value
+push_back -476
+push_front -470
+get_mid_value
+get_mid_value
+push_front -687
+get_mid_value
+push_back 320
+push_front -372
+push_front -212
+push_back -813
+push_front -680
+push_front -834
+pop_back 
+push_back -433
+pop_back 
+push_front -892
+push_back 40
+get_mid_value

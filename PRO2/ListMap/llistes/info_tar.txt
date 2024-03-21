@@ -1,0 +1,10 @@
+Para crear el archivo sol.tar se puede usar la instrucción en un terminal:
+
+tar: pert_list_int.cc listIOint.cc listIOint.hh
+	tar cvf sol.tar pert_list_int.cc listIOint.cc listIOint.hh
+
+El archivo sol.tar contendrá los archivos: 
+
+pert_list_int.cc
+listIOint.cc
+listIOint.hh

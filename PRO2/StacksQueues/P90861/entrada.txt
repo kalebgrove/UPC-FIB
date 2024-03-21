@@ -1,0 +1,20 @@
+4
+Cristina Tomas
+Francesc Damia Domenec
+
+Teresa Toni Carles
+
+LEAVES 1
+LEAVES 1
+ENTERS Amalia 4
+LEAVES 2
+LEAVES 1
+ENTERS Leo 1
+ENTERS Maria 3
+LEAVES 4
+LEAVES 4
+LEAVES 3
+ENTERS Carme 4
+LEAVES 2
+LEAVES -1
+LEAVES 2

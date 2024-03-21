@@ -1,0 +1,10 @@
+Para crear el archivo sol.tar se puede usar la instrucción en un terminal:
+
+tar -cvf sol.tar pert_queue.cc queueIOint.hh queueIOint.cc
+
+El archivo sol.tar contendrá los archivos: 
+
+pert_queue.cc 
+queueIOint.hh 
+queueIOint.cc
+
