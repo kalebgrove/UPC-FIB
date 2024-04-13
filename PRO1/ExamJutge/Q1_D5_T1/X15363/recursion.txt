@@ -1,0 +1,5 @@
+n is the number introduced.
+x is the counter that will increase with every recursion, and if x == n,
+then the next iteration will be decreasing x until it hits 1, where then
+it will need to increase until he hits n again. This n is variant, which means its
+value will also change overtime.

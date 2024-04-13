@@ -1,0 +1,5 @@
+isis 1333330 -1
+osiris 4622 -1
+tutankamon 6 6 0 45 3000 14 -1
+papirus -1
+ra 0 9999999 0 -1

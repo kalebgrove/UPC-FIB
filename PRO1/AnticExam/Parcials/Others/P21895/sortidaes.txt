@@ -1,0 +1,19 @@
+1 is strobogrammatic
+2 is not strobogrammatic
+8 is strobogrammatic
+11 is strobogrammatic
+101 is strobogrammatic
+111 is strobogrammatic
+1110 is not strobogrammatic
+0 is strobogrammatic
+38 is not strobogrammatic
+18 is not strobogrammatic
+1881 is strobogrammatic
+44 is not strobogrammatic
+69 is strobogrammatic
+96 is strobogrammatic
+99 is not strobogrammatic
+123456789 is not strobogrammatic
+969689696 is strobogrammatic
+
+odd strobogrammatic: 6

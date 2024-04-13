@@ -1,0 +1,223 @@
+2
+3
+Ari 7
+Elah 6
+Eitan 3
+5
+Amal 8
+Ibrahim 7
+Omar 5
+Mohamed 2
+Khalil 1
+4
+2
+Abraham 4
+Itai 4
+10
+Iyad 8
+Nasreen 8
+Ahmed 6
+Mariam 6
+Mahmoud 4
+Ali 3
+Amal 3
+Fatima 2
+Manal 2
+Abeer 1
+5
+2
+Eitan 5
+Yisrael 3
+8
+Ali 7
+Amal 6
+Khalil 5
+Ayman 4
+Sana 4
+Mahmoud 3
+Mohamed 2
+Hassan 1
+5
+3
+Maya 7
+Ayala 5
+Sarah 4
+2
+Amal 1
+Amneh 1
+3
+4
+Maya 7
+Shira 6
+Raphael 4
+Uri 1
+5
+Abeer 8
+Sana 7
+Amneh 5
+Iman 2
+Khaled 1
+1
+5
+Yael 5
+Ayala 4
+Chana 2
+Tamar 2
+Ari 1
+8
+Hassan 8
+Emad 7
+Fatima 5
+Iman 5
+Jamal 3
+Ibrahim 2
+Ahmed 1
+Manal 1
+4
+5
+Miriam 5
+Yehuda 5
+Noa 4
+Yosef 2
+Abigail 1
+3
+Aisha 6
+Nasreen 6
+Amal 5
+1
+6
+Lavi 8
+Moshe 6
+Eitan 5
+Noa 3
+Sarah 3
+Yisrael 3
+2
+Abeer 7
+Manal 7
+3
+3
+Shira 6
+Sarah 3
+Ari 2
+6
+Aisha 8
+Nasreen 8
+Fatima 7
+Khalil 6
+Iman 3
+Yousef 3
+3
+2
+Rivka 7
+Uri 5
+1
+Iman 4
+5
+1
+David 4
+4
+Mona 8
+Amneh 6
+Amal 5
+Manal 3
+1
+10
+Abigail 8
+Yehuda 8
+Abraham 7
+Elah 7
+Rachel 7
+Sarah 6
+Daniel 4
+Tamar 4
+Adele 3
+Lavi 3
+1
+Aisha 4
+5
+5
+Elah 6
+Maya 6
+Lavi 3
+Rivka 3
+Eitan 2
+5
+Khalil 8
+Yousef 8
+Jamal 6
+HananRaed 2
+Ayman 1
+3
+5
+Rachel 8
+David 7
+Yael 6
+Ariel 3
+Uri 3
+4
+Mona 8
+Iman 7
+HananRaed 2
+Ibrahim 2
+2
+11
+Chana 7
+Ayala 6
+Elah 6
+Moshe 5
+Uri 5
+Rachel 4
+Ari 3
+David 3
+Maya 2
+Ariel 1
+Sarah 1
+1
+Mahmoud 7
+5
+2
+Rivka 5
+Tamar 1
+3
+Ayman 8
+Aisha 2
+Manal 1
+4
+1
+Esther 7
+3
+Aisha 2
+Ayman 1
+Wafa 1
+4
+2
+Yehuda 3
+Noam 1
+2
+Amal 6
+Mahmoud 4
+1
+4
+Raphael 6
+Chana 4
+Tamar 3
+Yehuda 2
+2
+Jamal 6
+Mona 3
+3
+8
+Ari 5
+Ayala 5
+Daniel 5
+Raphael 4
+Elah 3
+Lavi 3
+Miriam 3
+Ariel 2
+4
+Ibrahim 8
+Aisha 5
+HananRaed 5
+Sana 2

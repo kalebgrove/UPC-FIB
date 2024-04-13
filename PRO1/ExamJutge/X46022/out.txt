@@ -1,0 +1,60 @@
+Victoria 4 Danyl 8 Irina 12 Denis 8 Alexey 10 Xenia 15 Sofia 4 Polina 0
+Matthew 2 Joseph 12 Karen 2 Daniel 2 Thomas 2 John 10 Anthony 14 Michael 12
+
+Elizaveta 4 Artyom 6 Sofia 4 Konstantin 4 Ivan 15 Alexander 13 Daria 10 Nikita 10 Nikolai 10 Adelina 13
+John 0 Barbara 20 Robert 8 Jessica 14 Richard 20 Anthony 6 Matthew 18 James 0 Mary 8 Elizabeth 6
+
+Xenia 0 Svetlana 10 Artyom 8 Alexey 4 Arina 2
+Michael 2 Jennifer 6 Betty 6 Anthony 4 Sandra 4
+
+Alexander 13 Denis 15 Mikhail 0 Polina 10 Xenia 0 Danyl 10 Anastasia 0 Daria 13
+Christopher 6 Linda 10 Lisa 6 Michael 6 John 14 Richard 6 Elizabeth 6 Mary 6
+
+Danyl 26 Konstantin 23 Svetlana 5 Sofia 19 Elena 5 Natalia 28 Victoria 13 Daria 28 Nikolai 5 Polina 1 Vera 13 Alexey 13 Adelina 19 Dmitry 13
+Linda 22 Thomas 16 Sandra 22 Patricia 2 Betty 20 Karen 8 Jennifer 0 David 16 Daniel 8 Charles 8 Lisa 16 Michael 8 Jessica 2 William 2
+
+Vera 8 Anastasia 16 Elizaveta 1 Sergey 4 Victoria 1 Maksim/Maxim 22 Alexander 20 Konstantin 20 Svetlana 1 Nikita 8 Denis 8
+Sarah 6 Mary 14 Joseph 0 Robert 14 Matthew 14 Michael 8 James 14 Barbara 14 David 20 Elizabeth 8 Sandra 6
+
+Konstantin 22 Alexey 5 Xenia 26 Sergey 21 Svetlana 21 Anastasia 19 Yevgeny 26 Alexander 2 Danyl 22 Daria 23 Elizaveta 12 Nadezhda 21 Sofia 22 Elena 5
+Lisa 6 Daniel 22 Christopher 6 James 10 Anthony 0 Jessica 6 Sarah 2 Linda 6 Matthew 6 Patricia 24 Susan 6 Michael 8 Sandra 0 Thomas 24
+
+Alexey 7 Denis 7 Vera 5 Sofia 1 Daria 10 Konstantin 1 Ivan 14 Arina 1
+Mary 0 Jennifer 6 Robert 12 David 6 Elizabeth 8 Richard 14 Nancy 14 Anthony 12
+
+Alexander 5 Sergey 8 Mikhail 5 Nikita 12 Roman 6 Arina 6 Polina 3
+Thomas 10 Michael 0 Richard 0 Barbara 12 Elizabeth 10 James 2 Sandra 12
+
+Artyom 1 Svetlana 12 Elena 5 Daria 14 Maksim/Maxim 4 Elizaveta 3 Alexey 8
+Jennifer 10 Thomas 8 Daniel 10 Elizabeth 2 Robert 0 Betty 8 Sarah 6
+
+Anastasia 1 Alexey 4 Elena 2 Elizaveta 3 Sergey 2
+Mary 6 Anthony 10 Jennifer 0 Betty 10 Lisa 10
+
+Arina 9 Artyom 4 Danyl 9 Maksim/Maxim 4 Nikita 3
+Michael 0 Christopher 6 Barbara 6 Joseph 0 Nancy 6
+
+Xenia 20 Maksim/Maxim 20 Ivan 2 Anastasia 22 Victoria 20 Daria 14 Natalia 2 Irina 2 Alexander 14 Konstantin 18 Nadezhda 8 Vera 2
+Barbara 10 Jessica 8 William 8 Matthew 10 Jennifer 0 Robert 22 Michael 0 Charles 14 Christopher 22 Karen 8 Joseph 14 Daniel 8
+
+Polina 15 Yevgeny 15 Artyom 19 Denis 21 Sofia 19 Konstantin 15 Nikita 21 Maksim/Maxim 6 Elena 15 Roman 9 Irina 6
+Jennifer 0 John 14 David 6 Matthew 4 Michael 0 Christopher 0 Daniel 18 Susan 6 Anthony 6 William 0 Thomas 6
+
+Denis 1 Alexey 12 Svetlana 0 Vera 9 Adelina 1 Sergey 11
+Karen 6 Mary 2 Richard 8 Nancy 6 Sarah 6 Joseph 6
+
+Elizaveta 3 Nadezhda 14 Yevgeny 17 Irina 14 Sergey 1 Nikita 17 Roman 2 Nikolai 17 Natalia 1
+Linda 8 Elizabeth 6 Nancy 0 Joseph 8 Lisa 12 Michael 8 David 8 Sarah 8 Susan 8
+
+Nadezhda 0 Irina 23 Alexey 7 Victoria 23 Artyom 19 Dmitry 0 Daria 7 Elizaveta 23 Adelina 7 Mikhail 0 Konstantin 19 Danyl 2 Anastasia 19
+Sandra 14 Lisa 20 Linda 14 Susan 8 Mary 8 Betty 8 Daniel 20 Elizabeth 14 William 14 Thomas 6 Jennifer 20 David 6 Matthew 14
+
+Nikolai 2 Yevgeny 7 Vera 2 Danyl 7 Roman 2 Alexey 3 Irina 7
+Jennifer 14 Sandra 0 Joseph 8 Lisa 8 James 6 Sarah 8 Daniel 14
+
+Alexander 1 Nadezhda 2 Anastasia 6 Vera 4 Nikita 3 Irina 4 Sergey 3 Elizaveta 2
+Christopher 16 David 16 Betty 16 Mary 16 Jennifer 14 Karen 6 Elizabeth 14 William 0
+
+Nikolai 16 Nadezhda 20 Roman 10 Vera 15 Polina 1 Konstantin 16 Ivan 10 Danyl 17 Victoria 4 Maksim/Maxim 20 Anastasia 20
+Patricia 0 Charles 16 Daniel 4 Karen 16 David 4 Matthew 2 Barbara 8 James 14 Elizabeth 4 Sarah 4 Sandra 2
+
