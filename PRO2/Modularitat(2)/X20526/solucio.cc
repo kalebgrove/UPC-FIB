@@ -3,10 +3,9 @@
 
 void Cjt_estudiants::afegir_estudiant(const Estudiant& est, bool& b) {
     
-    if (nest >= MAX_NEST) throw PRO2Excepcio("Conjunt ple");
     int i = nest-1;
     bool a = false;
-    bool b = false;
+    b = false;
     int dni = est.consultar_DNI();
     
     while (i >= 0 and not a) {
