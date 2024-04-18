@@ -25,10 +25,17 @@ void Cjt_estudiants::afegir_estudiant(const Estudiant& est) {
 
   bool has_grade = est.te_nota();
 
-  if(nest == 1 and not has_grade) imax = -1;
-  else if(nest == 1 and has_grade) imax = i+1;
-  else if(has_grade and imax == -1) imax = i+1;
-  else if(has_grade and est.consultar_nota() > estudiant_nota_max().consultar_nota()) imax = i+1;
+  if(nest == 1) {
+      if(not has_grade) imax = -1;
+      else imax = i+1;
+  }
+  else if(has_grade) {
+      if(imax == -1) imax = i+1;
+      else if(est.consultar_nota() > estudiant_nota_max().consultar_nota()) imax = i+1;
+  }
+  //If we insert a student for the first time, and they don't have a grade, we must set imax to -1.
+  //If the student does have a grade, then the imax is 0 or i+1;
+  //If all the students we've added don't have a grade, but this new one does, therefore imax is i+1.
 }
 
 int Cjt_estudiants::cerca_dicot(const vector<Estudiant>& vest, int left, int right, int x) {

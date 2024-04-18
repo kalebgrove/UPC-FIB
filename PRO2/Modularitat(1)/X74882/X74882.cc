@@ -25,10 +25,10 @@ int main() {
         est2.llegir();
 
         int dni = est2.consultar_DNI();
-        int grade = est2.consultar_nota();
+        double grade = est2.consultar_nota();
 
         Estudiant original = set_students.consultar_estudiant(dni);
-        int original_grade = original.consultar_nota();
+        double original_grade = original.consultar_nota();
 
         if(original_grade < grade) {
             original.modificar_nota(grade);
