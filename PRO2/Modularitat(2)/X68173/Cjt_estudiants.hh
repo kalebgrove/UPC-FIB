@@ -16,6 +16,7 @@ private:
   vector<Estudiant> vest;
   int nest;
   static const int MAX_NEST = 10001;
+  int imax; // nou atribut
 
   void ordenar_cjt_estudiants ();
   /* Pre: cert */
@@ -35,7 +36,6 @@ private:
      impl�cit amb la nota m�s gran */
 
 public:
-  int imax; // nou atribut
 
   //Constructores
 

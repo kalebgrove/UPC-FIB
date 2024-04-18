@@ -26,7 +26,7 @@ void Cjt_estudiants::afegir_estudiant(const Estudiant& est) {
   bool has_grade = est.te_nota();
 
   if(nest == 1 and not has_grade) imax = -1;
-  else if(nest == 1 and has_grade) imax = 0;
+  else if(nest == 1 and has_grade) imax = i+1;
   else if(has_grade and imax == -1) imax = i+1;
   else if(has_grade and est.consultar_nota() > estudiant_nota_max().consultar_nota()) imax = i+1;
 }
