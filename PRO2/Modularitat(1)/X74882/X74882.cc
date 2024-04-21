@@ -8,72 +8,34 @@ Kaleb Grove - https://github.com/kalebgrove/UPC-FIB
 using namespace std;
 
 int main() {
-    int m; //Number of students
-    cin >> m;
+    Cjt_estudiants set1;
+    set1.llegir();
 
-    auto set_students = Cjt_estudiants();
+    Cjt_estudiants set2;
+    set2.llegir();
 
-    for(int i = 0; i < m; ++i) {
-        Estudiant est;
-        est.llegir();
-        
-        if(not est.te_nota()) est.afegir_nota(0.00);
+    int n = set1.mida();
 
-        set_students.afegir_estudiant(est);
-    }
-
-    int n;
-    cin >> n;
-
-    auto set_students2 = Cjt_estudiants();
-
-    for(int i = 0; i < n; ++i) {
-        Estudiant est2;
-        est2.llegir();
-
-        if(not est2.te_nota()) est2.afegir_nota(0.00);
-
-        set_students2.afegir_estudiant(est2);
-    }
-
-    int i = 1;
-    int j = 1;
-
-    while(i <= m and j <= n) {
-        Estudiant est1 = set_students.consultar_iessim(i);
-        Estudiant est2 = set_students2.consultar_iessim(j);
+    for(int i = 1; i <= n; i++) {
+        Estudiant est1 = set1.consultar_iessim(i);
+        Estudiant est2 = set2.consultar_iessim(i);
 
         int dni1 = est1.consultar_DNI();
         int dni2 = est2.consultar_DNI();
 
-        double grade1 = est1.consultar_nota();
-        double grade2 = est2.consultar_nota();
+        if(est2.te_nota()) {
 
-        if(dni1 != dni2) {
-            if(dni1 < dni2) {
-                i++;
-            } else {
-                set_students.afegir_estudiant(est2);
-                j++;
-                i++;
+            if(dni1 == dni2) {
+
+                if(est1.te_nota() and est1.consultar_nota() < est2.consultar_nota()){
+                    set1.modificar_iessim(i, est2);
+                }
+                else if(not est1.te_nota()) {
+                    set1.modificar_iessim(i, est2);
+                }
             }
-        }
-        else if (dni1 == dni2){
-            if(grade1 < grade2) {
-                est1.modificar_nota(grade2);
-                set_students.modificar_iessim(i, est1);
-            }
-            i++;
-            j++;
+            
         }
     }
-
-    if(j != n) {
-        while (j <= n){
-            Estudiant est2 = set_students2.consultar_iessim(j);
-            set_students.afegir_estudiant(est2);
-            j++;
-        }
-    }
-    set_students.escriure();
+    set1.escriure();
 }
