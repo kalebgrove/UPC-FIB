@@ -36,10 +36,6 @@ int main() {
         set_students2.afegir_estudiant(est2);
     }
 
-    auto set_students3 = Cjt_estudiants();
-
-    //int i = 1, j = 1;
-    //cout << n << ' ' << m << endl;
     int i = 1;
     int j = 1;
 
@@ -55,19 +51,17 @@ int main() {
 
         if(dni1 != dni2) {
             if(dni1 < dni2) {
-                set_students3.afegir_estudiant(est1);
                 i++;
             } else {
-                set_students3.afegir_estudiant(est2);
+                set_students.afegir_estudiant(est2);
                 j++;
+                i++;
             }
         }
         else if (dni1 == dni2){
             if(grade1 < grade2) {
                 est1.modificar_nota(grade2);
-                set_students3.afegir_estudiant(est1);
-            } else {
-                set_students3.afegir_estudiant(est1);
+                set_students.modificar_iessim(i, est1);
             }
             i++;
             j++;
@@ -77,10 +71,9 @@ int main() {
     if(j != n) {
         while (j <= n){
             Estudiant est2 = set_students2.consultar_iessim(j);
-            set_students3.afegir_estudiant(est2);
+            set_students.afegir_estudiant(est2);
             j++;
         }
     }
-    set_students = set_students3;
     set_students.escriure();
 }
