@@ -26,7 +26,7 @@ void Cjt_estudiants::afegir_estudiant(const Estudiant &est, bool& b) {
         if(has_grade) {
             incrementar_interval(est.consultar_nota());
         }
-    }   
+    } 
 }
 
 void Cjt_estudiants::esborrar_estudiant(int dni, bool& b) {
@@ -54,13 +54,15 @@ void Cjt_estudiants::esborrar_estudiant(int dni, bool& b) {
 void Cjt_estudiants::incrementar_interval(double x) {
     int grade = x;  //We eliminate the decimals to place it into the interval.
 
-    if(grade == 10) intervals[9]++;
-    else intervals[grade]++;
+    if(grade == 10) grade--;
+    
+    intervals[grade]++;
 }
 
 void Cjt_estudiants::decrementar_interval(double x) {
     int grade = x;  //We eliminate the decimals to find the correct interval.
 
-    if(grade == 10) intervals[9]--;
-    else intervals[grade]--;
+    if(grade == 10) grade--;
+
+    intervals[grade]--;
 }
