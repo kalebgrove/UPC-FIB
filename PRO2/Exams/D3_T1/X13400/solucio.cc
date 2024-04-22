@@ -1,6 +1,7 @@
 /* Intervals de notes dels estudiants d'un conjunt
 
 Kaleb Grove - https://github.com/kalebgrove/UPC-FIB
+Fedor Trofimov - https://github.com/fyodormeteor
 */
 #include "Estudiant.hh"
 #include "Cjt_estudiants.hh"
