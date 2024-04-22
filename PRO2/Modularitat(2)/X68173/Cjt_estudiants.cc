@@ -1,3 +1,7 @@
+/* Conjunt d'estudiants amb imax
+
+Kaleb Grove - https://github.com/kalebgrove/UPC-FIB
+*/
 #include "Cjt_estudiants.hh"
 #include <algorithm>
 
