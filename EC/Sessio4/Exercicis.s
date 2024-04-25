@@ -1,7 +1,7 @@
 4.3:	cfixa:		cflotant:
 0.0	0x00000000	0x00000000
 -0.0	0x80000000	0x80000000
-12.75	0x0000CC00	0x01CC0000
+12.75	0x0000CC00	0x414C0000
 
 4.4: Contesta:
 
@@ -23,7 +23,7 @@
 	5) El format de coma fixa explicat en aquesta pràctica permet codificar un rang de valors bastant limitat. Indica un número positiu que estigui DINS el rang
 	del format de coma flotant de simple precisió (en decimal) però que estigui FORA del rang del format de coma fixa. Indica també quin és el MENOR
 	número potència de 2 que compleixi aquesta condició.
-		El rang de la coma fixa és: 	[2^(-12), 2^(19)]	(positius)
-		El rang de la coma flotant és :	[2^(-23), 2^(129)]	(positius)
+		El rang de la coma fixa és: 	[2^(-12), 2^(19))	(positius)
+		El rang de la coma flotant és :	[2^(-126), 2^(129)]	(positius)
 		
-		Aleshores, el nombre positiu dins del rang del format de la coma flotant i fora del ranfo del format de la coma fixa és 2^(120), la menor potència serà 2^(-13)
+		Aleshores, el nombre positiu dins del rang del format de la coma flotant i fora del ranfo del format de la coma fixa és 2^(120), la menor potència serà 2^(-126)
