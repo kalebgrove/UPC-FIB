@@ -2,7 +2,7 @@
 signe:		.word 0			#0x10010000
 exponent:	.word 0			#0x10010004
 mantissa:	.word 0			#0x10010008
-cfixa:		.word 0x87D18A00	#0x1001000C
+cfixa:		.word 0x10000001	#0x1001000C
 cflotant:	.float 0.0		#0x10010010
 
 	.text
