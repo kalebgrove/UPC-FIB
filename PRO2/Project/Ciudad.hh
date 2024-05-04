@@ -6,3 +6,17 @@ relates those cities that can commerce between each other, in order to reduce co
 In addition, each city will contain an inventory of products, each one with different attributes. These attributes are defined in the 'Product.hh' file.
 The city can sell products to another city or to the boat iff these products are in excess (there are more products than what the needs require).
 The inventory of the city doesn't have to contain all possible products, just some.*/
+
+class Ciudad {
+    private:
+        //String name
+        //Inventario
+        //Peso total del inventario
+        //Cantidad total de productos del inventario
+
+    public:
+
+        //Modificar el inventario de una ciudad
+        //Consultar el inventario de una ciudad
+        //Consultar un producto del inventario de una ciudad
+}
