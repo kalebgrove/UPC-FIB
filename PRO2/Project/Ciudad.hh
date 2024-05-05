@@ -9,14 +9,15 @@ The inventory of the city doesn't have to contain all possible products, just so
 
 class Ciudad {
     private:
-        //String name
-        //Inventario
-        //Peso total del inventario
-        //Cantidad total de productos del inventario
+        string name;
+        bool has_inventario = false;
+        Productos inventario_ciudad = Productos ();
 
     public:
-
+        void leer_inventario(/*argumentos*/) {
+            //To do
+        }
         //Modificar el inventario de una ciudad
         //Consultar el inventario de una ciudad
         //Consultar un producto del inventario de una ciudad
-}
+};
