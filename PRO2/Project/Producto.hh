@@ -12,8 +12,12 @@ class Producto {
         double volumen;
 
     public:
-        
-        //Constructoras:
+    
+        Producto() {
+            //id?
+            peso = 0;
+            volumen = 0;
+        }
         
         //Anadir productos
         //Consulta de cantidad de productos

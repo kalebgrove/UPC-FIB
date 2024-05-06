@@ -1,26 +1,34 @@
+/** @file Barco.hh
+    @brief Especificación de la clase Barco 
+*/
+
+
+#ifndef _BARCO_HH_
+#define _BARCO_HH_
+
+#ifndef NO_DIAGRAM          // esto hace que el Doxyfile de la sesión no incluya estas clases en los diagramas modulares, 
+#include <iostream>         // mientras que el compilador de c++
 #include "Producto.hh"
-#include "Productos.hh"
 #include <map>
+#endif                      // sí que las procesa correctamente  #include "Producto.hh"
 
 /*The boat is the object that allows commerce between two cities. The boat will contain an additional inventory, with its own products, 
 such that it is allows to purchase and sell two DIFFERENT products.*/
 
 class Barco {
     private:
-        list<Producto> inventario_barco = list<Producto> ();
-        int num_viajes = 0;
+
+        //Inventario de productos del barco: hay dos estructuras de datos; una para los productos que se quieren comprar
+        //y otra para los productos que se quieren vender.
+        map<Producto, int> cantidad_comprar;
+        map<Producto, int> cantidad_vender;
+        int num_viajes;
         //inventario: lista de productos que tiene a disposicion el barco;
         //Numero de viajes
 
     public:
-        //Setters and getters
-        void modificar_barco(/*argumentos*/) {
-            //To do
-        }
 
-        void escribir_barco(/*agrumentos*/) {
-            //To do
-        }
         //Modificar los datos de un barco
         //Escribir los datos del barco
 };
+#endif

@@ -1,3 +1,65 @@
+#include "Ciudad.hh"
+#include "Ciudades.hh"
+
+int main() {
+    string s;
+
+    while(cin >> s) {
+
+        if(s == "leer_rio" or s == "lr") {
+
+        }
+        else if(s == "leer_inventario" or s == "li") {
+
+        }
+        else if(s == "leer_inventarios" or s == "ls") {
+
+        }
+        else if(s == "modificar_barco" or s == "mb") {
+
+        }
+        else if(s == "escribir_barco" or s == "eb") {
+
+        }
+        else if(s == "consultar_num" or s == "cn") {
+
+        }
+        else if(s == "agregar_productos" or s == "ap") {
+
+        }
+        else if(s == "escribir_producto" or s == "ep") {
+
+        }
+        else if(s == "escribir_ciudad" or s == "ec") {
+
+        }
+        else if(s == "poner_prod" or s == "pp") {
+
+        }
+        else if(s == "modificar_producto" or s == "mp") {
+
+        }
+        else if(s == "quitar_prod" or s == "qp") {
+
+        }
+        else if(s == "consultar_producto" or s == "cp") {
+            
+        }
+        else if(s == "comerciar" or s == "co") {
+
+        }
+        else if(s == "redistribuir" or s == "re") {
+
+        }
+        else if(s == "hacer_viaje" or s == "hv") {
+
+        }
+        else if(s == "fin") {
+            
+        }
+    }
+}
+
 /*1. leer_rio o lr. Se leerán los identificadores de las ciudades indicando la estructura
 de la cuenca. No se escribe nada.
 2. leer_inventario o li. Se leerá el identificador de una ciudad. Si la ciudad no existe
