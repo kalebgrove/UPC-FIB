@@ -4,21 +4,34 @@ It's its own class, since there are getters and setters; change in attributes an
 #include <iostream>
 using namespace std;
 
+/** @file Prenda.hh
+    @brief Especificación de la clase Prenda 
+*/
+
+
+#ifndef _PRODUCTO_HH_
+#define _PRODUCTO_HH_
+
+#ifndef NO_DIAGRAM          // esto hace que el Doxyfile de la sesión no 
+#include <iostream>         // incluya estas clases en los diagramas modulares, 
+                            // mientras que el compilador de c++ 
+#endif                      // sí que las procesa correctamente  
+
 class Producto {
     private:
-    //peso y volumen
-        string id;
-        double peso;
-        double volumen;
+    
+        int id;
+        int peso;
+        int volumen;
 
     public:
     
-        Producto() {
-            //id?
-            peso = 0;
-            volumen = 0;
-        }
+        Producto();
+
+        Producto(int peso, int volumen, int i);
         
         //Anadir productos
         //Consulta de cantidad de productos
 };
+
+#endif

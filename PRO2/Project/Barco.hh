@@ -2,7 +2,6 @@
     @brief Especificación de la clase Barco 
 */
 
-
 #ifndef _BARCO_HH_
 #define _BARCO_HH_
 
@@ -20,14 +19,24 @@ class Barco {
 
         //Inventario de productos del barco: hay dos estructuras de datos; una para los productos que se quieren comprar
         //y otra para los productos que se quieren vender.
-        map<Producto, int> cantidad_comprar;
-        map<Producto, int> cantidad_vender;
+        int producto_a_comprar; //Identificador
+        int unidades_a_comprar;
+
+        int producto_a_vender;  //Identificador
+        int unidades_a_vender;
+
         int num_viajes;
+
+        string ciudad_anterior;
         //inventario: lista de productos que tiene a disposicion el barco;
         //Numero de viajes
 
     public:
+        Barco();
 
+        Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
+
+        
         //Modificar los datos de un barco
         //Escribir los datos del barco
 };
