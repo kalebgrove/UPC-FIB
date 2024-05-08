@@ -1,13 +1,19 @@
 #include "Producto.hh"
 
 Producto::Producto() {
-    id = 0;
     peso = 0;
     volumen = 0;
 }
 
-Producto::Producto(int peso, int volumen, int i) {
-    id = i+1;
+Producto::Producto(double peso, double volumen) {
     this->peso = peso;
     this->volumen = volumen;
+}
+
+double Producto::consultar_peso() const {
+    return peso;
+}
+
+double Producto::consultar_volumen() const {
+    return volumen;
 }

@@ -12,23 +12,25 @@ using namespace std;
 #ifndef _PRODUCTO_HH_
 #define _PRODUCTO_HH_
 
-#ifndef NO_DIAGRAM          // esto hace que el Doxyfile de la sesión no 
-#include <iostream>         // incluya estas clases en los diagramas modulares, 
-                            // mientras que el compilador de c++ 
-#endif                      // sí que las procesa correctamente  
+#ifndef NO_DIAGRAM
+#include <iostream>
+#endif
 
 class Producto {
     private:
     
-        int id;
-        int peso;
-        int volumen;
+        double peso;
+        double volumen;
 
     public:
     
         Producto();
 
-        Producto(int peso, int volumen, int i);
+        Producto(double peso, double volumen);
+
+        double consultar_peso() const;
+
+        double consultar_volumen() const;
         
         //Anadir productos
         //Consulta de cantidad de productos

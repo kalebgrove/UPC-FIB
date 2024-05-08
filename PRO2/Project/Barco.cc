@@ -11,7 +11,7 @@ Barco::Barco() {
     ciudad_anterior = "";
 }
 
-Barco::Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender) {
+Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
     this->producto_a_comprar = producto_a_comprar;
     this->producto_a_vender = producto_a_vender;
 
@@ -20,4 +20,15 @@ Barco::Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_compr
 
     num_viajes = 0;
     ciudad_anterior = "";
+}
+
+void Barco::escribir_barco() const {
+    cout << producto_a_vender << ' ' << unidades_a_vender << endl;
+    cout << producto_a_comprar << ' ' << unidades_a_comprar << endl;
+
+    int n = ultima_ciudad_viaje.size();
+
+    for(int i = 0; i < n; ++i) {
+        cout << ultima_ciudad_viaje[i] << endl;
+    }
 }

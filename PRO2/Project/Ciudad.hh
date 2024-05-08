@@ -21,24 +21,31 @@ The inventory of the city doesn't have to contain all possible products, just so
 
 //Struct that contains the amount of products needed and the total amount of products.
 struct amount_products {
-    int necessary;
-    int amount;
+    int unidades_necesarias;
+    int unidades;
 };
 
 class Ciudad {
     private:
         string name;
-        bool has_inventory;
-        map<int, Producto> inventory;               //It relates the id of the product to the product itself (optimization)
-        map<int, amount_products> InfoProducts;     //It relates the id of the product with the struct with info about needs.
+        map<int, Producto> inventario;               //It relates the id of the product to the product itself (optimization)
+        map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
+
+        double peso_total;
+        double volumen_total;
 
     public:
         Ciudad();
 
         Ciudad(string name);
 
-        void add_inventory(int id_producto, int unidades, int unidades_necesarias, Producto product);
-        
+        void anadir_inventario(Producto& producto, int id_prod, int unidades, int unidades_necesarias);
+
+        void escribir_ciudad() const;
+
+        void poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias);
+
+        bool contiene_producto(int id) const;
 };
 
 #endif
