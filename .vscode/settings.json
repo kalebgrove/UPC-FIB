@@ -46,6 +46,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "set": "cpp",
-        "*.pro2": "cpp"
+        "*.pro2": "cpp",
+        "cstring": "cpp"
     }
 }

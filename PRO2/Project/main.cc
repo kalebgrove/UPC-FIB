@@ -34,18 +34,20 @@ int main() {
 
             cin >> id >> n;
 
-            if(river.existe_ciudad(id)) {
-                int id_prod;
-                int unidades, necesarias;
+            bool existe = river.existe_ciudad(id);
 
-                for(int i = 0; i < n; ++i) {
-                    cin >> id_prod >> unidades >> necesarias;
+            int id_prod;
+            int unidades, necesarias;
 
+            for(int i = 0; i < n; ++i) {
+                cin >> id_prod >> unidades >> necesarias;
+
+                if(existe) {
                     Ciudad city = river.consultar_ciudad(id);
                     Producto producto = river.consultar_producto(id_prod);
 
                     river.leer_inventario(city, producto, id_prod, unidades, necesarias);
-                }
+                }                
             }
         }
         else if(s == "leer_inventarios" or s == "ls") {
@@ -120,16 +122,16 @@ int main() {
             cin >> id_ciudad >> id_producto >> unidades >> unidades_quiere;
 
             if(not river.existe_ciudad(id_ciudad)) {
-                return error;
+                river.error_no_ciudad();
             }
             else if(not river.existe_producto(id_producto)) {
-                return error;
+                river.error_no_producto();
             }
             else {
                 Ciudad city = river.consultar_ciudad(id_ciudad);
                 
                 if(not river.existe_producto_ciudad(city, id_producto)) {
-                    return error;
+                    river.error_no_producto_ciudad();
                 }
                 else {
                     river.poner_producto(city, id_producto, unidades, unidades_quiere);
