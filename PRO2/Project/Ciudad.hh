@@ -46,6 +46,14 @@ class Ciudad {
         void poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias);
 
         bool contiene_producto(int id) const;
+
+        void modificar_producto(int id_producto, int unidades, int unidades_necesarias);
+
+        void quitar_producto(int id_producto);
+
+        void caract_producto(int id_producto) const;
+
+        void recalculate_weight();
 };
 
 #endif

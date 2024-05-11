@@ -71,3 +71,48 @@ bool Ciudad::contiene_producto(int id) const {
 
     return (it != inventario.end());
 }
+
+void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_necesarias) {
+    amount_products newInfo;
+    newInfo.unidades = unidades;
+    newInfo.unidades_necesarias = unidades_necesarias;
+
+    InfoProductos[id_producto] = newInfo;
+
+    recalculate_weight();
+}
+
+void Ciudad::recalculate_weight() {
+    map<int, Producto>::iterator it = inventario.begin();
+    double tp = 0;
+    double tv = 0;
+    int units = 0;
+    while(it != inventario.end()) {
+        units += InfoProductos[it->first].unidades;
+        tp += inventario[it->first].consultar_peso();
+        tv += inventario[it->first].consultar_volumen();
+        ++it;
+    }
+
+    peso_total = units*tp;
+    volumen_total = units*tv;
+}
+
+void Ciudad::caract_producto(int id_producto) const {
+    map<int, amount_products>::const_iterator it = InfoProductos.find(id_producto);
+
+    cout << (it->second).unidades << ' ' << (it->second).unidades_necesarias << endl;
+}
+
+void Ciudad::quitar_producto(int id_producto) {
+    double tp = inventario[id_producto].consultar_peso();
+    double tv = inventario[id_producto].consultar_volumen();
+
+    peso_total -= tp;
+    volumen_total -= tv;
+
+    inventario.erase(id_producto);
+    InfoProductos.erase(id_producto);
+
+    cout << peso_total << ' ' << volumen_total << endl;
+}

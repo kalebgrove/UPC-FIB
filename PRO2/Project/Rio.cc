@@ -64,11 +64,29 @@ void Rio::escribir_ciudad(string id) const {
     city.escribir_ciudad();
 }
 
-void Rio::poner_producto(Ciudad& city, int id_producto, int unidades, int unidades_necesarias) {
+void Rio::poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
+    Ciudad city = consultar_ciudad(id_ciudad);
     Producto producto = consultar_producto(id_producto);
+
     city.poner_producto(producto, id_producto, unidades, unidades_necesarias);
 }
 
-bool Rio::existe_producto_ciudad(Ciudad& city, int id) const {
+bool Rio::existe_producto_ciudad(string id_ciudad, int id) const {
+    Ciudad city = consultar_ciudad(id_ciudad);
     return city.contiene_producto(id);
+}
+
+void Rio::modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
+    Ciudad city = consultar_ciudad(id_ciudad);
+    city.modificar_producto(id_producto, unidades, unidades_necesarias);
+}
+
+void Rio::quitar_producto(string id_ciudad, int id_producto) {
+    Ciudad city = consultar_ciudad(id_ciudad);
+    city.quitar_producto(id_producto);
+}
+
+void Rio::caract_producto(string id_ciudad, int id_producto) const {
+    Ciudad city = consultar_ciudad(id_ciudad);
+    city.caract_producto(id_producto);
 }

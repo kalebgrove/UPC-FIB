@@ -130,22 +130,53 @@ int main() {
             else {
                 Ciudad city = river.consultar_ciudad(id_ciudad);
                 
-                if(not river.existe_producto_ciudad(city, id_producto)) {
+                if(not river.existe_producto_ciudad(id_ciudad, id_producto)) {
                     river.error_no_producto_ciudad();
                 }
                 else {
-                    river.poner_producto(city, id_producto, unidades, unidades_quiere);
+                    river.poner_producto(id_ciudad, id_producto, unidades, unidades_quiere);
                 }
             }
         }
         else if(s == "modificar_producto" or s == "mp") {
+            string id_ciudad;
+            int id_producto;
+            int unidades, unidades_necesarias;
 
+            cin >> id_ciudad >> id_producto >> unidades >> unidades_necesarias;
+
+            if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
+            else if(not river.existe_producto(id_producto)) river.error_no_producto();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
+            else {
+                river.modificar_producto(id_ciudad, id_producto, unidades, unidades_necesarias);
+            }
         }
         else if(s == "quitar_prod" or s == "qp") {
+            string id_ciudad;
+            int id_producto;
 
+            cin >> id_ciudad >> id_producto;
+
+            if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
+            else if(not river.existe_producto(id_producto)) river.error_no_producto();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_tiene_producto();
+            else {
+                river.quitar_producto(id_ciudad, id_producto);
+            }
         }
         else if(s == "consultar_producto" or s == "cp") {
-            
+            string id_ciudad;
+            int id_producto;
+
+            cin >> id_ciudad >> id_producto;
+
+            if(not river.existe_producto(id_producto)) river.error_no_producto();
+            else if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_tiene_producto();
+            else {
+                river.caract_producto(id_ciudad, id_producto);
+            }
         }
         else if(s == "comerciar" or s == "co") {
 

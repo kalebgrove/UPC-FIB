@@ -143,7 +143,7 @@ class Rio {
         \post El resultado es una Ciudad.
         \coste Logarítmico: log(n)
         */  
-        void poner_producto(Ciudad& city, int id_producto, int unidades, int unidades_necesarias);
+        void poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
 
         /** @brief Consultora Ciudad. 
 
@@ -152,7 +152,13 @@ class Rio {
         \post El resultado es una Ciudad.
         \coste Logarítmico: log(n)
         */  
-        bool existe_producto_ciudad(Ciudad& city, int id) const;
+        bool existe_producto_ciudad(string id_ciudad, int id) const;
+
+        void modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
+
+        void quitar_producto(string id_ciudad, int id_producto);
+
+        void caract_producto(string id_ciudad, int id_producto) const;
 
         void error_no_ciudad() const;
 

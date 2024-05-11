@@ -10,6 +10,7 @@
 #include "Producto.hh"
 #include <map>
 #include <list>
+#include <vector>
 #endif
 
 /*The boat is the object that allows commerce between two cities. The boat will contain an additional inventory, with its own products, 
