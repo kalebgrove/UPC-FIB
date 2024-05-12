@@ -116,3 +116,35 @@ void Ciudad::quitar_producto(int id_producto) {
 
     cout << peso_total << ' ' << volumen_total << endl;
 }
+
+int Ciudad::mida_inventario() const {
+    return inventario.size();
+}
+
+int Ciudad::consultar_iesimo_producto(int i) const {
+    map<int, Producto>::const_iterator it = inventario.begin();
+
+    for(int j = 0; j < i; ++j) ++it;
+
+    return it->first;
+}
+
+int Ciudad::cantidad_necesaria(int id_producto) const {
+    map<int, amount_products>::const_iterator it = InfoProductos.find(id_producto);
+
+    int cantidad = (it->second).unidades - (it->second).unidades_necesarias;
+    //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess.
+    return cantidad;
+}
+
+void Ciudad::reduccion(int id_producto, int cantidad) {
+    map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
+
+    (it->second).unidades -= cantidad;
+}
+
+void Ciudad::adquisicion(int id_producto, int cantidad) {
+    map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
+
+    (it->second).unidades += cantidad;
+}

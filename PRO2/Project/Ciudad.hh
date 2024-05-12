@@ -53,6 +53,16 @@ class Ciudad {
 
         void caract_producto(int id_producto) const;
 
+        int mida_inventario() const;
+
+        int consultar_iesimo_producto(int i) const;
+
+        int cantidad_necesaria(int id_producto) const;
+
+        void reduccion(int id_producto, int cantidad);
+
+        void adquisicion(int id_producto, int cantidad);
+
         void recalculate_weight();
 };
 

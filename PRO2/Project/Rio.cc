@@ -29,8 +29,9 @@ Producto Rio::consultar_producto(int id) const {
     return producto;
 }
 
-void Rio::leer_inventario(Ciudad& city, Producto& producto, int id_producto, int unidades, int unidades_necesarias) {
-    Producto producto = lista_productos.at(id_producto);
+void Rio::leer_inventario(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
+    Ciudad city = consultar_ciudad(id_ciudad);
+    Producto producto = consultar_producto(id_producto);
     city.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
 }
 
@@ -89,4 +90,30 @@ void Rio::quitar_producto(string id_ciudad, int id_producto) {
 void Rio::caract_producto(string id_ciudad, int id_producto) const {
     Ciudad city = consultar_ciudad(id_ciudad);
     city.caract_producto(id_producto);
+}
+
+void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
+    Ciudad city1 = consultar_ciudad(id_ciudad1);
+    Ciudad city2 = consultar_ciudad(id_ciudad2);
+
+    int n = city1.mida_inventario();
+
+    for(int i = 0; i < n; ++i) {
+        int id_producto1 = city1.consultar_iesimo_producto(i);
+        
+        if(city2.contiene_producto(id_producto1)) {
+            int cantidad_necesitada1 = city1.cantidad_necesaria(id_producto1);
+            int cantidad_necesitada2 = city2.cantidad_necesaria(id_producto1);
+
+            if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
+        //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
+                city1.adquisicion(id_producto1, cantidad_necesitada2);
+                city2.reduccion(id_producto1, cantidad_necesitada2);
+            }
+            else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
+                city1.reduccion(id_producto1, cantidad_necesitada1);
+                city2.adquisicion(id_producto1, cantidad_necesitada1);
+            }
+        }
+    }
 }

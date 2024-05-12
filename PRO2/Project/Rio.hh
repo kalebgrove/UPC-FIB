@@ -3,8 +3,6 @@
 #include "Barco.hh"
 #include <vector>
 
-using namespace std;
-
 /** @class Rio
     @brief Representa el río con todos sus elementos.
 
@@ -18,6 +16,7 @@ using namespace std;
 #define ERR_NO_PRODUCTO_CIUDAD "error: la ciudad no tiene el producto"
 #define ERR_CIUDAD_TIENE_PRODUCTO "error: la ciudad ya tiene el producto"
 #define ERR_MISMO_PRODUCTO_COMPRAVENDA "error: no se puede comprar y vender el mismo producto"
+#define ERR_MISMA_CIUDAD "error: misma ciudad"
 
 class Rio {
     private:
@@ -79,7 +78,7 @@ class Rio {
         \post Se escribe en la consola el inventario de una ciudad.
         \coste Lineal: O(n)
         */  
-        void leer_inventario(Ciudad& city, Producto& producto, int id_producto, int unidades, int unidades_necesarias);
+        void leer_inventario(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
 
         /** @brief Modificador del Barco. 
 
@@ -160,6 +159,8 @@ class Rio {
 
         void caract_producto(string id_ciudad, int id_producto) const;
 
+        void comerciar(string id_ciudad1, string id_ciudad2);
+
         void error_no_ciudad() const;
 
         void error_no_producto() const;
@@ -171,4 +172,6 @@ class Rio {
         void error_ciudad_tiene_producto() const;
 
         void error_mismo_producto() const;
+
+        void error_misma_ciudad() const;
 };

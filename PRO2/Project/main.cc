@@ -12,7 +12,6 @@ de proyecto completamente documentado, incluyendo los elementos privados.
 */
 
 #include "Rio.hh"
-#include <set>
 #ifndef NO_DIAGRAM
 #endif
 
@@ -43,10 +42,7 @@ int main() {
                 cin >> id_prod >> unidades >> necesarias;
 
                 if(existe) {
-                    Ciudad city = river.consultar_ciudad(id);
-                    Producto producto = river.consultar_producto(id_prod);
-
-                    river.leer_inventario(city, producto, id_prod, unidades, necesarias);
+                    river.leer_inventario(id, id_prod, unidades, necesarias);
                 }                
             }
         }
@@ -62,10 +58,7 @@ int main() {
                 for(int i = 0; i < n; ++i) {
                     cin >> id_prod >> unidades >> necesarias;
 
-                    Ciudad city = river.consultar_ciudad(id);
-                    Producto producto = river.consultar_producto(id_prod);
-
-                    river.leer_inventario(city, producto, id_prod, unidades, necesarias);
+                    river.leer_inventario(id, id_prod, unidades, necesarias);
                 }
 
             }
@@ -179,7 +172,14 @@ int main() {
             }
         }
         else if(s == "comerciar" or s == "co") {
+            string id_ciudad1, id_ciudad2;
+            cin >> id_ciudad1 >> id_ciudad2;
 
+            if(not river.existe_ciudad(id_ciudad1) or not river.existe_ciudad(id_ciudad2)) river.error_no_ciudad();
+            else if(id_ciudad1 == id_ciudad2) river.error_misma_ciudad();
+            else {
+                river.comerciar(id_ciudad1, id_ciudad2);
+            }
         }
         else if(s == "redistribuir" or s == "re") {
 
