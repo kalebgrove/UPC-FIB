@@ -63,6 +63,8 @@ class Ciudad {
 
         void adquisicion(int id_producto, int cantidad);
 
+        Producto consultar_producto(int id_producto);
+
         void recalculate_weight();
 };
 

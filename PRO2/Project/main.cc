@@ -153,7 +153,7 @@ int main() {
 
             if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
             else if(not river.existe_producto(id_producto)) river.error_no_producto();
-            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_tiene_producto();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
             else {
                 river.quitar_producto(id_ciudad, id_producto);
             }
@@ -166,7 +166,7 @@ int main() {
 
             if(not river.existe_producto(id_producto)) river.error_no_producto();
             else if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
-            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_tiene_producto();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
             else {
                 river.caract_producto(id_ciudad, id_producto);
             }
@@ -182,10 +182,10 @@ int main() {
             }
         }
         else if(s == "redistribuir" or s == "re") {
-
+            river.redistribuir();
         }
         else if(s == "hacer_viaje" or s == "hv") {
-
+            river.hacer_viaje();
         }
         else if(s == "fin") {
             

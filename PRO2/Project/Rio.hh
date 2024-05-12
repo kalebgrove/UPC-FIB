@@ -1,6 +1,7 @@
 #include "Ciudad.hh"
 #include "Producto.hh"
 #include "Barco.hh"
+#include "BinTree.hh"
 #include <vector>
 
 /** @class Rio
@@ -21,7 +22,9 @@
 class Rio {
     private:
         map<string, Ciudad> lista_ciudades; //List of all the cities on the river.
+        map<string, pair<string, string> > Tree;
         vector<Producto> lista_productos;   //List of all the products on the river. The indexes of the vector indicate the id of the product.
+        BinTree<string> mapa_rio;
 
     public:
         //Constructora
@@ -34,6 +37,15 @@ class Rio {
         \coste Constante
         */  
         Rio();
+
+        /** @brief Se lee el río. 
+
+        Se ejecuta al llamar la función.
+        \pre <em>cierto</em>
+        \post El resultado es un rio con los parámetros privados inicializados.
+        \coste Lineal
+        */  
+        void leer_rio();
 
         /** @brief Booleano ciudad. 
 
@@ -161,6 +173,12 @@ class Rio {
 
         void comerciar(string id_ciudad1, string id_ciudad2);
 
+        void redistribuir();
+
+        void redistribuir_rec(BinTree<string> mapa_rio);
+
+        void hacer_viaje();
+
         void error_no_ciudad() const;
 
         void error_no_producto() const;
@@ -168,8 +186,6 @@ class Rio {
         void error_no_producto_ciudad() const;
 
         void error_ciudad_producto() const;
-
-        void error_ciudad_tiene_producto() const;
 
         void error_mismo_producto() const;
 

@@ -141,10 +141,30 @@ void Ciudad::reduccion(int id_producto, int cantidad) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades -= cantidad;
+
+    Producto product = consultar_producto(id_producto);
+
+    double peso_elim = cantidad * product.consultar_peso();
+    double vol_elim = cantidad * product.consultar_volumen();
+
+    peso_total -= peso_elim;
+    volumen_total -= vol_elim;
 }
 
 void Ciudad::adquisicion(int id_producto, int cantidad) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades += cantidad;
+
+    Producto product = consultar_producto(id_producto);
+
+    double peso_sum = cantidad * product.consultar_peso();
+    double vol_sum = cantidad * product.consultar_volumen();
+
+    peso_total += peso_sum;
+    volumen_total += vol_sum;
+}
+
+Producto Ciudad::consultar_producto(int id_producto) {
+    return inventario.at(id_producto);
 }

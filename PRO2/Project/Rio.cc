@@ -1,10 +1,16 @@
 #include "Rio.hh"
 
 Rio::Rio() {
-    map<string, Ciudad> lista_ciudades = map<string, Ciudad> ();
-    vector<Producto> lista_productos = vector<Producto> ();
+    lista_ciudades = map<string, Ciudad> ();
+    Tree = map<string, pair<string, string> > ();
+    mapa_rio = BinTree<string> ();
+    lista_productos = vector<Producto> ();
 
     Barco barco = Barco();
+}
+
+void Rio::leer_rio() {
+
 }
 
 bool Rio::existe_ciudad(string id) const {
@@ -116,4 +122,48 @@ void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
             }
         }
     }
+}
+
+void Rio::redistribuir() {
+    redistribuir_rec(mapa_rio);
+}
+
+void Rio::redistribuir_rec(BinTree<string> mapa_rio) {
+    if(mapa_rio.empty()) return;
+
+    if(not mapa_rio.left().empty() and not mapa_rio.right().empty()) {
+        string id_main_city = mapa_rio.value();
+        string left_city = mapa_rio.left().value();
+        string right_city = mapa_rio.right().value();
+
+        comerciar(id_main_city, left_city);
+        comerciar(id_main_city, right_city);        
+    }
+
+    redistribuir_rec(mapa_rio.left());
+    redistribuir_rec(mapa_rio.right());
+}
+
+void Rio::error_no_ciudad() const {
+    cout << ERR_NO_CIUDAD << endl;
+}
+
+void Rio::error_no_producto() const {
+    cout << ERR_NO_PRODUCTO << endl;
+}
+
+void Rio::error_no_producto_ciudad() const {
+    cout << ERR_NO_PRODUCTO_CIUDAD << endl;
+}
+
+void Rio::error_ciudad_producto() const {
+    cout << ERR_CIUDAD_TIENE_PRODUCTO << endl;
+}
+
+void Rio::error_mismo_producto() const{
+    cout << ERR_MISMO_PRODUCTO_COMPRAVENDA << endl;
+}
+
+void Rio::error_misma_ciudad() const {
+    cout << ERR_MISMA_CIUDAD << endl;
 }
