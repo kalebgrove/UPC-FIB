@@ -25,7 +25,7 @@ int main() {
     while(s != "fin") {
 
         if(s == "leer_rio" or s == "lr") {
-            //Se reinicia la cuenca
+            river.leer_rio();
         }
         else if(s == "leer_inventario" or s == "li") {
             string id;

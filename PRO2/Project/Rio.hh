@@ -47,6 +47,8 @@ class Rio {
         */  
         void leer_rio();
 
+        void leer_rio_rec(BinTree<string>& mapa_rio, string s);
+
         /** @brief Booleano ciudad. 
 
         Al llamar la función, devuelve si la ciudad existe en el río o no.

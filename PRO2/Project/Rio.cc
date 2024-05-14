@@ -10,7 +10,13 @@ Rio::Rio() {
 }
 
 void Rio::leer_rio() {
+    string s;
+    cin >> s;
 
+}
+
+void Rio::leer_rio_rec(BinTree<string>& mapa_rio, string s) {
+    
 }
 
 bool Rio::existe_ciudad(string id) const {
