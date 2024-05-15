@@ -7,7 +7,6 @@ Barco::Barco() {
     unidades_a_comprar = -1;
     unidades_a_vender = -1;
 
-    num_viajes = 0;
     ciudad_anterior = "";
 }
 
@@ -18,7 +17,6 @@ Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_co
     this->unidades_a_comprar = unidades_a_comprar;
     this->unidades_a_vender = unidades_a_vender;
 
-    num_viajes = 0;
     ciudad_anterior = "";
 }
 
@@ -31,4 +29,8 @@ void Barco::escribir_barco() const {
     for(int i = 0; i < n; ++i) {
         cout << ultima_ciudad_viaje[i] << endl;
     }
+}
+
+void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades) {
+    
 }

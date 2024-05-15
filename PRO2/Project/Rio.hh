@@ -25,6 +25,13 @@ class Rio {
         map<string, pair<string, string> > Tree;
         vector<Producto> lista_productos;   //List of all the products on the river. The indexes of the vector indicate the id of the product.
         BinTree<string> mapa_rio;
+        Barco barco;
+
+
+        BinTree<string> leer_rio_rec();
+
+
+        void redistribuir_rec(BinTree<string> mapa_rio);
 
     public:
         //Constructora
@@ -43,11 +50,10 @@ class Rio {
         Se ejecuta al llamar la función.
         \pre <em>cierto</em>
         \post El resultado es un rio con los parámetros privados inicializados.
-        \coste Lineal
+        \coste Lineal: O(n)
         */  
         void leer_rio();
 
-        void leer_rio_rec(BinTree<string>& mapa_rio, string s);
 
         /** @brief Booleano ciudad. 
 
@@ -60,7 +66,7 @@ class Rio {
 
         /** @brief Booleano producto. 
 
-        Al llamar la función, devuelce si el producto existe en el río o no.
+        Al llamar la función, devuelve si el producto existe en el río o no.
         \pre <em>cierto</em>
         \post El resultado es un rio con lista de ciudades y productos vacias.
         \coste Constante
@@ -72,7 +78,7 @@ class Rio {
         Se devuelve la ciudad con el identificador proporcionado.
         \pre <em>Existe la ciudad</em>
         \post El resultado es una Ciudad.
-        \coste Logarítmico: log(n)
+        \coste Logarítmico: O(log(n))
         */  
         Ciudad consultar_ciudad(string id) const;
 
@@ -101,7 +107,7 @@ class Rio {
         \post El barco ahora contiene dos productos; uno que vende y otro que compra.
         \coste Constante
         */  
-        void modificar_barco(Barco& barco, int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender);
+        void modificar_barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender);
 
         /** @brief Escritura del Barco. 
 
@@ -110,7 +116,7 @@ class Rio {
         \post Se escribe en la consola el inventario del barco.
         \coste Logarítmico: log(n)
         */  
-        void escribir_barco(Barco& barco) const;
+        void escribir_barco() const;
 
         /** @brief Consulta el número de productos en el río. 
 
@@ -167,6 +173,8 @@ class Rio {
         */  
         bool existe_producto_ciudad(string id_ciudad, int id) const;
 
+        Barco consultar_barco();
+
         void modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
 
         void quitar_producto(string id_ciudad, int id_producto);
@@ -176,8 +184,6 @@ class Rio {
         void comerciar(string id_ciudad1, string id_ciudad2);
 
         void redistribuir();
-
-        void redistribuir_rec(BinTree<string> mapa_rio);
 
         void hacer_viaje();
 

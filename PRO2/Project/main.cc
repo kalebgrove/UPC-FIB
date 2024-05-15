@@ -18,7 +18,6 @@ de proyecto completamente documentado, incluyendo los elementos privados.
 int main() {
     
     Rio river = Rio();
-    Barco barco = Barco();
 
     string s;
     cin >> s;
@@ -70,11 +69,11 @@ int main() {
             cin >> id_producto1 >> cantidad_vender >> id_producto2 >> cantidad_comprar;
 
             if(river.existe_producto(id_producto1) and river.existe_producto(id_producto2) and id_producto1 != id_producto2) {
-                river.modificar_barco(barco, id_producto1, id_producto2, cantidad_vender, cantidad_comprar);
+                river.modificar_barco(id_producto1, id_producto2, cantidad_vender, cantidad_comprar);
             }
         }
         else if(s == "escribir_barco" or s == "eb") {
-            river.escribir_barco(barco);
+            river.escribir_barco();
         }
         else if(s == "consultar_num" or s == "cn") {
             river.consultar_num();

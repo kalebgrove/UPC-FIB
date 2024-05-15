@@ -6,17 +6,36 @@ Rio::Rio() {
     mapa_rio = BinTree<string> ();
     lista_productos = vector<Producto> ();
 
-    Barco barco = Barco();
+    barco = Barco();
 }
 
 void Rio::leer_rio() {
-    string s;
-    cin >> s;
+    lista_ciudades.clear();
 
+    mapa_rio = leer_rio_rec();
 }
 
-void Rio::leer_rio_rec(BinTree<string>& mapa_rio, string s) {
+BinTree<string> Rio::leer_rio_rec() {
+    string id_ciudad;
+    cin >> id_ciudad;
+
+    //Base case
+    if(id_ciudad == "#") {
+        return BinTree<string> ();
+    }
+
+    //Recursive case
+    Ciudad c = Ciudad(id_ciudad);
+    lista_ciudades[id_ciudad] = c;
     
+    BinTree<string> tree_izq = leer_rio_rec();
+    BinTree<string> tree_der = leer_rio_rec();
+
+    return BinTree<string> (id_ciudad, tree_izq, tree_der);
+}
+
+void Rio::hacer_viaje() {
+    barco.hacer_viaje(mapa_rio, lista_ciudades);
 }
 
 bool Rio::existe_ciudad(string id) const {
@@ -47,11 +66,11 @@ void Rio::leer_inventario(string id_ciudad, int id_producto, int unidades, int u
     city.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
 }
 
-void Rio::modificar_barco(Barco& barco, int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
+void Rio::modificar_barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
     barco = Barco(producto_a_comprar, producto_a_vender, unidades_a_comprar, unidades_a_vender);
 }
 
-void Rio::escribir_barco(Barco& barco) const {
+void Rio::escribir_barco() const {
     barco.escribir_barco();
 }
 
@@ -104,6 +123,7 @@ void Rio::caract_producto(string id_ciudad, int id_producto) const {
     city.caract_producto(id_producto);
 }
 
+MAYBE CHANGE OPTIMIZATION FOR 'COMERCIAR' BY PUTTING IT INTO CIUDAD.HH
 void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
     Ciudad city1 = consultar_ciudad(id_ciudad1);
     Ciudad city2 = consultar_ciudad(id_ciudad2);
@@ -148,6 +168,10 @@ void Rio::redistribuir_rec(BinTree<string> mapa_rio) {
 
     redistribuir_rec(mapa_rio.left());
     redistribuir_rec(mapa_rio.right());
+}
+
+Barco Rio::consultar_barco() {
+    return barco;
 }
 
 void Rio::error_no_ciudad() const {

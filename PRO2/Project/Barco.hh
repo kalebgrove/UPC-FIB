@@ -8,6 +8,8 @@
 #ifndef NO_DIAGRAM
 #include <iostream>
 #include "Producto.hh"
+#include "Ciudad.hh"
+#include "BinTree.hh"
 #include <map>
 #include <list>
 #include <vector>
@@ -20,12 +22,11 @@ class Barco {
     private:
 
         int producto_a_comprar;
-        double unidades_a_comprar;
+        int unidades_a_comprar;
 
         int producto_a_vender;
-        double unidades_a_vender;
+        int unidades_a_vender;
 
-        int num_viajes;
         vector<string> ultima_ciudad_viaje;
 
         string ciudad_anterior;
@@ -36,6 +37,8 @@ class Barco {
         Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender);
 
         void escribir_barco() const;
+
+        void hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades);
 
         //Modificar los datos de un barco
         //Escribir los datos del barco
