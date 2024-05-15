@@ -168,3 +168,37 @@ void Ciudad::adquisicion(int id_producto, int cantidad) {
 Producto Ciudad::consultar_producto(int id_producto) {
     return inventario.at(id_producto);
 }
+
+void Ciudad::comerciar(Ciudad& city2) {
+    map<int, amount_products>::iterator it1 = this->InfoProductos.begin();
+    map<int, amount_products>::iterator it2 = city2.InfoProductos.begin();
+
+    while(it1 != this->InfoProductos.end() and it2 != city2.InfoProductos.end()) {
+        int id_prod1 = it1->first;
+        int id_prod2 = it2->first;
+        
+        if(id_prod1 == id_prod2) {
+            int cantidad_necesitada1 = this->cantidad_necesaria(id_prod1);
+            int cantidad_necesitada2 = city2.cantidad_necesaria(id_prod2);
+
+            if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
+        //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
+                this->adquisicion(id_prod1, cantidad_necesitada2);
+                city2.reduccion(id_prod1, cantidad_necesitada2);
+            }
+            else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
+                this->reduccion(id_prod1, cantidad_necesitada1);
+                city2.adquisicion(id_prod1, cantidad_necesitada1);
+            }
+
+            ++it1;
+            ++it2;
+        }
+        else if(id_prod1 < id_prod2) {
+            ++it1;
+        }
+        else {
+            ++it2;
+        }
+    }
+}

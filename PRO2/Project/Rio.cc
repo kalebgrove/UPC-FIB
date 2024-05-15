@@ -123,31 +123,11 @@ void Rio::caract_producto(string id_ciudad, int id_producto) const {
     city.caract_producto(id_producto);
 }
 
-MAYBE CHANGE OPTIMIZATION FOR 'COMERCIAR' BY PUTTING IT INTO CIUDAD.HH
 void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
     Ciudad city1 = consultar_ciudad(id_ciudad1);
     Ciudad city2 = consultar_ciudad(id_ciudad2);
 
-    int n = city1.mida_inventario();
-
-    for(int i = 0; i < n; ++i) {
-        int id_producto1 = city1.consultar_iesimo_producto(i);
-        
-        if(city2.contiene_producto(id_producto1)) {
-            int cantidad_necesitada1 = city1.cantidad_necesaria(id_producto1);
-            int cantidad_necesitada2 = city2.cantidad_necesaria(id_producto1);
-
-            if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
-        //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
-                city1.adquisicion(id_producto1, cantidad_necesitada2);
-                city2.reduccion(id_producto1, cantidad_necesitada2);
-            }
-            else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
-                city1.reduccion(id_producto1, cantidad_necesitada1);
-                city2.adquisicion(id_producto1, cantidad_necesitada1);
-            }
-        }
-    }
+    city1.comerciar(city2);
 }
 
 void Rio::redistribuir() {
