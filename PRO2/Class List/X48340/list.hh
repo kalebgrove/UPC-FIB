@@ -1,4 +1,4 @@
-/* Mètode de llistes per intercanviar (swappejar) el primer i l'últim element
+/*  Modificar operadors ++ i -- dels iteradors de la classe List per a que siguin circulars
 
 Kaleb Grove - https://github.com/kalebgrove/UPC-FIB
 */
@@ -214,8 +214,8 @@ public:
        el resultat és el p.i. */
     {
       if (pitem == &(plist->itemsup)) {
-        cerr << "Error: ++iterator at the end of list" << endl;
-        exit(1);
+        pitem = plist->iteminf.next;
+        return *this;
       }
       pitem = pitem->next;
       return *this;
@@ -229,12 +229,8 @@ public:
     /* Post: el p.i apunta a l'element següent a E,
        el resultat és I */
     {
-      if (pitem == &(plist->itemsup)) {
-        cerr << "Error: iterator++ at the end of list" << endl;
-        exit(1);
-      }
       iterator aux = *this;
-      pitem = pitem->next;
+      operator++();
       return aux;
     }
 
@@ -246,8 +242,8 @@ public:
        el resultat és el p.i. */
     {
       if (pitem == plist->iteminf.next) {
-       cerr << "Error: --iterator at the beginning of list" << endl;
-       exit(1);
+       pitem = &(plist->itemsup);
+       return *this;
       }
       pitem = pitem->prev;
       return *this;
@@ -260,13 +256,8 @@ public:
     /* Post: el p.i apunta a l'element anterior a E,
        el resultat és I */
     {
-      if (pitem == plist->iteminf.next) {
-        cerr << "Error: iterator-- at the beginning of list" << endl;
-        exit(1);
-      }
-      iterator aux;
-      aux = *this;
-      pitem = pitem->prev;
+      iterator aux = *this;
+      operator--();
       return aux;
     }
 
@@ -517,58 +508,8 @@ public:
     return res;
   }
   
-  // Pre:  
-  // Post: L'element que era el primer de la llista ha passat a ser l'últim de la llista.
-  //       L'element que era l'últim de la llista ha passat a ser el primer de la llista.
-  //       A part d'això, res més ha canviat.
-  //       No s'ha creat ni eliminat memòria.
-  //       En els casos particulars en que hi havien 0 o 1 elements a la llista, res ha canviat.
-  // Descomenteu les següents dues linies i implementeu el mètode:
-  void swapFirstLast() {
-    if(_size == 0 or _size == 1) {
-      return;
-    }
-
-    if(_size == 2) {
-      Item* ptrinf = iteminf.next;
-      Item* ptrsup = itemsup.prev;
-
-      ptrinf->prev = ptrsup;
-      ptrinf->next = &itemsup;
-
-      ptrsup->next = ptrinf;
-      ptrsup->prev = &itemsup;
-
-      itemsup.prev = ptrinf;
-      iteminf.next = ptrsup;
-
-      return;
-    }
-
-//Pointers to items that are going to be swapped
-    Item* ptrinf = iteminf.next;
-    Item* ptrsup = itemsup.prev;
-
-//Pointers to the items that are going to be inside of the two swapped items
-    Item* ptrinfnext = ptrinf->next;
-    Item* ptrsupprev = ptrsup->prev;
-
-//Change the parameters of the swapped items
-    ptrsup->next = ptrinfnext;
-    ptrsup->prev = &iteminf;
-
-    ptrinf->next = &itemsup;
-    ptrinf->prev = ptrsupprev;
-
-//Change the parameters of the items to point to the new items
-    ptrsupprev->next = ptrinf;
-    ptrinfnext->prev = ptrsup;
-
-//Change the parameters of the sentinels of the list.
-    iteminf.next = ptrsup;
-    itemsup.prev = ptrinf;
-
-  }
+  
+  
 };
 
 // Implementation of read and write lists.

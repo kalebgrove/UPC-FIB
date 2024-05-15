@@ -1,4 +1,4 @@
-/* Mètode de llistes per intercanviar (swappejar) el primer i l'últim element
+/*  Mètode de la classe llista per a moure el segon element al final
 
 Kaleb Grove - https://github.com/kalebgrove/UPC-FIB
 */
@@ -517,58 +517,33 @@ public:
     return res;
   }
   
-  // Pre:  
-  // Post: L'element que era el primer de la llista ha passat a ser l'últim de la llista.
-  //       L'element que era l'últim de la llista ha passat a ser el primer de la llista.
-  //       A part d'això, res més ha canviat.
+  // Pre: 
+  // Post: El segon element de la llista s'ha mogut a l'última posició.
+  //       Si hi havia menys de tres elements a la llista, llavors res ha canviat.
   //       No s'ha creat ni eliminat memòria.
-  //       En els casos particulars en que hi havien 0 o 1 elements a la llista, res ha canviat.
-  // Descomenteu les següents dues linies i implementeu el mètode:
-  void swapFirstLast() {
-    if(_size == 0 or _size == 1) {
+  // Descomenteu les següents dues linies i implementeu la funció:
+  void moveSecondToLast() {
+    if(_size < 3) {
       return;
     }
 
-    if(_size == 2) {
-      Item* ptrinf = iteminf.next;
-      Item* ptrsup = itemsup.prev;
+    Item* first = iteminf.next;
+    Item* second = iteminf.next->next;
+    Item* next_s = second->next;
+    Item* last = itemsup.prev;
 
-      ptrinf->prev = ptrsup;
-      ptrinf->next = &itemsup;
+    first->next = next_s;
+    next_s->prev = first;
 
-      ptrsup->next = ptrinf;
-      ptrsup->prev = &itemsup;
+    last->next = second;
 
-      itemsup.prev = ptrinf;
-      iteminf.next = ptrsup;
+    second->prev = last;
+    second->next = &itemsup;
 
-      return;
-    }
-
-//Pointers to items that are going to be swapped
-    Item* ptrinf = iteminf.next;
-    Item* ptrsup = itemsup.prev;
-
-//Pointers to the items that are going to be inside of the two swapped items
-    Item* ptrinfnext = ptrinf->next;
-    Item* ptrsupprev = ptrsup->prev;
-
-//Change the parameters of the swapped items
-    ptrsup->next = ptrinfnext;
-    ptrsup->prev = &iteminf;
-
-    ptrinf->next = &itemsup;
-    ptrinf->prev = ptrsupprev;
-
-//Change the parameters of the items to point to the new items
-    ptrsupprev->next = ptrinf;
-    ptrinfnext->prev = ptrsup;
-
-//Change the parameters of the sentinels of the list.
-    iteminf.next = ptrsup;
-    itemsup.prev = ptrinf;
-
+    itemsup.prev = second;
   }
+  
+  
 };
 
 // Implementation of read and write lists.
