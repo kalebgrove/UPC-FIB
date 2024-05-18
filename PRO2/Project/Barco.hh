@@ -40,7 +40,9 @@ class Barco {
 
         void hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades);
 
-        BinTree<pair<int, int> > weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int id_prod1, int id_prod2);
+        BinTree<pair<int, int> > weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades);
+
+        void travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city);
 
         //Modificar los datos de un barco
         //Escribir los datos del barco
