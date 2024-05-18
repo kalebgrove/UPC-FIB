@@ -19,6 +19,24 @@ int main() {
     
     Rio river = Rio();
 
+    int n;
+    cin >> n;
+    double peso, volumen; 
+    for(int i = 0; i < n; ++i) {
+        cin >> peso >> volumen;
+        river.leer_productos(peso, volumen);
+    }
+
+    river.leer_rio();
+
+    int id_prod_comprar, id_prod_vender;
+    int cant_comprar, cant_vender;
+    
+    cin >> id_prod_comprar >> cant_comprar;
+    cin >> id_prod_vender >> cant_vender;
+
+    river.iniciar_barco(id_prod_comprar, id_prod_vender, cant_comprar, cant_vender);
+
     string s;
     cin >> s;
     while(s != "fin") {

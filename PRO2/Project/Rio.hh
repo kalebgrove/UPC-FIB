@@ -173,6 +173,10 @@ class Rio {
         */  
         bool existe_producto_ciudad(string id_ciudad, int id) const;
 
+        void leer_productos(double peso, double volumen);
+
+        void iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2);
+
         Barco consultar_barco();
 
         void modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);

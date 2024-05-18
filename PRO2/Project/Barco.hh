@@ -29,8 +29,6 @@ class Barco {
 
         vector<string> ultima_ciudad_viaje;
 
-        string ciudad_anterior;
-
     public:
         Barco();
 

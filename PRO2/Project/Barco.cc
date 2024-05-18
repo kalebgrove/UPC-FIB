@@ -7,7 +7,7 @@ Barco::Barco() {
     unidades_a_comprar = -1;
     unidades_a_vender = -1;
 
-    ciudad_anterior = "";
+    ultima_ciudad_viaje.clear();
 }
 
 Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
@@ -17,7 +17,7 @@ Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_co
     this->unidades_a_comprar = unidades_a_comprar;
     this->unidades_a_vender = unidades_a_vender;
 
-    ciudad_anterior = "";
+    ultima_ciudad_viaje.clear();
 }
 
 void Barco::escribir_barco() const {

@@ -177,3 +177,12 @@ void Rio::error_mismo_producto() const{
 void Rio::error_misma_ciudad() const {
     cout << ERR_MISMA_CIUDAD << endl;
 }
+
+void Rio::leer_productos(double peso, double volumen) {
+    Producto product = Producto(peso, volumen);
+    lista_productos.push_back(product);
+}
+
+void Rio::iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2) {
+    barco = Barco(id_prod1, id_prod2, cantidad1, cantidad2);
+}
