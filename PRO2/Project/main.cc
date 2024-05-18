@@ -42,6 +42,7 @@ int main() {
     while(s != "fin") {
 
         if(s == "leer_rio" or s == "lr") {
+            cout << '#' << s << endl;
             river.leer_rio();
         }
         else if(s == "leer_inventario" or s == "li") {
@@ -76,7 +77,7 @@ int main() {
 
             int id_prod, unidades, necesarias;
 
-            cout << '#' << s << ' ' << endl;
+            cout << '#' << s << endl;
 
             while(cin >> id and id != "#") {
                 cin >> n;
@@ -254,7 +255,12 @@ int main() {
             river.redistribuir();
         }
         else if(s == "hacer_viaje" or s == "hv") {
+            
+            cout << '#' << s << endl;
+
             river.hacer_viaje();
+
+            river.print_tree();
         }
 
         cin >> s;

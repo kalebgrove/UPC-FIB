@@ -2,7 +2,6 @@
 
 Rio::Rio() {
     lista_ciudades = map<string, Ciudad> ();
-    Tree = map<string, pair<string, string> > ();
     mapa_rio = BinTree<string> ();
     lista_productos = vector<Producto> ();
 

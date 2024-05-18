@@ -36,9 +36,16 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
     string last_city = "";
 
-    travel_tree(weighted_tree, mapa_rio, lista_ciudades, last_city);
+    int total = 0;
+
+    travel_tree(weighted_tree, mapa_rio, lista_ciudades, last_city, total);
 
     if(last_city != "") ultima_ciudad_viaje.push_back(last_city);
+
+    cout << total << endl;
+
+    weighted_tree.setOutputFormat(BinTree<pair<int, int> >::VISUALFORMAT);
+    cout << weighted_tree << endl;
 }
 
 BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades) {
@@ -117,7 +124,7 @@ BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<
     return BinTree<pair<int, int> > (val_node, mapa_rio_left, mapa_rio_right);
 }
 
-void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city) {
+void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, int& total) {
     //We travel the tree in preorder: node and then we evaluate the left and right options.
     //Base case
     if(weighted_tree.empty()) {
@@ -141,10 +148,12 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
             //Caso 1: Hay más exceso que cantidades que quiere comprar el barco.
 
             if(cantidad_vender_ciudad >= unidades_a_comprar) {
+                total += unidades_a_comprar;
                 city.reduccion(id_prod1, unidades_a_comprar);
             }
             //Caso 2: el exceso es más pequeño que la cantidad que quiere comprar el barco.
             else {
+                total += cantidad_vender_ciudad;
                 city.reduccion(id_prod1, cantidad_vender_ciudad);
             }
         }
@@ -160,9 +169,11 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
             
             //La ciudad quiere comprar más productos de los que están disponibles.
             if(abs(cantidad_comprar_ciudad) >= unidades_a_vender) {
+                total += unidades_a_vender;
                 city.adquisicion(id_prod1, unidades_a_vender);
             }
             else {
+                total += cantidad_comprar_ciudad;
                 city.adquisicion(id_prod1, cantidad_comprar_ciudad);
             }
         }
@@ -171,20 +182,20 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
 
     //Three cases: which side do we take: left or right?
 
-    if(weighted_tree.left().value().first > weighted_tree.right().value().first) {
-        travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
+    if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().first > weighted_tree.right().value().first) {
+        travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city, total);
     }
-    else if(weighted_tree.left().value().first < weighted_tree.right().value().first) {
-        travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
+    else if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().first < weighted_tree.right().value().first) {
+        travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
     }
     else {
         //Both values are the same;
-        if(weighted_tree.left().value().second > weighted_tree.right().value().second) {
+        if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().second > weighted_tree.right().value().second) {
             //We take the shorter path
-            travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
+            travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
         }
-        else {
-            travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
+        else if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().second <= weighted_tree.right().value().second) {
+            travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city, total);
         }
     }
 }

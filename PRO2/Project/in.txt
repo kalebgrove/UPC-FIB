@@ -20,18 +20,6 @@ burna
 2 50
 7 23
 // bucle
-ls
-burna
-3
-6 3 7
-4 7 3
-5 1 1
-barna
-2
-1 3 5
-3 3 2
-#
-ec burna
-ec barna
-
+hv
+eb
 fin

@@ -54,6 +54,8 @@ void Ciudad::poner_producto(Producto& producto, int id_producto, int unidades, i
 
     peso_total += peso2;
     volumen_total += volumen2;
+
+    cout << peso_total << ' ' << volumen_total << endl;
 }
 
 bool Ciudad::contiene_producto(int id) const {

@@ -22,7 +22,6 @@
 class Rio {
     private:
         map<string, Ciudad> lista_ciudades; //List of all the cities on the river.
-        map<string, pair<string, string> > Tree;
         vector<Producto> lista_productos;   //List of all the products on the river. The indexes of the vector indicate the id of the product.
         BinTree<string> mapa_rio;
         Barco barco;
@@ -202,4 +201,6 @@ class Rio {
         void error_mismo_producto() const;
 
         void error_misma_ciudad() const;
+
+        void print_tree() const;
 };
