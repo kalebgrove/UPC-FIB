@@ -45,13 +45,16 @@ int main() {
             river.leer_rio();
         }
         else if(s == "leer_inventario" or s == "li") {
-            string id;
+            string id_ciudad;
             int n;
 
-            cin >> id >> n;
+            cin >> id_ciudad;
+            cin >> n;
 
-            bool existe = river.existe_ciudad(id);
+            cout << '#' << s << ' ' << id_ciudad << endl;
 
+            bool existe = river.existe_ciudad(id_ciudad);
+            
             int id_prod;
             int unidades, necesarias;
 
@@ -59,28 +62,41 @@ int main() {
                 cin >> id_prod >> unidades >> necesarias;
 
                 if(existe) {
-                    river.leer_inventario(id, id_prod, unidades, necesarias);
+                    river.leer_inventario(id_ciudad, id_prod, unidades, necesarias);
                 }                
+            }
+
+            if(not existe) {
+                river.error_no_ciudad();
             }
         }
         else if(s == "leer_inventarios" or s == "ls") {
             string id;
             int n;
-            cin >> id >> n;
 
             int id_prod, unidades, necesarias;
 
-            while(id != "#") {
+            cout << '#' << s << ' ' << endl;
+
+            while(cin >> id and id != "#") {
+                cin >> n;
 
                 for(int i = 0; i < n; ++i) {
                     cin >> id_prod >> unidades >> necesarias;
 
-                    river.leer_inventario(id, id_prod, unidades, necesarias);
+                    if(river.existe_producto(id_prod)) {
+                        river.leer_inventario(id, id_prod, unidades, necesarias);
+                    }
+                    else {
+                        river.error_no_producto();
+                    }
                 }
-
             }
         }
         else if(s == "modificar_barco" or s == "mb") {
+            
+            cout << '#' << s << endl;
+
             int id_producto1, id_producto2;
             double cantidad_vender, cantidad_comprar;
 
@@ -89,16 +105,31 @@ int main() {
             if(river.existe_producto(id_producto1) and river.existe_producto(id_producto2) and id_producto1 != id_producto2) {
                 river.modificar_barco(id_producto1, id_producto2, cantidad_vender, cantidad_comprar);
             }
+            else if(not river.existe_producto(id_producto1) or not river.existe_producto(id_producto2)) {
+                river.error_no_producto();
+            }
+            else {
+                river.error_mismo_producto();
+            }
         }
         else if(s == "escribir_barco" or s == "eb") {
+            
+            cout << '#' << s << endl;
+
             river.escribir_barco();
         }
         else if(s == "consultar_num" or s == "cn") {
+            
+            cout << '#' << s << endl;
+
             river.consultar_num();
         }
         else if(s == "agregar_productos" or s == "ap") {
+            
             int n;
             cin >> n;
+
+            cout << '#' << s << ' ' << n << endl;
 
             double peso, volumen;
 
@@ -108,56 +139,70 @@ int main() {
             }
         }
         else if(s == "escribir_producto" or s == "ep") {
+            
             int id_producto;
             cin >> id_producto;
 
+            cout << '#' << s << ' ' << id_producto << endl;
 
             if(river.existe_producto(id_producto)) {
+                cout << id_producto << ' ';
                 river.escribir_producto(id_producto);
+            }
+            else {
+                river.error_no_producto();
             }
         }
         else if(s == "escribir_ciudad" or s == "ec") {
+            
             string id_ciudad;
             cin >> id_ciudad;
+
+            cout << '#' << s  << ' ' << id_ciudad << endl;
 
             if(river.existe_ciudad(id_ciudad)) {
                 river.escribir_ciudad(id_ciudad);
             }
+            else {
+                river.error_no_ciudad();
+            }
         }
         else if(s == "poner_prod" or s == "pp") {
+            
             string id_ciudad;
             int id_producto;
             int unidades, unidades_quiere;
 
+
             cin >> id_ciudad >> id_producto >> unidades >> unidades_quiere;
 
-            if(not river.existe_ciudad(id_ciudad)) {
-                river.error_no_ciudad();
-            }
-            else if(not river.existe_producto(id_producto)) {
+            cout << '#' << s << ' ' << id_ciudad << ' ' << id_producto << endl;
+
+            if(not river.existe_producto(id_producto)) {
                 river.error_no_producto();
             }
-            else {
-                Ciudad city = river.consultar_ciudad(id_ciudad);
-                
-                if(not river.existe_producto_ciudad(id_ciudad, id_producto)) {
-                    river.error_no_producto_ciudad();
-                }
-                else {
-                    river.poner_producto(id_ciudad, id_producto, unidades, unidades_quiere);
-                }
+            else if(not river.existe_ciudad(id_ciudad)) {
+                river.error_no_ciudad();
+            }
+            else if(river.existe_producto_ciudad(id_ciudad, id_producto)) {
+                river.error_ciudad_producto();
+            }
+            else {                
+                river.poner_producto(id_ciudad, id_producto, unidades, unidades_quiere);
             }
         }
-        else if(s == "modificar_producto" or s == "mp") {
+        else if(s == "modificar_prod" or s == "mp") {
             string id_ciudad;
             int id_producto;
             int unidades, unidades_necesarias;
 
             cin >> id_ciudad >> id_producto >> unidades >> unidades_necesarias;
+            
+            cout << '#' << s << ' ' << id_ciudad << ' ' << id_producto << endl;
 
-            if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
-            else if(not river.existe_producto(id_producto)) river.error_no_producto();
-            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
+            if(not river.existe_producto(id_producto)) river.error_no_producto();
+            else if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_no_producto_ciudad();
             else {
                 river.modificar_producto(id_ciudad, id_producto, unidades, unidades_necesarias);
             }
@@ -168,22 +213,26 @@ int main() {
 
             cin >> id_ciudad >> id_producto;
 
-            if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
-            else if(not river.existe_producto(id_producto)) river.error_no_producto();
-            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
+            cout << '#' << s << ' ' << id_ciudad << ' ' << id_producto << endl;
+
+            if(not river.existe_producto(id_producto)) river.error_no_producto();
+            else if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_no_producto_ciudad();
             else {
                 river.quitar_producto(id_ciudad, id_producto);
             }
         }
-        else if(s == "consultar_producto" or s == "cp") {
+        else if(s == "consultar_prod" or s == "cp") {
             string id_ciudad;
             int id_producto;
 
             cin >> id_ciudad >> id_producto;
-
+            
+            cout << '#' << s << ' ' << id_ciudad << ' ' << id_producto << endl;
+            
             if(not river.existe_producto(id_producto)) river.error_no_producto();
             else if(not river.existe_ciudad(id_ciudad)) river.error_no_ciudad();
-            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_ciudad_producto();
+            else if(not river.existe_producto_ciudad(id_ciudad, id_producto)) river.error_no_producto_ciudad();
             else {
                 river.caract_producto(id_ciudad, id_producto);
             }
@@ -191,6 +240,8 @@ int main() {
         else if(s == "comerciar" or s == "co") {
             string id_ciudad1, id_ciudad2;
             cin >> id_ciudad1 >> id_ciudad2;
+            
+            cout << '#' << s << ' ' << id_ciudad1 << ' ' << id_ciudad2 << endl;
 
             if(not river.existe_ciudad(id_ciudad1) or not river.existe_ciudad(id_ciudad2)) river.error_no_ciudad();
             else if(id_ciudad1 == id_ciudad2) river.error_misma_ciudad();
@@ -199,13 +250,13 @@ int main() {
             }
         }
         else if(s == "redistribuir" or s == "re") {
+            cout << '#' << s << endl;
             river.redistribuir();
         }
         else if(s == "hacer_viaje" or s == "hv") {
             river.hacer_viaje();
         }
-        else if(s == "fin") {
-            
-        }
+
+        cin >> s;
     }
 }

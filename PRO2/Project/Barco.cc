@@ -10,7 +10,7 @@ Barco::Barco() {
     ultima_ciudad_viaje.clear();
 }
 
-Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
+Barco::Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender) {
     this->producto_a_comprar = producto_a_comprar;
     this->producto_a_vender = producto_a_vender;
 
@@ -21,8 +21,7 @@ Barco::Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_co
 }
 
 void Barco::escribir_barco() const {
-    cout << producto_a_vender << ' ' << unidades_a_vender << endl;
-    cout << producto_a_comprar << ' ' << unidades_a_comprar << endl;
+    cout << producto_a_comprar << ' ' << unidades_a_comprar << ' ' << producto_a_vender << ' ' << unidades_a_vender << endl;
 
     int n = ultima_ciudad_viaje.size();
 
@@ -32,8 +31,6 @@ void Barco::escribir_barco() const {
 }
 
 void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades) {
-    int cantidad_comprar = unidades_a_comprar;
-    int cantidad_vender = unidades_a_vender;
 
     BinTree<pair<int, int> > weighted_tree = weighted_tree_rec(mapa_rio, lista_ciudades);
 

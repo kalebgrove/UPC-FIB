@@ -32,7 +32,7 @@ class Barco {
     public:
         Barco();
 
-        Barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender);
+        Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
 
         void escribir_barco() const;
 

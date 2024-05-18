@@ -65,8 +65,6 @@ class Ciudad {
 
         Producto consultar_producto(int id_producto);
 
-        void recalculate_weight();
-
         void comerciar(Ciudad& city2);
 };
 

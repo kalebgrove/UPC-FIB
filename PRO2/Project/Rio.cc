@@ -45,7 +45,7 @@ bool Rio::existe_ciudad(string id) const {
 }
 
 bool Rio::existe_producto(int id) const {
-    return (id < lista_productos.size());
+    return (id <= lista_productos.size() and id > 0);
 }
 
 Ciudad Rio::consultar_ciudad(string id) const {
@@ -55,15 +55,15 @@ Ciudad Rio::consultar_ciudad(string id) const {
 }
 
 Producto Rio::consultar_producto(int id) const {
-    Producto producto = lista_productos[id];
+    Producto producto = lista_productos[id-1];
 
     return producto;
 }
 
 void Rio::leer_inventario(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    Ciudad city = consultar_ciudad(id_ciudad);
-    Producto producto = consultar_producto(id_producto);
-    city.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
+    auto it = lista_ciudades.find(id_ciudad);
+    Producto producto = lista_productos[id_producto-1];
+    it->second.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
 }
 
 void Rio::modificar_barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
@@ -85,9 +85,9 @@ void Rio::agregar_productos(double peso, double volumen) {
 }
 
 void Rio::escribir_producto(int id_producto) const {
-    Producto producto = lista_productos[id_producto];
+    Producto producto = lista_productos[id_producto-1];
 
-    cout << producto.consultar_peso() << ' ' << producto.consultar_volumen();
+    cout << producto.consultar_peso() << ' ' << producto.consultar_volumen() << endl;
 }
 
 void Rio::escribir_ciudad(string id) const {
@@ -97,10 +97,10 @@ void Rio::escribir_ciudad(string id) const {
 }
 
 void Rio::poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    Ciudad city = consultar_ciudad(id_ciudad);
+    auto it = lista_ciudades.find(id_ciudad);
     Producto producto = consultar_producto(id_producto);
 
-    city.poner_producto(producto, id_producto, unidades, unidades_necesarias);
+    it->second.poner_producto(producto, id_producto, unidades, unidades_necesarias);
 }
 
 bool Rio::existe_producto_ciudad(string id_ciudad, int id) const {
@@ -109,13 +109,13 @@ bool Rio::existe_producto_ciudad(string id_ciudad, int id) const {
 }
 
 void Rio::modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    Ciudad city = consultar_ciudad(id_ciudad);
-    city.modificar_producto(id_producto, unidades, unidades_necesarias);
+    auto it = lista_ciudades.find(id_ciudad);
+    it->second.modificar_producto(id_producto, unidades, unidades_necesarias);
 }
 
 void Rio::quitar_producto(string id_ciudad, int id_producto) {
-    Ciudad city = consultar_ciudad(id_ciudad);
-    city.quitar_producto(id_producto);
+    auto it = lista_ciudades.find(id_ciudad);
+    it->second.quitar_producto(id_producto);
 }
 
 void Rio::caract_producto(string id_ciudad, int id_producto) const {
@@ -124,10 +124,10 @@ void Rio::caract_producto(string id_ciudad, int id_producto) const {
 }
 
 void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
-    Ciudad city1 = consultar_ciudad(id_ciudad1);
-    Ciudad city2 = consultar_ciudad(id_ciudad2);
+    auto it1 = lista_ciudades.find(id_ciudad1);
+    auto it2 = lista_ciudades.find(id_ciudad2);
 
-    city1.comerciar(city2);
+    it1->second.comerciar(it2->second);
 }
 
 void Rio::redistribuir() {
