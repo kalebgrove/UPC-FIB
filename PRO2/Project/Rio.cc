@@ -9,9 +9,12 @@ Rio::Rio() {
 }
 
 void Rio::leer_rio() {
+    
     lista_ciudades.clear();
 
     mapa_rio = leer_rio_rec();
+
+    barco.clear_travel();
 }
 
 BinTree<string> Rio::leer_rio_rec() {
@@ -65,8 +68,8 @@ void Rio::leer_inventario(string id_ciudad, int id_producto, int unidades, int u
     it->second.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
 }
 
-void Rio::modificar_barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender) {
-    barco = Barco(producto_a_comprar, producto_a_vender, unidades_a_comprar, unidades_a_vender);
+void Rio::modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender) {
+    barco.modificar_barco(producto_a_comprar, producto_a_vender, unidades_a_comprar, unidades_a_vender);
 }
 
 void Rio::escribir_barco() const {
@@ -184,4 +187,15 @@ void Rio::leer_productos(double peso, double volumen) {
 
 void Rio::iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2) {
     barco = Barco(id_prod1, id_prod2, cantidad1, cantidad2);
+}
+
+void Rio::print_tree() {
+    mapa_rio.setOutputFormat(BinTree<pair<int, int> >::VISUALFORMAT);
+    cout << mapa_rio << endl;
+}
+
+void Rio::clear_inventory(string id_ciudad) {
+    auto it = lista_ciudades.find(id_ciudad);
+
+    it->second.clear_inventory();
 }

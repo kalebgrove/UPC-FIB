@@ -106,7 +106,7 @@ class Rio {
         \post El barco ahora contiene dos productos; uno que vende y otro que compra.
         \coste Constante
         */  
-        void modificar_barco(int producto_a_comprar, int producto_a_vender, double unidades_a_comprar, double unidades_a_vender);
+        void modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
 
         /** @brief Escritura del Barco. 
 
@@ -202,5 +202,7 @@ class Rio {
 
         void error_misma_ciudad() const;
 
-        void print_tree() const;
+        void print_tree();
+
+        void clear_inventory(string id_ciudad);
 };

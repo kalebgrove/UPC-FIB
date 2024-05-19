@@ -168,9 +168,11 @@ error: no existe la ciudad
 7 1 1
 8 25
 #hv
-0
+1
 #eb
 6 10 2 12
+borna
+#leer_rio
 #escribir_ciudad barna
 0 0
 #escribir_ciudad cerna
@@ -179,18 +181,19 @@ error: no existe la ciudad
 0 0
 #escribir_barco
 6 10 2 12
+#lr
 #ec darna
 0 0
 #ls
 #re
 #escribir_ciudad darna
 1 15 8
-2 20 10
-300 335
+2 10 10
+240 205
 #escribir_ciudad derna
-2 3 3
+2 13 3
 3 13 20
-70 52
+130 182
 #escribir_ciudad dirna
 3 5 5
 4 2 10
@@ -205,21 +208,22 @@ error: no existe la ciudad
 288 491
 #mb
 #hacer_viaje
-0
+8
 #eb
 3 10 4 10
+dirna
 #escribir_ciudad darna
 1 15 8
-2 20 10
-300 335
+2 10 10
+240 205
 #escribir_ciudad derna
-2 3 3
+2 13 3
 3 13 20
-70 52
+130 182
 #escribir_ciudad dirna
 3 5 5
-4 2 10
-106 33
+4 10 10
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -230,25 +234,28 @@ error: no existe la ciudad
 288 491
 #escribir_barco
 3 10 4 10
+dirna
 #mb
 #eb
 8 10 9 10
+dirna
 #hv
 0
 #eb
 8 10 9 10
+dirna
 #escribir_ciudad darna
 1 15 8
-2 20 10
-300 335
+2 10 10
+240 205
 #escribir_ciudad derna
-2 3 3
+2 13 3
 3 13 20
-70 52
+130 182
 #escribir_ciudad dirna
 3 5 5
-4 2 10
-106 33
+4 10 10
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -262,19 +269,20 @@ error: no existe la ciudad
 10
 #escribir_barco
 2 10 6 10
-darna
+dirna
+derna
 #escribir_ciudad darna
 1 15 8
-2 20 10
-300 335
+2 10 10
+240 205
 #escribir_ciudad derna
 2 3 3
 3 13 20
 70 52
 #escribir_ciudad dirna
 3 5 5
-4 2 10
-106 33
+4 10 10
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20

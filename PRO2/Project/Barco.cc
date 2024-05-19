@@ -20,6 +20,14 @@ Barco::Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_compr
     ultima_ciudad_viaje.clear();
 }
 
+void Barco::modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender) {
+    this->producto_a_comprar = producto_a_comprar;
+    this->producto_a_vender = producto_a_vender;
+
+    this->unidades_a_comprar = unidades_a_comprar;
+    this->unidades_a_vender = unidades_a_vender;
+}
+
 void Barco::escribir_barco() const {
     cout << producto_a_comprar << ' ' << unidades_a_comprar << ' ' << producto_a_vender << ' ' << unidades_a_vender << endl;
 
@@ -38,14 +46,18 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
     int total = 0;
 
+    //cout << producto_a_comprar << ' ' << producto_a_vender << endl;
+
     travel_tree(weighted_tree, mapa_rio, lista_ciudades, last_city, total);
 
     if(last_city != "") ultima_ciudad_viaje.push_back(last_city);
 
     cout << total << endl;
 
-    weighted_tree.setOutputFormat(BinTree<pair<int, int> >::VISUALFORMAT);
-    cout << weighted_tree << endl;
+    BinTree<int> mod_tree = change_tree(weighted_tree);
+
+    //mod_tree.setOutputFormat(BinTree<pair<int, int> >::VISUALFORMAT);
+    //cout << mod_tree << endl;
 }
 
 BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades) {
@@ -130,17 +142,19 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
     if(weighted_tree.empty()) {
         return;
     }
-    
-    //Recursive case
+
+    //This second case of the base case is we analyze the node; we can assure this is true because the tree isn't empty (if statement beforehand)
+
     string id_ciudad = mapa_rio.value();
-    Ciudad city = lista_ciudades[id_ciudad];
+    auto it = lista_ciudades.find(id_ciudad);
 
-    int id_prod1 = producto_a_comprar;
-    int id_prod2 = producto_a_vender;
+    if(it == lista_ciudades.end()) {
+        return;
+    }
 
-    if(city.contiene_producto(id_prod1)){
+    if(it->second.contiene_producto(producto_a_comprar)){
         //Cantidad que quiere vender la ciudad = cantidad que quiere comprar el barco
-        int cantidad_vender_ciudad = city.cantidad_necesaria(id_prod1);
+        int cantidad_vender_ciudad = it->second.cantidad_necesaria(producto_a_comprar);
 
         //Si la cantidad es mayor que 0, entonces la ciudad tiene exceso del producto y puede venderlo. La cantidad almacenada es el exceso de la ciudad.
         //Pero puede ser que el exceso sea mayor a la cantidad que puede comprar el barco, entonces hay dos casos.
@@ -149,20 +163,20 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
 
             if(cantidad_vender_ciudad >= unidades_a_comprar) {
                 total += unidades_a_comprar;
-                city.reduccion(id_prod1, unidades_a_comprar);
+                it->second.reduccion(producto_a_comprar, unidades_a_comprar);
             }
             //Caso 2: el exceso es más pequeño que la cantidad que quiere comprar el barco.
             else {
                 total += cantidad_vender_ciudad;
-                city.reduccion(id_prod1, cantidad_vender_ciudad);
+                it->second.reduccion(producto_a_comprar, cantidad_vender_ciudad);
             }
         }
         last_city = id_ciudad;
     }
     
-    if(city.contiene_producto(id_prod2)){
+    if(it->second.contiene_producto(producto_a_vender)){
         //Cantidad que quiere vender la ciudad = cantidad que quiere comprar el barco
-        int cantidad_comprar_ciudad = city.cantidad_necesaria(id_prod2);
+        int cantidad_comprar_ciudad = it->second.cantidad_necesaria(producto_a_vender);
 
         //Si la cantidad es menor que 0, entonces la ciudad quiere comprar productos.
         if(cantidad_comprar_ciudad < 0) {
@@ -170,32 +184,53 @@ void Barco::travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> 
             //La ciudad quiere comprar más productos de los que están disponibles.
             if(abs(cantidad_comprar_ciudad) >= unidades_a_vender) {
                 total += unidades_a_vender;
-                city.adquisicion(id_prod1, unidades_a_vender);
+                it->second.adquisicion(producto_a_vender, unidades_a_vender);
             }
             else {
-                total += cantidad_comprar_ciudad;
-                city.adquisicion(id_prod1, cantidad_comprar_ciudad);
+                total += abs(cantidad_comprar_ciudad);
+                it->second.adquisicion(producto_a_vender, abs(cantidad_comprar_ciudad));
             }
         }
         last_city = id_ciudad;
     }
 
+    //Recursive
     //Three cases: which side do we take: left or right?
 
-    if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().first > weighted_tree.right().value().first) {
-        travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city, total);
-    }
-    else if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().first < weighted_tree.right().value().first) {
-        travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
-    }
-    else {
-        //Both values are the same;
-        if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().second > weighted_tree.right().value().second) {
-            //We take the shorter path
-            travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
-        }
-        else if(not weighted_tree.left().empty() and weighted_tree.right().empty() and weighted_tree.left().value().second <= weighted_tree.right().value().second) {
+    if((not weighted_tree.left().empty()) and (not weighted_tree.right().empty())){    
+        if(weighted_tree.left().value().first > weighted_tree.right().value().first) {
             travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city, total);
         }
+        else if(weighted_tree.left().value().first < weighted_tree.right().value().first) {
+            travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
+        }
+        else {
+            //Both values are the same;
+            if(weighted_tree.left().value().second > weighted_tree.right().value().second) {
+                //We take the shorter path
+                travel_tree(weighted_tree.right(), mapa_rio.right(), lista_ciudades, last_city, total);
+            }
+            else if(weighted_tree.left().value().second <= weighted_tree.right().value().second) {
+                travel_tree(weighted_tree.left(), mapa_rio.left(), lista_ciudades, last_city, total);
+            }
+        }
     }
+    return;
+}
+
+void Barco::clear_travel() {
+    ultima_ciudad_viaje.clear();
+}
+
+BinTree<int> Barco::change_tree(BinTree<pair<int, int> > weighted_tree) {
+    if(weighted_tree.empty()) {
+        return BinTree<int> ();
+    }
+
+    auto tleft = change_tree(weighted_tree.left());
+    auto tright = change_tree(weighted_tree.right());
+
+    auto value = weighted_tree.value().first;
+
+    return BinTree<int> (value, tleft, tright);
 }

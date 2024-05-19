@@ -36,13 +36,16 @@ class Barco {
 
         void escribir_barco() const;
 
+        void modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
+
         void hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades);
 
         BinTree<pair<int, int> > weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades);
 
         void travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, int& total);
 
-        //Modificar los datos de un barco
-        //Escribir los datos del barco
+        BinTree<int> change_tree(BinTree<pair<int, int> > weighted_tree);
+
+        void clear_travel();
 };
 #endif

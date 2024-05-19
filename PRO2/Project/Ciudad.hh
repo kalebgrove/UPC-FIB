@@ -66,6 +66,8 @@ class Ciudad {
         Producto consultar_producto(int id_producto);
 
         void comerciar(Ciudad& city2);
+
+        void clear_inventory();
 };
 
 #endif

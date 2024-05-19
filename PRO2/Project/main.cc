@@ -36,6 +36,8 @@ int main() {
     cin >> id_prod_vender >> cant_vender;
 
     river.iniciar_barco(id_prod_comprar, id_prod_vender, cant_comprar, cant_vender);
+    
+    //river.print_tree();
 
     string s;
     cin >> s;
@@ -55,6 +57,8 @@ int main() {
             cout << '#' << s << ' ' << id_ciudad << endl;
 
             bool existe = river.existe_ciudad(id_ciudad);
+
+            if(existe) river.clear_inventory(id_ciudad);
             
             int id_prod;
             int unidades, necesarias;
@@ -82,6 +86,8 @@ int main() {
             while(cin >> id and id != "#") {
                 cin >> n;
 
+                river.clear_inventory(id);
+
                 for(int i = 0; i < n; ++i) {
                     cin >> id_prod >> unidades >> necesarias;
 
@@ -99,7 +105,7 @@ int main() {
             cout << '#' << s << endl;
 
             int id_producto1, id_producto2;
-            double cantidad_vender, cantidad_comprar;
+            int cantidad_vender, cantidad_comprar;
 
             cin >> id_producto1 >> cantidad_vender >> id_producto2 >> cantidad_comprar;
 
@@ -260,7 +266,7 @@ int main() {
 
             river.hacer_viaje();
 
-            river.print_tree();
+            //river.print_tree();
         }
 
         cin >> s;
