@@ -17,7 +17,7 @@
 #define ERR_NO_PRODUCTO_CIUDAD "error: la ciudad no tiene el producto"
 #define ERR_CIUDAD_TIENE_PRODUCTO "error: la ciudad ya tiene el producto"
 #define ERR_MISMO_PRODUCTO_COMPRAVENDA "error: no se puede comprar y vender el mismo producto"
-#define ERR_MISMA_CIUDAD "error: misma ciudad"
+#define ERR_MISMA_CIUDAD "error: ciudad repetida"
 
 class Rio {
     private:

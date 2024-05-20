@@ -268,6 +268,10 @@ int main() {
 
             //river.print_tree();
         }
+        else if(s == "//") {
+            string s2;
+            getline(cin, s2);
+        }
 
         cin >> s;
     }

@@ -37,7 +37,8 @@ BinTree<string> Rio::leer_rio_rec() {
 }
 
 void Rio::hacer_viaje() {
-    barco.hacer_viaje(mapa_rio, lista_ciudades);
+    Barco barco = consultar_barco();
+    barco.hacer_viaje(mapa_rio, lista_ciudades, barco);
 }
 
 bool Rio::existe_ciudad(string id) const {

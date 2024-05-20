@@ -71,23 +71,4 @@ escribir_ciudad dirna
 escribir_ciudad dorna
 escribir_ciudad durna
 escribir_barco
-mb 8 10 9 10
-eb
-// segundo viaje
-hv
-eb
-escribir_ciudad darna
-escribir_ciudad derna
-escribir_ciudad dirna
-escribir_ciudad dorna
-escribir_ciudad durna
-// tercer viaje
-mb 2 10 6 10
-hacer_viaje
-escribir_barco
-escribir_ciudad darna
-escribir_ciudad derna
-escribir_ciudad dirna
-escribir_ciudad dorna
-escribir_ciudad durna
 fin
