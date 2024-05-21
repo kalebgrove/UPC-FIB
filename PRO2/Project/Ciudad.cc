@@ -173,22 +173,15 @@ void Ciudad::comerciar(Ciudad& city2) {
 
             if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
         //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
-                if(abs(cantidad_necesitada1) > cantidad_necesitada2) {
-                    cantidad = abs(cantidad_necesitada2);
-                }
-                else {
-                    cantidad = abs(cantidad_necesitada1);
-                }
+                
+                cantidad = min(abs(cantidad_necesitada1), cantidad_necesitada2);
+
                 this->adquisicion(id_prod1, cantidad);
                 city2.reduccion(id_prod1, cantidad);
             }
             else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
-                if(cantidad_necesitada1 > abs(cantidad_necesitada2)) {
-                    cantidad = abs(cantidad_necesitada2);
-                }
-                else {
-                    cantidad = abs(cantidad_necesitada1);
-                }
+                
+                cantidad = min(abs(cantidad_necesitada2), cantidad_necesitada1);
 
                 this->reduccion(id_prod1, cantidad);
                 city2.adquisicion(id_prod1, cantidad);

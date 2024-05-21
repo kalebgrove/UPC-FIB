@@ -37,8 +37,7 @@ BinTree<string> Rio::leer_rio_rec() {
 }
 
 void Rio::hacer_viaje() {
-    Barco barco = consultar_barco();
-    barco.hacer_viaje(mapa_rio, lista_ciudades, barco);
+    barco.hacer_viaje(mapa_rio, lista_ciudades);
 }
 
 bool Rio::existe_ciudad(string id) const {
@@ -139,18 +138,25 @@ void Rio::redistribuir() {
 
 void Rio::redistribuir_rec(BinTree<string> mapa_rio) {
     if(mapa_rio.empty()) return;
+    
+    string id_main_city = mapa_rio.value();
 
-    if(not mapa_rio.left().empty() and not mapa_rio.right().empty()) {
-        string id_main_city = mapa_rio.value();
+    if(not mapa_rio.left().empty()) {
+
         string left_city = mapa_rio.left().value();
-        string right_city = mapa_rio.right().value();
-
         comerciar(id_main_city, left_city);
-        comerciar(id_main_city, right_city);        
+        redistribuir_rec(mapa_rio.left());
+        
+    } 
+
+    if(not mapa_rio.right().empty()) {
+
+        string right_city = mapa_rio.right().value();
+        comerciar(id_main_city, right_city);
+        redistribuir_rec(mapa_rio.right());    
+
     }
 
-    redistribuir_rec(mapa_rio.left());
-    redistribuir_rec(mapa_rio.right());
 }
 
 Barco Rio::consultar_barco() {

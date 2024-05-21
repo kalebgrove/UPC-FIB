@@ -17,58 +17,42 @@ borna
 burna
 #
 #
-2 50
+2 10
 7 23
-// bucle
 lr
-darna
-derna
-dirna
+a
+b
+c
+d
 #
 #
-dorna
+e
 #
 #
-durna
+f
 #
 #
-ec darna
+g
+h
+#
+#
+i
+#
+#
 ls
-darna
-2
-1 15 8
-2 3 10
-derna
-2
-2 20 3
-3 4 20
-dirna
-2 
-3 14 5
-4 2 10
-dorna
-2
-4 10 10
-5 20 20
-durna
-2
-6 8 9
-7 19 3
+a
+1
+2 9 8
+b
+1
+2 10 8
+f
+1
+2 8 1
+d
+1
+2 11 1
 #
-re
-escribir_ciudad darna
-escribir_ciudad derna
-escribir_ciudad dirna
-escribir_ciudad dorna
-escribir_ciudad durna
-mb 3 10 4 10
-// primer viaje
-hacer_viaje
+hv
 eb
-escribir_ciudad darna
-escribir_ciudad derna
-escribir_ciudad dirna
-escribir_ciudad dorna
-escribir_ciudad durna
-escribir_barco
 fin
