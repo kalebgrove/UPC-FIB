@@ -1,16 +1,6 @@
 #include "Ciudad.hh"
 
 Ciudad::Ciudad() {
-    name = "";
-    InfoProductos = map<int, amount_products> ();
-    inventario = map<int, Producto> ();
-
-    peso_total = 0;
-    volumen_total = 0;
-}
-
-Ciudad::Ciudad(string name) {
-    this->name = name;
     InfoProductos = map<int, amount_products> ();
     inventario = map<int, Producto> ();
 
@@ -25,8 +15,8 @@ void Ciudad::anadir_inventario(Producto& producto, int id_prod, int unidades, in
 
     inventario[id_prod] = producto;
 
-    double peso2 = producto.consultar_peso()*unidades;
-    double volumen2 = producto.consultar_volumen()*unidades;
+    int peso2 = producto.consultar_peso()*unidades;
+    int volumen2 = producto.consultar_volumen()*unidades;
 
     peso_total += peso2;
     volumen_total += volumen2;
@@ -49,8 +39,8 @@ void Ciudad::poner_producto(Producto& producto, int id_producto, int unidades, i
     InfoProductos[id_producto].unidades = unidades;
     InfoProductos[id_producto].unidades_necesarias = unidades_necesarias;
 
-    double peso2 = producto.consultar_peso()*unidades;
-    double volumen2 = producto.consultar_volumen()*unidades;
+    int peso2 = producto.consultar_peso()*unidades;
+    int volumen2 = producto.consultar_volumen()*unidades;
 
     peso_total += peso2;
     volumen_total += volumen2;
@@ -75,8 +65,8 @@ void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_nece
 
     Producto product = inventario[id_producto];
 
-    double peso2 = product.consultar_peso()*diff;
-    double vol2 = product.consultar_volumen()*diff;
+    int peso2 = product.consultar_peso()*diff;
+    int vol2 = product.consultar_volumen()*diff;
 
     peso_total += peso2;
     volumen_total += vol2;
@@ -93,8 +83,8 @@ void Ciudad::caract_producto(int id_producto) const {
 void Ciudad::quitar_producto(int id_producto) {
 
     int cantidad = InfoProductos[id_producto].unidades;
-    double tp = inventario[id_producto].consultar_peso()*cantidad;
-    double tv = inventario[id_producto].consultar_volumen()*cantidad;
+    int tp = inventario[id_producto].consultar_peso()*cantidad;
+    int tv = inventario[id_producto].consultar_volumen()*cantidad;
 
     peso_total -= tp;
     volumen_total -= tv;
@@ -117,7 +107,7 @@ int Ciudad::consultar_iesimo_producto(int i) const {
     return it->first;
 }
 
-int Ciudad::cantidad_necesaria(int id_producto) const {
+int Ciudad::exceso(int id_producto) const {
     map<int, amount_products>::const_iterator it = InfoProductos.find(id_producto);
 
     int cantidad = (it->second).unidades - (it->second).unidades_necesarias;
@@ -132,8 +122,8 @@ void Ciudad::reduccion(int id_producto, int cantidad) {
 
     Producto product = consultar_producto(id_producto);
 
-    double peso_elim = cantidad * product.consultar_peso();
-    double vol_elim = cantidad * product.consultar_volumen();
+    int peso_elim = cantidad * product.consultar_peso();
+    int vol_elim = cantidad * product.consultar_volumen();
 
     peso_total -= peso_elim;
     volumen_total -= vol_elim;
@@ -146,8 +136,8 @@ void Ciudad::adquisicion(int id_producto, int cantidad) {
 
     Producto product = consultar_producto(id_producto);
 
-    double peso_sum = cantidad * product.consultar_peso();
-    double vol_sum = cantidad * product.consultar_volumen();
+    int peso_sum = cantidad * product.consultar_peso();
+    int vol_sum = cantidad * product.consultar_volumen();
 
     peso_total += peso_sum;
     volumen_total += vol_sum;
@@ -166,8 +156,8 @@ void Ciudad::comerciar(Ciudad& city2) {
         int id_prod2 = it2->first;
         
         if(id_prod1 == id_prod2) {
-            int cantidad_necesitada1 = this->cantidad_necesaria(id_prod1);
-            int cantidad_necesitada2 = city2.cantidad_necesaria(id_prod2);
+            int cantidad_necesitada1 = this->exceso(id_prod1);
+            int cantidad_necesitada2 = city2.exceso(id_prod2);
 
             int cantidad = 0;
 
@@ -202,4 +192,7 @@ void Ciudad::comerciar(Ciudad& city2) {
 void Ciudad::clear_inventory() {
     inventario.clear();
     InfoProductos.clear();
+
+    peso_total = 0;
+    volumen_total = 0;
 }

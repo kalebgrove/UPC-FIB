@@ -5,15 +5,15 @@ Producto::Producto() {
     volumen = 0;
 }
 
-Producto::Producto(double peso, double volumen) {
+Producto::Producto(int peso, int volumen) {
     this->peso = peso;
     this->volumen = volumen;
 }
 
-double Producto::consultar_peso() const {
+int Producto::consultar_peso() const {
     return peso;
 }
 
-double Producto::consultar_volumen() const {
+int Producto::consultar_volumen() const {
     return volumen;
 }

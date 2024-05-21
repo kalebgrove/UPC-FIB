@@ -43,7 +43,9 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
     int unidades_comprar_barco = unidades_a_comprar;
     int unidades_vender_barco = unidades_a_vender;
 
-    BinTree<pair<int, int> > diff_tree = diff_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    bool extra = false;
+
+    BinTree<pair<int, int> > diff_tree = weighted_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
 
     string last_city = "";
 
@@ -67,23 +69,23 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
 //Two pairs: first.first is going to contain the accumulation of the trades done during the trip. The second pair is going to contain the height
 
-BinTree<pair<int, int> > Barco::diff_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco) {
+BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, bool& extra) {
     //Base case
-    if(mapa_rio.empty()) {
-        return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
-    }
-
     if(unidades_comprar_barco == 0 and unidades_vender_barco == 0) {
         return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
     }
 
-    int extra = 0;
+    if(mapa_rio.empty()) {
+        return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
+    }
+
+    extra = false;
     int trato = 0;
     string id_ciudad = mapa_rio.value();
     Ciudad city = lista_ciudades[id_ciudad];
 
     if(city.contiene_producto(producto_a_comprar) and unidades_comprar_barco > 0) {
-        int cantidad = city.cantidad_necesaria(producto_a_comprar);
+        int cantidad = city.exceso(producto_a_comprar);
 
         if(cantidad > 0) {
             if(cantidad < unidades_comprar_barco) {
@@ -94,12 +96,12 @@ BinTree<pair<int, int> > Barco::diff_tree_rec(BinTree<string> mapa_rio, map<stri
                 trato += unidades_comprar_barco;
                 unidades_comprar_barco = 0;
             }
-            extra = 1;
+            extra = true;
         }
     }
 
     if(city.contiene_producto(producto_a_vender) and unidades_vender_barco > 0) {
-        int cantidad = city.cantidad_necesaria(producto_a_vender);
+        int cantidad = city.exceso(producto_a_vender);
 
         if(cantidad < 0) {
             if(abs(cantidad) < unidades_vender_barco) {
@@ -110,18 +112,26 @@ BinTree<pair<int, int> > Barco::diff_tree_rec(BinTree<string> mapa_rio, map<stri
                 trato += unidades_vender_barco;
                 unidades_vender_barco = 0;
             }
-            extra = 1;
+            extra = true;
         }
     }
 
-    auto tleft = diff_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
-    auto tright = diff_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    auto tleft = weighted_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
+    auto tright = weighted_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
 
     if(tleft.value().first < tright.value().first) { 
-        return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + extra), tleft, tright);
+        return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + (extra ? 0 : 1)), tleft, tright);
+    }
+    else if(tleft.value().first > tright.value().first) {
+        return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + (extra ? 0 : 1)), tleft, tright);
     }
     else {
-        return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + extra), tleft, tright);
+        if(tleft.value().second > tright.value().second) {
+            return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + (extra ? 0 : 1)), tleft, tright);
+        }
+        else {
+            return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + (extra ? 0 : 1)), tleft, tright);
+        }
     }
 }
 
@@ -142,7 +152,7 @@ void Barco::travel(BinTree<pair<int, int> > diff_tree, BinTree<string> mapa_rio,
     }
 
     if(it->second.contiene_producto(producto_a_comprar) and unidades_a_comprar > 0) {
-        int cantidad = it->second.cantidad_necesaria(producto_a_comprar);
+        int cantidad = it->second.exceso(producto_a_comprar);
 
         if(cantidad > 0) {
             if(cantidad < unidades_a_comprar) {
@@ -156,7 +166,7 @@ void Barco::travel(BinTree<pair<int, int> > diff_tree, BinTree<string> mapa_rio,
     }
 
     if(it->second.contiene_producto(producto_a_vender) and unidades_a_vender > 0) {
-        int cantidad = it->second.cantidad_necesaria(producto_a_vender);
+        int cantidad = it->second.exceso(producto_a_vender);
 
         if(cantidad < 0) {
             if(abs(cantidad) < unidades_a_vender) {
@@ -202,7 +212,7 @@ BinTree<int> Barco::change_tree(BinTree<pair<int, int> > weighted_tree) {
     auto tleft = change_tree(weighted_tree.left());
     auto tright = change_tree(weighted_tree.right());
 
-    auto value = weighted_tree.value().second;
+    auto value = weighted_tree.value().first;
 
     return BinTree<int> (value, tleft, tright);
 }

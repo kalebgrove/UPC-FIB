@@ -27,13 +27,16 @@ BinTree<string> Rio::leer_rio_rec() {
     }
 
     //Recursive case
-    Ciudad c = Ciudad(id_ciudad);
-    lista_ciudades[id_ciudad] = c;
+    lista_ciudades[id_ciudad] = Ciudad();
     
     BinTree<string> tree_izq = leer_rio_rec();
     BinTree<string> tree_der = leer_rio_rec();
 
     return BinTree<string> (id_ciudad, tree_izq, tree_der);
+}
+
+void Rio::iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2) {
+    barco = Barco(id_prod1, id_prod2, cantidad1, cantidad2);
 }
 
 void Rio::hacer_viaje() {
@@ -80,7 +83,7 @@ void Rio::consultar_num() const {
     cout << lista_productos.size() << endl;
 }
 
-void Rio::agregar_productos(double peso, double volumen) {
+void Rio::agregar_productos(int peso, int volumen) {
     Producto producto = Producto(peso, volumen);
 
     lista_productos.push_back(producto);
@@ -137,25 +140,18 @@ void Rio::redistribuir() {
 }
 
 void Rio::redistribuir_rec(BinTree<string> mapa_rio) {
-    if(mapa_rio.empty()) return;
+    if(mapa_rio.left().empty() or mapa_rio.right().empty()) return;
     
     string id_main_city = mapa_rio.value();
 
-    if(not mapa_rio.left().empty()) {
+    string left_city = mapa_rio.left().value();
+    comerciar(id_main_city, left_city);
 
-        string left_city = mapa_rio.left().value();
-        comerciar(id_main_city, left_city);
-        redistribuir_rec(mapa_rio.left());
-        
-    } 
+    string right_city = mapa_rio.right().value();
+    comerciar(id_main_city, right_city);
 
-    if(not mapa_rio.right().empty()) {
-
-        string right_city = mapa_rio.right().value();
-        comerciar(id_main_city, right_city);
-        redistribuir_rec(mapa_rio.right());    
-
-    }
+    redistribuir_rec(mapa_rio.left());
+    redistribuir_rec(mapa_rio.right());
 
 }
 
@@ -187,13 +183,9 @@ void Rio::error_misma_ciudad() const {
     cout << ERR_MISMA_CIUDAD << endl;
 }
 
-void Rio::leer_productos(double peso, double volumen) {
+void Rio::leer_productos(int peso, int volumen) {
     Producto product = Producto(peso, volumen);
     lista_productos.push_back(product);
-}
-
-void Rio::iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2) {
-    barco = Barco(id_prod1, id_prod2, cantidad1, cantidad2);
 }
 
 void Rio::print_tree() {

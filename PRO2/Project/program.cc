@@ -19,9 +19,12 @@ int main() {
     
     Rio river = Rio();
 
+    //Leemos el número de productos que van a estar disponibles en el río.
     int n;
     cin >> n;
-    double peso, volumen; 
+
+    //En cada iteración añadimos un nuevo producto al vector de productos del río.
+    int peso, volumen;
     for(int i = 0; i < n; ++i) {
         cin >> peso >> volumen;
         river.leer_productos(peso, volumen);
@@ -138,7 +141,7 @@ int main() {
 
             cout << '#' << s << ' ' << n << endl;
 
-            double peso, volumen;
+            int peso, volumen;
 
             for(int i = 0; i < n; ++i) {
                 cin >> peso >> volumen;

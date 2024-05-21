@@ -27,12 +27,11 @@ struct amount_products {
 
 class Ciudad {
     private:
-        string name;
         map<int, Producto> inventario;               //It relates the id of the product to the product itself (optimization)
         map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
 
-        double peso_total;
-        double volumen_total;
+        int peso_total;
+        int volumen_total;
 
     public:
         Ciudad();
@@ -57,7 +56,7 @@ class Ciudad {
 
         int consultar_iesimo_producto(int i) const;
 
-        int cantidad_necesaria(int id_producto) const;
+        int exceso(int id_producto) const;
 
         void reduccion(int id_producto, int cantidad);
 

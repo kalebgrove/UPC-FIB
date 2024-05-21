@@ -19,18 +19,18 @@ using namespace std;
 class Producto {
     private:
     
-        double peso;
-        double volumen;
+        int peso;
+        int volumen;
 
     public:
     
         Producto();
 
-        Producto(double peso, double volumen);
+        Producto(int peso, int volumen);
 
-        double consultar_peso() const;
+        int consultar_peso() const;
 
-        double consultar_volumen() const;
+        int consultar_volumen() const;
         
         //Anadir productos
         //Consulta de cantidad de productos
