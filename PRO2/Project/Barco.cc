@@ -50,12 +50,10 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
     travel_tree(travelled_tree, mapa_rio, lista_ciudades, last_city);
 
-    //BinTree<int> mod_tree = change_tree(travelled_tree);
+    BinTree<int> mod_tree = change_tree(travelled_tree);
 
-    //mod_tree.setOutputFormat(BinTree<InfoNodo>::VISUALFORMAT);
-    //cout << mod_tree << endl;
-
-    //travel(diff_tree, mapa_rio, lista_ciudades, last_city);
+    mod_tree.setOutputFormat(BinTree<InfoNodo>::VISUALFORMAT);
+    cout << mod_tree << endl;
 
     if(last_city != "") ultima_ciudad_viaje.push_back(last_city);
 
@@ -211,7 +209,7 @@ BinTree<int> Barco::change_tree(BinTree<InfoNodo> weighted_tree) {
     auto tleft = change_tree(weighted_tree.left());
     auto tright = change_tree(weighted_tree.right());
 
-    auto value = weighted_tree.value().total_compra;
+    auto value = weighted_tree.value().total_trato;
 
     return BinTree<int> (value, tleft, tright);
 }
