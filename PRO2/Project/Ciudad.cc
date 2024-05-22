@@ -156,22 +156,20 @@ void Ciudad::comerciar(Ciudad& city2) {
         int id_prod2 = it2->first;
         
         if(id_prod1 == id_prod2) {
-            int cantidad_necesitada1 = this->exceso(id_prod1);
-            int cantidad_necesitada2 = city2.exceso(id_prod2);
+            int cantidad1 = this->exceso(id_prod1);
+            int cantidad2 = city2.exceso(id_prod2);
 
-            int cantidad = 0;
-
-            if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
+            if(cantidad1 < 0 and cantidad2 > 0) {
         //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
                 
-                cantidad = min(abs(cantidad_necesitada1), cantidad_necesitada2);
+                int cantidad = min(abs(cantidad1), cantidad2);
 
                 this->adquisicion(id_prod1, cantidad);
                 city2.reduccion(id_prod1, cantidad);
             }
-            else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
+            else if(cantidad1 > 0 and cantidad2 < 0) {
                 
-                cantidad = min(abs(cantidad_necesitada2), cantidad_necesitada1);
+                int cantidad = min(abs(cantidad2), cantidad1);
 
                 this->reduccion(id_prod1, cantidad);
                 city2.adquisicion(id_prod1, cantidad);
