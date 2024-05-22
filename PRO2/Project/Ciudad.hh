@@ -36,8 +36,6 @@ class Ciudad {
     public:
         Ciudad();
 
-        Ciudad(string name);
-
         void anadir_inventario(Producto& producto, int id_prod, int unidades, int unidades_necesarias);
 
         void escribir_ciudad() const;

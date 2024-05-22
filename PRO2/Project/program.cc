@@ -44,10 +44,12 @@ int main() {
 
     string s;
     cin >> s;
+
     while(s != "fin") {
 
         if(s == "leer_rio" or s == "lr") {
             cout << '#' << s << endl;
+
             river.leer_rio();
         }
         else if(s == "leer_inventario" or s == "li") {

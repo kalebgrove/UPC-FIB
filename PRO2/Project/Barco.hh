@@ -46,7 +46,7 @@ class Barco {
 
         BinTree<int> change_tree(BinTree<pair<int, int> > weighted_tree);
 
-        BinTree<pair<int, int> > weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, bool& extra);
+        BinTree<pair<int, int> > weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco);
 
         void travel(BinTree<pair<int, int> >, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city);
 

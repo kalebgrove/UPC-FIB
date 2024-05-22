@@ -21,3 +21,7 @@ program.o: program.cc
 clean:
 	rm -f *.o
 	rm -f *.exe
+	rm -f *.tar
+
+tar: Barco.cc Barco.hh Ciudad.cc Ciudad.hh Makefile Producto.cc Producto.hh program.cc Rio.cc Rio.hh
+	tar -cvf practica.tar Barco.cc Barco.hh Ciudad.cc Ciudad.hh Makefile Producto.cc Producto.hh program.cc Rio.cc Rio.hh

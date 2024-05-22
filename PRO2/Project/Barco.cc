@@ -43,9 +43,7 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
     int unidades_comprar_barco = unidades_a_comprar;
     int unidades_vender_barco = unidades_a_vender;
 
-    bool extra = false;
-
-    BinTree<pair<int, int> > diff_tree = weighted_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
+    BinTree<pair<int, int> > diff_tree = weighted_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
 
     string last_city = "";
 
@@ -69,7 +67,7 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
 //Two pairs: first.first is going to contain the accumulation of the trades done during the trip. The second pair is going to contain the height
 
-BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, bool& extra) {
+BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco) {
     //Base case
     if(unidades_comprar_barco == 0 and unidades_vender_barco == 0) {
         return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
@@ -79,7 +77,6 @@ BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<
         return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
     }
 
-    extra = false;
     int trato = 0;
     string id_ciudad = mapa_rio.value();
     Ciudad city = lista_ciudades[id_ciudad];
@@ -96,7 +93,6 @@ BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<
                 trato += unidades_comprar_barco;
                 unidades_comprar_barco = 0;
             }
-            extra = true;
         }
     }
 
@@ -112,25 +108,24 @@ BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<
                 trato += unidades_vender_barco;
                 unidades_vender_barco = 0;
             }
-            extra = true;
         }
     }
 
-    auto tleft = weighted_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
-    auto tright = weighted_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, extra);
+    auto tleft = weighted_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    auto tright = weighted_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
 
     if(tleft.value().first < tright.value().first) { 
-        return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + (extra ? 0 : 1)), tleft, tright);
+        return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + 1), tleft, tright);
     }
     else if(tleft.value().first > tright.value().first) {
-        return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + (extra ? 0 : 1)), tleft, tright);
+        return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + 1), tleft, tright);
     }
     else {
         if(tleft.value().second > tright.value().second) {
-            return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + (extra ? 0 : 1)), tleft, tright);
+            return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + 1), tleft, tright);
         }
         else {
-            return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + (extra ? 0 : 1)), tleft, tright);
+            return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + 1), tleft, tright);
         }
     }
 }
