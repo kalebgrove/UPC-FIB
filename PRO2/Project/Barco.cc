@@ -43,152 +43,156 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
     int unidades_comprar_barco = unidades_a_comprar;
     int unidades_vender_barco = unidades_a_vender;
 
-    BinTree<pair<int, int> > diff_tree = weighted_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    BinTree<InfoNodo> travelled_tree = travelled_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    //weighted_tree_rec(mapa_rio, lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
 
     string last_city = "";
 
-    //BinTree<int> mod_tree = change_tree(diff_tree);
+    travel_tree(travelled_tree, mapa_rio, lista_ciudades, last_city);
 
-    //mod_tree.setOutputFormat(BinTree<pair<int, int> >::VISUALFORMAT);
+    //BinTree<int> mod_tree = change_tree(travelled_tree);
+
+    //mod_tree.setOutputFormat(BinTree<InfoNodo>::VISUALFORMAT);
     //cout << mod_tree << endl;
 
-    travel(diff_tree, mapa_rio, lista_ciudades, last_city);
+    //travel(diff_tree, mapa_rio, lista_ciudades, last_city);
 
     if(last_city != "") ultima_ciudad_viaje.push_back(last_city);
 
     int total = 0;
 
-    if(not diff_tree.empty()) {
-        total = diff_tree.value().first;
+    if(not travelled_tree.empty()) {
+        total = travelled_tree.value().total_trato;
     }
 
     cout << total << endl;
 }
 
-//Two pairs: first.first is going to contain the accumulation of the trades done during the trip. The second pair is going to contain the height
-
-BinTree<pair<int, int> > Barco::weighted_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco) {
+BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco) {
     //Base case
-    if(unidades_comprar_barco == 0 and unidades_vender_barco == 0) {
-        return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
+    if(mapa_rio.empty() or (unidades_comprar_barco == 0 and unidades_vender_barco == 0)) {
+        return BinTree<InfoNodo> (InfoNodo(), BinTree<InfoNodo>(), BinTree<InfoNodo>());
     }
 
-    if(mapa_rio.empty()) {
-        return BinTree<pair<int, int> > (make_pair(0,0), BinTree<pair<int, int> > (), BinTree<pair<int, int> > ());
-    }
-
-    int trato = 0;
+    InfoNodo node = InfoNodo();
     string id_ciudad = mapa_rio.value();
     Ciudad city = lista_ciudades[id_ciudad];
 
-    if(city.contiene_producto(producto_a_comprar) and unidades_comprar_barco > 0) {
-        int cantidad = city.exceso(producto_a_comprar);
+    if(city.contiene_producto(producto_a_comprar)) {
+        int cantidad_vender = city.exceso(producto_a_comprar);
+        
+        //La ciudad quiere vender este producto.
+        if(cantidad_vender > 0) {
+            int cantidad = min(cantidad_vender, unidades_comprar_barco);
 
-        if(cantidad > 0) {
-            if(cantidad < unidades_comprar_barco) {
-                trato += cantidad;
-                unidades_comprar_barco -= cantidad;
-            }
-            else {
-                trato += unidades_comprar_barco;
-                unidades_comprar_barco = 0;
-            }
+            node.venta = cantidad;
+            node.total_venta += cantidad;
+            unidades_comprar_barco -= cantidad;
         }
     }
 
-    if(city.contiene_producto(producto_a_vender) and unidades_vender_barco > 0) {
-        int cantidad = city.exceso(producto_a_vender);
+    if(city.contiene_producto(producto_a_vender)) {
+        int cantidad_comprar = city.exceso(producto_a_vender);
 
-        if(cantidad < 0) {
-            if(abs(cantidad) < unidades_vender_barco) {
-                trato += abs(cantidad);
-                unidades_vender_barco -= abs(cantidad);
-            }
-            else {
-                trato += unidades_vender_barco;
-                unidades_vender_barco = 0;
-            }
+        if(cantidad_comprar < 0) {
+            int cantidad = min(abs(cantidad_comprar), unidades_vender_barco);
+
+            node.compra = cantidad;
+            node.total_compra += cantidad;
+            unidades_vender_barco -= cantidad;
         }
     }
 
-    auto tleft = weighted_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
-    auto tright = weighted_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    node.total_trato += node.compra + node.venta;
 
-    if(tleft.value().first < tright.value().first) { 
-        return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + 1), tleft, tright);
+    auto tleft = travelled_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+    auto tright = travelled_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco);
+
+    int totalleft = 0, totalright = 0;
+
+    if(not tleft.empty()) {
+        totalleft = tleft.value().total_trato;
     }
-    else if(tleft.value().first > tright.value().first) {
-        return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + 1), tleft, tright);
+
+    if(not tright.empty()) {
+        totalright = tright.value().total_trato;
+    }
+
+    if(totalleft > totalright) {
+
+        node.altura += min(tleft.value().altura, tright.value().altura) + 1;
+        node.total_trato += totalleft;
+        node.total_compra += tleft.value().total_compra;
+        node.total_venta += tleft.value().total_venta;
+
+        return BinTree<InfoNodo> (node, tleft, tright);
+    }
+    else if(totalleft < totalright) {
+        node.total_trato += totalright;
+        node.altura += min(tleft.value().altura, tright.value().altura) + 1;
+        node.total_compra += tright.value().total_compra;
+        node.total_venta += tright.value().total_venta;
+
+        return BinTree<InfoNodo> (node, tleft, tright);
     }
     else {
-        if(tleft.value().second > tright.value().second) {
-            return BinTree<pair<int, int> > (make_pair(trato+tright.value().first, tright.value().second + 1), tleft, tright);
+        if(tleft.value().altura > tright.value().altura) {
+            node.total_trato += totalright;
+            node.altura += min(tleft.value().altura, tright.value().altura) + 1;
+            node.total_compra += tright.value().total_compra;
+            node.total_venta += tright.value().total_venta;
+
+            return BinTree<InfoNodo> (node, tleft, tright);
         }
         else {
-            return BinTree<pair<int, int> > (make_pair(trato+tleft.value().first, tleft.value().second + 1), tleft, tright);
+            node.total_trato += totalleft;
+            node.altura += min(tleft.value().altura, tright.value().altura) + 1;
+            node.total_compra += tleft.value().total_compra;
+            node.total_venta += tleft.value().total_venta;
+
+            return BinTree<InfoNodo> (node, tleft, tright);
         }
     }
 }
 
-void Barco::travel(BinTree<pair<int, int> > diff_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city) {
+void Barco::travel_tree(BinTree<InfoNodo> travelled_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city) {
     //Base case
-    if(diff_tree.empty() or mapa_rio.empty()) return;
-
-    if(diff_tree.value().second == 0) {
-        return;
-    }
+    if(travelled_tree.empty() or mapa_rio.empty()) return;
 
     string id_ciudad = mapa_rio.value();
     auto it = lista_ciudades.find(id_ciudad);
-    //cout << last_city << endl;
 
-    if(it == lista_ciudades.end()) {
-        return;
+    if(it == lista_ciudades.end()) return;
+
+    if(travelled_tree.value().venta > 0 and unidades_a_comprar > 0) {
+
+        it->second.reduccion(producto_a_comprar, travelled_tree.value().venta);
+
+        last_city = it->first;
     }
 
-    if(it->second.contiene_producto(producto_a_comprar) and unidades_a_comprar > 0) {
-        int cantidad = it->second.exceso(producto_a_comprar);
+    if(travelled_tree.value().compra > 0 and unidades_a_vender > 0) {
 
-        if(cantidad > 0) {
-            if(cantidad < unidades_a_comprar) {
-                it->second.reduccion(producto_a_comprar, cantidad);
-            }
-            else {
-                it->second.reduccion(producto_a_comprar, unidades_a_comprar);
-            }
-            last_city = it->first;
-        }
+        it->second.adquisicion(producto_a_vender, travelled_tree.value().compra);
+
+        last_city = it->first;
     }
 
-    if(it->second.contiene_producto(producto_a_vender) and unidades_a_vender > 0) {
-        int cantidad = it->second.exceso(producto_a_vender);
 
-        if(cantidad < 0) {
-            if(abs(cantidad) < unidades_a_vender) {
-                it->second.adquisicion(producto_a_vender, abs(cantidad));
-            }
-            else {
-                it->second.adquisicion(producto_a_vender, unidades_a_vender);
-            }
-            last_city = it->first;
-        }
-    }
-    
-    //Recursive case
-    if(not diff_tree.left().empty() and not diff_tree.right().empty()) {
+    if(not travelled_tree.left().empty() and not travelled_tree.right().empty()) {
         
-        if(diff_tree.left().value().first < diff_tree.right().value().first) {
-            travel(diff_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
+        if(travelled_tree.left().value().total_trato < travelled_tree.right().value().total_trato) {
+            travel_tree(travelled_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
         }
-        else if(diff_tree.left().value().first > diff_tree.right().value().first) {
-            travel(diff_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
+        else if(travelled_tree.left().value().total_trato > travelled_tree.right().value().total_trato) {
+            travel_tree(travelled_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
         }
         else {
-            if(diff_tree.left().value().second > diff_tree.right().value().second) {
-                travel(diff_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
+            if(travelled_tree.left().value().altura > travelled_tree.right().value().altura) {
+                travel_tree(travelled_tree.right(), mapa_rio.right(), lista_ciudades, last_city);
             }
             else {
-                travel(diff_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
+                travel_tree(travelled_tree.left(), mapa_rio.left(), lista_ciudades, last_city);
             }
         }
     }
@@ -199,7 +203,7 @@ void Barco::clear_travel() {
     ultima_ciudad_viaje.clear();
 }
 
-BinTree<int> Barco::change_tree(BinTree<pair<int, int> > weighted_tree) {
+BinTree<int> Barco::change_tree(BinTree<InfoNodo> weighted_tree) {
     if(weighted_tree.empty()) {
         return BinTree<int> ();
     }
@@ -207,7 +211,7 @@ BinTree<int> Barco::change_tree(BinTree<pair<int, int> > weighted_tree) {
     auto tleft = change_tree(weighted_tree.left());
     auto tright = change_tree(weighted_tree.right());
 
-    auto value = weighted_tree.value().first;
+    auto value = weighted_tree.value().total_compra;
 
     return BinTree<int> (value, tleft, tright);
 }
