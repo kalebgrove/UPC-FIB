@@ -40,7 +40,9 @@ birna
 7 1 1
 #
 li bruna
-0
+2
+2 4 5
+4 2 2
 leer_inventario borna
 2
 2 4 5
@@ -106,6 +108,8 @@ comerciar barna z1
 co z1 barna
 escribir_ciudad barna
 escribir_ciudad borna
+co barna barna
+escribir_ciudad barna
 co barna borna
 escribir_ciudad barna
 escribir_ciudad borna
@@ -124,5 +128,89 @@ escribir_ciudad berna
 escribir_ciudad birna
 hv
 eb
-ec borna
+leer_rio
+barna
+birna
+#
+#
+cerna
+#
+#
+escribir_ciudad barna
+escribir_ciudad cerna
+escribir_ciudad birna
+escribir_barco
+lr
+darna
+derna
+dirna
+#
+#
+dorna
+#
+#
+durna
+#
+#
+ec darna
+ls
+darna
+2
+1 15 8
+2 3 10
+derna
+2
+2 20 3
+3 4 20
+dirna
+2 
+3 14 5
+4 2 10
+dorna
+2
+4 10 10
+5 20 20
+durna
+2
+6 8 9
+7 19 3
+#
+re
+escribir_ciudad darna
+escribir_ciudad derna
+escribir_ciudad dirna
+escribir_ciudad dorna
+escribir_ciudad durna
+mb 3 10 4 10
+// primer viaje
+hacer_viaje
+eb
+escribir_ciudad darna
+escribir_ciudad derna
+escribir_ciudad dirna
+escribir_ciudad dorna
+escribir_ciudad durna
+escribir_barco
+mb 8 10 9 10
+eb
+// segundo viaje
+hv
+eb
+escribir_ciudad darna
+escribir_ciudad derna
+escribir_ciudad dirna
+escribir_ciudad dorna
+escribir_ciudad durna
+// tercer viaje
+mb 2 10 6 10
+hacer_viaje
+escribir_barco
+escribir_ciudad darna
+escribir_ciudad derna
+escribir_ciudad dirna
+escribir_ciudad dorna
+escribir_ciudad durna
+pp durna 2 4 7
+pp durna 1 7 4
+escribir_ciudad durna
 fin
