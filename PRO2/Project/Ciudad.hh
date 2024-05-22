@@ -40,17 +40,17 @@ class Ciudad {
 
         void escribir_ciudad() const;
 
-        void poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias);
+        void poner_producto_ciudad(Producto& producto, int id_producto, int unidades, int unidades_necesarias);
 
-        bool contiene_producto(int id) const;
+        bool contiene_producto_ciudad(int id) const;
 
-        void modificar_producto(int id_producto, int unidades, int unidades_necesarias, Producto& product);
+        void modificar_producto_ciudad(int id_producto, int unidades, int unidades_necesarias, Producto& product);
 
-        void quitar_producto(int id_producto, Producto& product);
+        void quitar_producto_ciudad(int id_producto, Producto& product);
 
-        void caract_producto(int id_producto) const;
+        void caract_producto_ciudad(int id_producto) const;
 
-        int mida_inventario() const;
+        int mida_inventario_ciudad() const;
 
         int exceso(int id_producto) const;
 
@@ -58,9 +58,11 @@ class Ciudad {
 
         void adquisicion(int id_producto, int cantidad, Producto& product);
 
-        void comerciar(Ciudad& city2, vector<Producto>& lista_productos);
+        void comerciar_ciudad(Ciudad& city2, vector<Producto>& lista_productos);
 
         void clear_inventory();
+
+        map<int, amount_products> inventario_ciudad() const;
 };
 
 #endif

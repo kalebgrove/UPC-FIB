@@ -39,8 +39,6 @@ int main() {
     cin >> id_prod_vender >> cant_vender;
 
     river.iniciar_barco(id_prod_comprar, id_prod_vender, cant_comprar, cant_vender);
-    
-    //river.print_tree();
 
     string s;
     cin >> s;
@@ -147,7 +145,7 @@ int main() {
 
             for(int i = 0; i < n; ++i) {
                 cin >> peso >> volumen;
-                river.agregar_productos(peso, volumen);
+                river.leer_productos(peso, volumen);
             }
         }
         else if(s == "escribir_producto" or s == "ep") {
@@ -184,7 +182,6 @@ int main() {
             string id_ciudad;
             int id_producto;
             int unidades, unidades_quiere;
-
 
             cin >> id_ciudad >> id_producto >> unidades >> unidades_quiere;
 
