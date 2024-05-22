@@ -2,7 +2,6 @@
 
 Ciudad::Ciudad() {
     InfoProductos = map<int, amount_products> ();
-    inventario = map<int, Producto> ();
 
     peso_total = 0;
     volumen_total = 0;
@@ -12,8 +11,6 @@ void Ciudad::anadir_inventario(Producto& producto, int id_prod, int unidades, in
 
     InfoProductos[id_prod].unidades = unidades;
     InfoProductos[id_prod].unidades_necesarias = unidades_necesarias;
-
-    inventario[id_prod] = producto;
 
     int peso2 = producto.consultar_peso()*unidades;
     int volumen2 = producto.consultar_volumen()*unidades;
@@ -34,7 +31,6 @@ void Ciudad::escribir_ciudad() const {
 }
 
 void Ciudad::poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias) {
-    inventario[id_producto] = producto;
 
     InfoProductos[id_producto].unidades = unidades;
     InfoProductos[id_producto].unidades_necesarias = unidades_necesarias;
@@ -49,12 +45,12 @@ void Ciudad::poner_producto(Producto& producto, int id_producto, int unidades, i
 }
 
 bool Ciudad::contiene_producto(int id) const {
-    map<int, Producto>::const_iterator it = inventario.find(id);
+    map<int, amount_products>::const_iterator it = InfoProductos.find(id);
 
-    return (it != inventario.end());
+    return (it != InfoProductos.end());
 }
 
-void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_necesarias) {
+void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_necesarias, Producto& product) {
     int cantidad = InfoProductos[id_producto].unidades;
 
     InfoProductos[id_producto].unidades = unidades;
@@ -62,8 +58,6 @@ void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_nece
 
     //If diff is negative, then the total reduces, otherwise there's a gain in weight and volume.
     int diff = unidades - cantidad;
-
-    Producto product = inventario[id_producto];
 
     int peso2 = product.consultar_peso()*diff;
     int vol2 = product.consultar_volumen()*diff;
@@ -80,31 +74,23 @@ void Ciudad::caract_producto(int id_producto) const {
     cout << (it->second).unidades << ' ' << (it->second).unidades_necesarias << endl;
 }
 
-void Ciudad::quitar_producto(int id_producto) {
+void Ciudad::quitar_producto(int id_producto, Producto& product) {
 
     int cantidad = InfoProductos[id_producto].unidades;
-    int tp = inventario[id_producto].consultar_peso()*cantidad;
-    int tv = inventario[id_producto].consultar_volumen()*cantidad;
+
+    int tp = product.consultar_peso()*cantidad;
+    int tv = product.consultar_volumen()*cantidad;
 
     peso_total -= tp;
     volumen_total -= tv;
 
-    inventario.erase(id_producto);
     InfoProductos.erase(id_producto);
 
     cout << peso_total << ' ' << volumen_total << endl;
 }
 
 int Ciudad::mida_inventario() const {
-    return inventario.size();
-}
-
-int Ciudad::consultar_iesimo_producto(int i) const {
-    map<int, Producto>::const_iterator it = inventario.begin();
-
-    for(int j = 0; j < i; ++j) ++it;
-
-    return it->first;
+    return InfoProductos.size();
 }
 
 int Ciudad::exceso(int id_producto) const {
@@ -115,12 +101,10 @@ int Ciudad::exceso(int id_producto) const {
     return cantidad;
 }
 
-void Ciudad::reduccion(int id_producto, int cantidad) {
+void Ciudad::reduccion(int id_producto, int cantidad, Producto& product) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades -= cantidad;
-
-    Producto product = consultar_producto(id_producto);
 
     int peso_elim = cantidad * product.consultar_peso();
     int vol_elim = cantidad * product.consultar_volumen();
@@ -129,12 +113,10 @@ void Ciudad::reduccion(int id_producto, int cantidad) {
     volumen_total -= vol_elim;
 }
 
-void Ciudad::adquisicion(int id_producto, int cantidad) {
+void Ciudad::adquisicion(int id_producto, int cantidad, Producto& product) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades += cantidad;
-
-    Producto product = consultar_producto(id_producto);
 
     int peso_sum = cantidad * product.consultar_peso();
     int vol_sum = cantidad * product.consultar_volumen();
@@ -143,11 +125,7 @@ void Ciudad::adquisicion(int id_producto, int cantidad) {
     volumen_total += vol_sum;
 }
 
-Producto Ciudad::consultar_producto(int id_producto) {
-    return inventario.at(id_producto);
-}
-
-void Ciudad::comerciar(Ciudad& city2) {
+void Ciudad::comerciar(Ciudad& city2, vector<Producto>& lista_productos) {
     map<int, amount_products>::iterator it1 = this->InfoProductos.begin();
     map<int, amount_products>::iterator it2 = city2.InfoProductos.begin();
 
@@ -159,22 +137,20 @@ void Ciudad::comerciar(Ciudad& city2) {
             int cantidad_necesitada1 = this->exceso(id_prod1);
             int cantidad_necesitada2 = city2.exceso(id_prod2);
 
-            int cantidad = 0;
-
             if(cantidad_necesitada1 < 0 and cantidad_necesitada2 > 0) {
         //if 'cantidad' is negative, then the city needs products. If 'cantidad' is positive, then the city has an excess. 'cantidad' is the excess that the city has.
                 
-                cantidad = min(abs(cantidad_necesitada1), cantidad_necesitada2);
+                int cantidad = min(abs(cantidad_necesitada1), cantidad_necesitada2);
 
-                this->adquisicion(id_prod1, cantidad);
-                city2.reduccion(id_prod1, cantidad);
+                this->adquisicion(id_prod1, cantidad, lista_productos[id_prod1 - 1]);
+                city2.reduccion(id_prod1, cantidad, lista_productos[id_prod1 - 1]);
             }
             else if(cantidad_necesitada1 > 0 and cantidad_necesitada2 < 0) {
                 
-                cantidad = min(abs(cantidad_necesitada2), cantidad_necesitada1);
+                int cantidad = min(abs(cantidad_necesitada2), cantidad_necesitada1);
 
-                this->reduccion(id_prod1, cantidad);
-                city2.adquisicion(id_prod1, cantidad);
+                this->reduccion(id_prod1, cantidad, lista_productos[id_prod1 - 1]);
+                city2.adquisicion(id_prod1, cantidad, lista_productos[id_prod1 - 1]);
             }
 
             ++it1;
@@ -190,7 +166,6 @@ void Ciudad::comerciar(Ciudad& city2) {
 }
 
 void Ciudad::clear_inventory() {
-    inventario.clear();
     InfoProductos.clear();
 
     peso_total = 0;

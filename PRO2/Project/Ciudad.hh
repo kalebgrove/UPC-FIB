@@ -16,7 +16,8 @@ The inventory of the city doesn't have to contain all possible products, just so
 #include "Producto.hh"
 #include <map>
 #include <set>              // incluya estas clases en los diagramas modulares, 
-#include <iostream>         // mientras que el compilador de c++ 
+#include <iostream>         // mientras que el compilador de c++
+#include <vector>
 #endif                      // sí que las procesa correctamente  
 
 //Struct that contains the amount of products needed and the total amount of products.
@@ -27,7 +28,6 @@ struct amount_products {
 
 class Ciudad {
     private:
-        map<int, Producto> inventario;               //It relates the id of the product to the product itself (optimization)
         map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
 
         int peso_total;
@@ -44,25 +44,21 @@ class Ciudad {
 
         bool contiene_producto(int id) const;
 
-        void modificar_producto(int id_producto, int unidades, int unidades_necesarias);
+        void modificar_producto(int id_producto, int unidades, int unidades_necesarias, Producto& product);
 
-        void quitar_producto(int id_producto);
+        void quitar_producto(int id_producto, Producto& product);
 
         void caract_producto(int id_producto) const;
 
         int mida_inventario() const;
 
-        int consultar_iesimo_producto(int i) const;
-
         int exceso(int id_producto) const;
 
-        void reduccion(int id_producto, int cantidad);
+        void reduccion(int id_producto, int cantidad, Producto& product);
 
-        void adquisicion(int id_producto, int cantidad);
+        void adquisicion(int id_producto, int cantidad, Producto& product);
 
-        Producto consultar_producto(int id_producto);
-
-        void comerciar(Ciudad& city2);
+        void comerciar(Ciudad& city2, vector<Producto>& lista_productos);
 
         void clear_inventory();
 };

@@ -184,16 +184,7 @@ class Rio {
         \post El barco presenta las características por defecto.
         \coste Lineal: O(n)
         */  
-        void iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2);
-
-        /** @brief Getter de Barco. 
-
-        Devuelve una copia del barco
-        \pre <em>cierto</em>
-        \post Se devuelve una copia del barco.
-        \coste Lineal: O(n)
-        */  
-        Barco consultar_barco();
+        void iniciar_barco(const int id_prod1, const int id_prod2, const int cantidad1, const int cantidad2);
 
         /** @brief Se modifican las características de un producto en una ciudad. 
 

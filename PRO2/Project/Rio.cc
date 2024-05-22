@@ -35,12 +35,12 @@ BinTree<string> Rio::leer_rio_rec() {
     return BinTree<string> (id_ciudad, tree_izq, tree_der);
 }
 
-void Rio::iniciar_barco(int id_prod1, int id_prod2, int cantidad1, int cantidad2) {
+void Rio::iniciar_barco(const int id_prod1, const int id_prod2, const int cantidad1, const int cantidad2) {
     barco = Barco(id_prod1, id_prod2, cantidad1, cantidad2);
 }
 
 void Rio::hacer_viaje() {
-    barco.hacer_viaje(mapa_rio, lista_ciudades);
+    barco.hacer_viaje(mapa_rio, lista_ciudades, lista_productos);
 }
 
 bool Rio::existe_ciudad(string id) const {
@@ -53,22 +53,9 @@ bool Rio::existe_producto(int id) const {
     return (id <= lista_productos.size() and id > 0);
 }
 
-Ciudad Rio::consultar_ciudad(string id) const {
-    Ciudad city = lista_ciudades.at(id);
-
-    return city;
-}
-
-Producto Rio::consultar_producto(int id) const {
-    Producto producto = lista_productos[id-1];
-
-    return producto;
-}
-
 void Rio::leer_inventario(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    auto it = lista_ciudades.find(id_ciudad);
-    Producto producto = lista_productos[id_producto-1];
-    it->second.anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
+
+    lista_ciudades[id_ciudad].anadir_inventario(lista_productos[id_producto-1], id_producto, unidades, unidades_necesarias);
 }
 
 void Rio::modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender) {
@@ -90,49 +77,44 @@ void Rio::agregar_productos(int peso, int volumen) {
 }
 
 void Rio::escribir_producto(int id_producto) const {
-    Producto producto = lista_productos[id_producto-1];
 
-    cout << producto.consultar_peso() << ' ' << producto.consultar_volumen() << endl;
+    cout << lista_productos[id_producto-1].consultar_peso() << ' ' << lista_productos[id_producto-1].consultar_volumen() << endl;
 }
 
 void Rio::escribir_ciudad(string id) const {
     //Write the product id's and the amount and necessary amount.
-    Ciudad city = consultar_ciudad(id);
-    city.escribir_ciudad();
+    
+    lista_ciudades.at(id).escribir_ciudad();
 }
 
 void Rio::poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    auto it = lista_ciudades.find(id_ciudad);
-    Producto producto = consultar_producto(id_producto);
 
-    it->second.poner_producto(producto, id_producto, unidades, unidades_necesarias);
+    lista_ciudades[id_ciudad].poner_producto(lista_productos[id_producto-1], id_producto, unidades, unidades_necesarias);
 }
 
 bool Rio::existe_producto_ciudad(string id_ciudad, int id) const {
-    Ciudad city = consultar_ciudad(id_ciudad);
-    return city.contiene_producto(id);
+
+    return lista_ciudades.at(id_ciudad).contiene_producto(id);
+
 }
 
 void Rio::modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias) {
-    auto it = lista_ciudades.find(id_ciudad);
-    it->second.modificar_producto(id_producto, unidades, unidades_necesarias);
+
+    lista_ciudades[id_ciudad].modificar_producto(id_producto, unidades, unidades_necesarias, lista_productos[id_producto-1]);
 }
 
 void Rio::quitar_producto(string id_ciudad, int id_producto) {
-    auto it = lista_ciudades.find(id_ciudad);
-    it->second.quitar_producto(id_producto);
+    
+    lista_ciudades[id_ciudad].quitar_producto(id_producto, lista_productos[id_producto-1]);
 }
 
 void Rio::caract_producto(string id_ciudad, int id_producto) const {
-    Ciudad city = consultar_ciudad(id_ciudad);
-    city.caract_producto(id_producto);
+    lista_ciudades.at(id_ciudad).caract_producto(id_producto);
 }
 
 void Rio::comerciar(string id_ciudad1, string id_ciudad2) {
-    auto it1 = lista_ciudades.find(id_ciudad1);
-    auto it2 = lista_ciudades.find(id_ciudad2);
 
-    it1->second.comerciar(it2->second);
+    lista_ciudades[id_ciudad1].comerciar(lista_ciudades[id_ciudad2], lista_productos);
 }
 
 void Rio::redistribuir() {
@@ -153,10 +135,6 @@ void Rio::redistribuir_rec(BinTree<string> mapa_rio) {
     redistribuir_rec(mapa_rio.left());
     redistribuir_rec(mapa_rio.right());
 
-}
-
-Barco Rio::consultar_barco() {
-    return barco;
 }
 
 void Rio::error_no_ciudad() const {
@@ -194,7 +172,6 @@ void Rio::print_tree() {
 }
 
 void Rio::clear_inventory(string id_ciudad) {
-    auto it = lista_ciudades.find(id_ciudad);
 
-    it->second.clear_inventory();
+    lista_ciudades[id_ciudad].clear_inventory();
 }
