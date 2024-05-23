@@ -111,7 +111,6 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
 
 BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, list<string>& ruta) {
     //Base case
-
     if(mapa_rio.empty() or (unidades_comprar_barco <= 0 and unidades_vender_barco <= 0)) {
         return BinTree<InfoNodo> (InfoNodo(), BinTree<InfoNodo>(), BinTree<InfoNodo>());
     }
@@ -148,8 +147,10 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
 
     node.total_trato = node.compra + node.venta;
 
-    auto tleft = travelled_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, ruta);
-    auto tright = travelled_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, ruta);
+    list<string> rutaleft, rutaright;
+
+    auto tleft = travelled_tree_rec(mapa_rio.left(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, rutaleft);
+    auto tright = travelled_tree_rec(mapa_rio.right(), lista_ciudades, unidades_comprar_barco, unidades_vender_barco, rutaright);
 
     int totalleft = 0, totalright = 0;
 
@@ -174,6 +175,8 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
         node.total_trato += totalleft;
         node.total_compra += tleft.value().total_compra;
         node.total_venta += tleft.value().total_venta;
+
+        ruta = rutaleft;
         ruta.push_front(mapa_rio.left().value());
 
     }
@@ -183,6 +186,8 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
         node.altura = tright.value().altura + 1;
         node.total_compra += tright.value().total_compra;
         node.total_venta += tright.value().total_venta;
+
+        ruta = rutaright;
         ruta.push_front(mapa_rio.right().value());
 
     }
@@ -193,6 +198,8 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
             node.altura = tright.value().altura + 1;
             node.total_compra += tright.value().total_compra;
             node.total_venta += tright.value().total_venta;
+
+            ruta = rutaright;
             ruta.push_front(mapa_rio.right().value());
 
         }
@@ -201,6 +208,8 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
             node.altura = tleft.value().altura + 1;
             node.total_compra += tleft.value().total_compra;
             node.total_venta += tleft.value().total_venta;
+
+            ruta = rutaleft;
             ruta.push_front(mapa_rio.left().value());
 
         }
@@ -215,27 +224,27 @@ void Barco::travel(list<string>& ruta, map<string, Ciudad>& lista_ciudades, vect
 
         string id_ciudad = *it;
 
-        if(lista_ciudades[id_ciudad].contiene_producto(producto_a_comprar)) {
+        if(lista_ciudades[id_ciudad].contiene_producto(producto_a_comprar) and u_comprar > 0) {
 
             int exceso = lista_ciudades[id_ciudad].exceso(producto_a_comprar);
             
             if(exceso > 0) {
                 int cantidad = min(exceso, u_comprar);
 
-                lista_ciudades[id_ciudad].reduccion(producto_a_comprar, cantidad, lista_productos[producto_a_comprar]);
+                lista_ciudades[id_ciudad].reduccion(producto_a_comprar, cantidad, lista_productos[producto_a_comprar - 1]);
                 u_comprar -= cantidad;
             }
             last_city = id_ciudad;
         }
 
-        if(lista_ciudades[id_ciudad].contiene_producto(producto_a_vender)) {
+        if(lista_ciudades[id_ciudad].contiene_producto(producto_a_vender) and u_vender > 0) {
 
             int exceso = lista_ciudades[id_ciudad].exceso(producto_a_vender);
             
             if(exceso < 0) {
                 int cantidad = min(abs(exceso), u_vender);
 
-                lista_ciudades[id_ciudad].adquisicion(producto_a_vender, cantidad, lista_productos[producto_a_vender]);
+                lista_ciudades[id_ciudad].adquisicion(producto_a_vender, cantidad, lista_productos[producto_a_vender - 1]);
                 u_vender -= cantidad;
             }
             last_city = id_ciudad;
