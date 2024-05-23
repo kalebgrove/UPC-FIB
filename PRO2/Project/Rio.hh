@@ -28,7 +28,7 @@ class Rio {
 
         BinTree<string> leer_rio_rec();
 
-        void redistribuir_rec(const BinTree<string>& mapa_rio);
+        void redistribuir_rec(BinTree<string> mapa_rio);
 
     public:
         //Constructora
@@ -38,7 +38,7 @@ class Rio {
         Se ejecuta automáticamente al declarar un río.
         \pre <em>cierto</em>
         \post El resultado es un rio con lista de ciudades y productos vacias.
-        \coste Constante: O(1)
+        \coste Constante
         */  
         Rio();
 
@@ -57,7 +57,7 @@ class Rio {
         Al llamar la función, devuelve si la ciudad existe en el río o no.
         \pre <em>cierto</em>
         \post El resultado es un booleano indicando la existencia de una ciudad en el río.
-        \coste Constante: O(1)
+        \coste Constante
         */  
         bool existe_ciudad(string id) const;
 
@@ -66,7 +66,7 @@ class Rio {
         Al llamar la función, devuelve si el producto existe en el río o no.
         \pre <em>cierto</em>
         \post El resultado es un rio con lista de ciudades y productos vacias.
-        \coste Constante: O(1)
+        \coste Constante
         */  
         bool existe_producto(int id) const;
 
@@ -111,7 +111,7 @@ class Rio {
         Se escribe el inventario del barco.
         \pre <em>el barco tiene inventario</em>
         \post Se escribe en la consola el inventario del barco.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: log(n)
         */  
         void escribir_barco() const;
 
@@ -120,7 +120,7 @@ class Rio {
         Se escribe el número de productos.
         \pre <em>La lista de productos no es vacia</em>
         \post El resultado es un entero escrito en la consola.
-        \coste Constante: O(1)
+        \coste Constante.
         */  
         void consultar_num() const;
 
@@ -129,7 +129,7 @@ class Rio {
         Se añade un nuevo producto con características peso y volumen al rio.
         \pre <em>cierto</em>
         \post El resultado es un vector con un producto máss.
-        \coste Constante: O(1)
+        \coste Constante: O(c)
         */  
         void agregar_productos(int peso, int volumen);
 
@@ -138,7 +138,7 @@ class Rio {
         Se escribe en la consola las características de un producto.
         \pre <em>Existe el producto</em>
         \post Se imprime el peso y volumen de un producto.
-        \coste Constante: O(1)
+        \coste Constante: O(c)
         */  
         void escribir_producto(int id_producto) const;
 
@@ -155,16 +155,16 @@ class Rio {
         
         \pre <em>Existe el producto y la ciudad</em>
         \post La ciudad añade un producto a su inventario
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: log(n)
         */  
         void poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
 
-        /** @brief Contiene el producto la ciudad? 
+        /** @brief Contiene el producto la ciudad?. 
 
         Se devuelve si la ciudad contiene el producto.
         \pre <em>Existe la ciudad y el producto</em>
         \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: log(n)
         */  
         bool existe_producto_ciudad(string id_ciudad, int id) const;
 
@@ -173,7 +173,7 @@ class Rio {
         La lista de todos los productos se aumenta en 1.
         \pre <em>cierto</em>
         \post Hay un nuevo producto en el río con las características peso y volumen.
-        \coste Constante: O(1)
+        \coste Constante: O(c)
         */  
         void leer_productos(int peso, int volumen);
 
@@ -191,7 +191,7 @@ class Rio {
         Las unidades de un producto en una ciudad se modifican.
         \pre <em>Existe la ciudad y el producto</em>
         \post Las cantidades de un producto en una ciudad se reemplazan.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: log(n)
         */  
         void modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
 
@@ -200,7 +200,7 @@ class Rio {
         La ciudad pierde el producto de su inventario.
         \pre <em>Existe la ciudad y el producto</em>
         \post El producto se ha quitado de la ciudad.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: log(n)
         */  
         void quitar_producto(string id_ciudad, int id_producto);
 
@@ -212,94 +212,103 @@ class Rio {
         \coste Lineal: O(n)
         */  
         void caract_producto(string id_ciudad, int id_producto) const;
-        
-        /** @brief Se comercia entre dos ciudades. 
+//---------------------------------------------------------------------------
+        /** @brief Contiene el producto la ciudad?. 
 
-        Dos ciudades comercian entre sí si comparten productos.
-        \pre <em>Ambas ciudades existen</em>
-        \post Los inventarios de las ciudades cambian según si ha habido comercio o no.
-        \coste Lineal: O(n)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void comerciar(string id_ciudad1, string id_ciudad2);
 
-        /** @brief Redistribuir.
+        /** @brief Contiene el producto la ciudad?. 
 
-        Cada ciudad comercia con la ciudad situada arriba a la izquiera y derecha, en este orden.
-        \pre <em>cierto</em>
-        \post Los inventarios de las ciudades cambian según si ha habido comercio entre las dos ciudades.
-        \coste Lineal: O(n)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void redistribuir();
 
-        /** @brief El barco realiza un viaje.
+        /** @brief Contiene el producto la ciudad?. 
 
-        Consta de 2 partes: se escoge la ruta, y se sigue.
-        \pre <em>cierto</em>
-        \post Los inventarios de las ciudades pueden cambiar según si ha habido comercio con el barco
-        \coste Lineal: O(n)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void hacer_viaje();
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>No existe la ciudad</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_no_ciudad() const;
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>No existe el producto</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_no_producto() const;
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>La ciudad no contiene el producto</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_no_producto_ciudad() const;
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>La ciudad contiene el producto</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_ciudad_producto() const;
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>Dos identificadores de un producto son el mismo</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_mismo_producto() const;
 
-        /** @brief Mensaje de error. 
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se escribe en la consola un error.
-        \pre <em>Dos identificadores de ciudades son el mismo</em>
-        \post Se escribe en la consola un mensaje de error.
-        \coste Constante: O(1)
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void error_misma_ciudad() const;
 
-        /** @brief Limpiadora del inventario.
+        /** @brief Contiene el producto la ciudad?. 
 
-        Se hace un "clear" del inventario de una ciudad
-        \pre <em>Existe la ciudad</em>
-        \post El inventario de la ciudad es reseteada: no contiene productos.
-        \coste Logarítmico: O(log(n))
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
+        */  
+        void print_tree();
+
+        /** @brief Contiene el producto la ciudad?. 
+
+        Se devuelve si la ciudad contiene el producto.
+        \pre <em>Existe la ciudad y el producto</em>
+        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \coste Logarítmico: log(n)
         */  
         void clear_inventory(string id_ciudad);
 
