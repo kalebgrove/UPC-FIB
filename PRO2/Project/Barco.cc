@@ -54,7 +54,12 @@ void Barco::escribir_barco() const {
 
     string last_city = "";
 
-    travel_tree(travelled_tree, mapa_rio, lista_ciudades, last_city, lista_productos);
+    travel_tree(travelled_tree, mapa_rio, lista_ciudades, last_city);
+
+    BinTree<int> mod_tree = change_tree(travelled_tree);
+
+    mod_tree.setOutputFormat(BinTree<InfoNodo>::VISUALFORMAT);
+    cout << mod_tree << endl;
 
     if(last_city != "") ultima_ciudad_viaje.push_back(last_city);
 
