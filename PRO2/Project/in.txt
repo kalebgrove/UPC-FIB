@@ -40,7 +40,9 @@ birna
 7 1 1
 #
 li bruna
-0
+2
+2 4 5
+4 2 2
 leer_inventario borna
 2
 2 4 5
@@ -106,6 +108,8 @@ comerciar barna z1
 co z1 barna
 escribir_ciudad barna
 escribir_ciudad borna
+co barna barna
+escribir_ciudad barna
 co barna borna
 escribir_ciudad barna
 escribir_ciudad borna
@@ -124,7 +128,6 @@ escribir_ciudad berna
 escribir_ciudad birna
 hv
 eb
-<<<<<<< HEAD
 leer_rio
 barna
 birna
@@ -218,7 +221,4 @@ escribir_ciudad derna
 escribir_ciudad dirna
 escribir_ciudad dorna
 escribir_ciudad durna
-=======
-ec borna
->>>>>>> parent of 11c4e28 (3/4 accepted + tl)
 fin
