@@ -18,6 +18,26 @@
 /*The boat is the object that allows commerce between two cities. The boat will contain an additional inventory, with its own products, 
 such that it is allows to purchase and sell two DIFFERENT products.*/
 
+struct InfoNodo {
+    int altura;
+    int total_compra;
+    int total_venta;
+    int compra;
+    int venta;
+
+    InfoNodo() {
+        altura = 0;
+        total_compra = 0;
+        total_venta = 0;
+        compra = 0;
+        venta = 0;
+    }
+
+    int total() const {
+        return total_compra + total_venta;
+    }
+};
+
 class Barco {
     private:
 
@@ -40,7 +60,7 @@ class Barco {
 
         void modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
 
-        //void hacer_viaje(const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos);
+        void hacer_viaje(const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos);
 
         void modify_list(string last_city);
 
@@ -60,9 +80,9 @@ class Barco {
 
         //void travel_tree(BinTree<pair<int, int> > weighted_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, int& total);
 
-        //BinTree<InfoNodo> travelled_tree_rec(const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco);
+        BinTree<InfoNodo> travelled_tree_rec(const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco);
 
-        //void travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, vector<Producto>& product);
+        void travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, vector<Producto>& product);
 
         //BinTree<int> change_tree(BinTree<InfoNodo> weighted_tree);
 

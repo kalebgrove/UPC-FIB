@@ -115,12 +115,6 @@ error: no existe la ciudad
 2 4 5
 4 1 9
 67 66
-#co barna barna
-error: ciudad repetida
-#escribir_ciudad barna
-1 3 5
-3 3 2
-48 18
 #co barna borna
 #escribir_ciudad barna
 1 3 5
@@ -297,6 +291,7 @@ derna
 6 8 9
 7 19 3
 288 491
+<<<<<<< HEAD
 #pp durna 2
 312 543
 #pp durna 1
@@ -332,3 +327,5 @@ derna
 6 8 9
 7 19 3
 378 602
+=======
+>>>>>>> parent of 11c4e28 (3/4 accepted + tl)

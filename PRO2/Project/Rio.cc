@@ -40,24 +40,11 @@ void Rio::iniciar_barco(const int id_prod1, const int id_prod2, const int cantid
 }
 
 void Rio::hacer_viaje() {
-    //barco.hacer_viaje(mapa_rio, lista_ciudades, lista_productos);
+    barco.hacer_viaje(mapa_rio, lista_ciudades, lista_productos);
 
-    if(not barco.inicializado()) {
-        return;
-    }
-
-    BinTree<InfoNodo> travelled_tree = travelled_tree_rec(mapa_rio, barco.un_comprar(), barco.un_vender());
-    
-    string last_city = "";
-
-    if(travelled_tree.value().altura != 0) travel_tree(travelled_tree, mapa_rio, last_city);
-
-    if(last_city != "") barco.modify_list(last_city);
-
-    cout << travelled_tree.value().total_trato << endl;
 }
 
-BinTree<InfoNodo> Rio::travelled_tree_rec(const BinTree<string>& mapa_rio, int unidades_comprar_barco, int unidades_vender_barco) {
+/*BinTree<InfoNodo> Rio::travelled_tree_rec(const BinTree<string>& mapa_rio, int unidades_comprar_barco, int unidades_vender_barco) {
     //Base case
     if(mapa_rio.empty() or (unidades_comprar_barco == 0 and unidades_vender_barco == 0)) {
         return BinTree<InfoNodo> (InfoNodo(), BinTree<InfoNodo>(), BinTree<InfoNodo>());
@@ -184,7 +171,7 @@ void Rio::travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<str
         }
     }
     return;
-}
+}*/
 
 bool Rio::existe_ciudad(string id) const {
     map<string, Ciudad>::const_iterator it = lista_ciudades.find(id);

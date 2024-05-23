@@ -19,24 +19,6 @@
 #define ERR_MISMO_PRODUCTO_COMPRAVENDA "error: no se puede comprar y vender el mismo producto"
 #define ERR_MISMA_CIUDAD "error: ciudad repetida"
 
-struct InfoNodo {
-    int altura;
-    int total_compra;
-    int total_venta;
-    int total_trato;
-    int compra;
-    int venta;
-
-    InfoNodo() {
-        altura = 0;
-        total_compra = 0;
-        total_venta = 0;
-        total_trato = 0;
-        compra = 0;
-        venta = 0;
-    }
-};
-
 class Rio {
     private:
         map<string, Ciudad> lista_ciudades; //List of all the cities on the river.
@@ -321,7 +303,7 @@ class Rio {
         */  
         void clear_inventory(string id_ciudad);
 
-        BinTree<InfoNodo> travelled_tree_rec(const BinTree<string>& mapa_rio, int unidades_comprar_barco, int unidades_vender_barco);
+        //BinTree<InfoNodo> travelled_tree_rec(const BinTree<string>& mapa_rio, int unidades_comprar_barco, int unidades_vender_barco);
 
-        void travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<string>& mapa_rio, string& last_city);
+        //void travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<string>& mapa_rio, string& last_city);
 };
