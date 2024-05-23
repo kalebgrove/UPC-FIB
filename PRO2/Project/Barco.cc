@@ -58,7 +58,7 @@ void Barco::hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ci
     int total = 0;
 
     if(not travelled_tree.empty()) {
-        total = travelled_tree.value().total();
+        total = travelled_tree.value().total_trato;
     }
 
     cout << total << endl;
@@ -106,11 +106,11 @@ BinTree<InfoNodo> Barco::travelled_tree_rec(BinTree<string> mapa_rio, map<string
     int totalleft = 0, totalright = 0;
 
     if(not tleft.empty()) {
-        totalleft = tleft.value().total();
+        totalleft = tleft.value().total_trato;
     }
 
     if(not tright.empty()) {
-        totalright = tright.value().total();
+        totalright = tright.value().total_trato;
     }
 
     if(totalleft > totalright) {
@@ -177,10 +177,10 @@ void Barco::travel_tree(BinTree<InfoNodo> travelled_tree, BinTree<string> mapa_r
 
     if(not travelled_tree.left().empty() and not travelled_tree.right().empty()) {
         
-        if(travelled_tree.left().value().total() < travelled_tree.right().value().total()) {
+        if(travelled_tree.left().value().total_trato < travelled_tree.right().value().total_trato) {
             travel_tree(travelled_tree.right(), mapa_rio.right(), lista_ciudades, last_city, lista_productos);
         }
-        else if(travelled_tree.left().value().total() > travelled_tree.right().value().total()) {
+        else if(travelled_tree.left().value().total_trato > travelled_tree.right().value().total_trato) {
             travel_tree(travelled_tree.left(), mapa_rio.left(), lista_ciudades, last_city, lista_productos);
         }
         else {
