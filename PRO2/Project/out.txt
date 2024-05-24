@@ -229,7 +229,7 @@ dirna
 #escribir_ciudad dirna
 3 5 5
 4 10 10
-274 57
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -261,7 +261,7 @@ dirna
 #escribir_ciudad dirna
 3 5 5
 4 10 10
-274 57
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -284,11 +284,11 @@ derna
 #escribir_ciudad derna
 2 3 3
 3 13 20
-90 172
+70 52
 #escribir_ciudad dirna
 3 5 5
 4 10 10
-274 57
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -313,15 +313,15 @@ derna
 #escribir_ciudad darna
 1 8 8
 2 10 10
-198 114
+156 170
 #escribir_ciudad derna
 2 3 3
 3 13 20
-90 172
+70 52
 #escribir_ciudad dirna
 3 5 5
 4 10 10
-274 57
+450 145
 #escribir_ciudad dorna
 4 10 10
 5 20 20
@@ -331,4 +331,4 @@ derna
 2 7 7
 6 8 9
 7 19 3
-390 542
+378 602
