@@ -26,14 +26,11 @@ class Producto {
     
         Producto();
 
-        Producto(int peso, int volumen);
+        Producto(const int peso, const int volumen);
 
         int consultar_peso() const;
 
         int consultar_volumen() const;
-        
-        //Anadir productos
-        //Consulta de cantidad de productos
 };
 
 #endif

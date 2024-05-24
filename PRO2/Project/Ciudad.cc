@@ -7,7 +7,7 @@ Ciudad::Ciudad() {
     volumen_total = 0;
 }
 
-void Ciudad::anadir_inventario(Producto& producto, int id_prod, int unidades, int unidades_necesarias) {
+void Ciudad::anadir_inventario(Producto& producto, const int id_prod, const int unidades, const int unidades_necesarias) {
 
     InfoProductos[id_prod].unidades = unidades;
     InfoProductos[id_prod].unidades_necesarias = unidades_necesarias;
@@ -30,7 +30,7 @@ void Ciudad::escribir_ciudad() const {
     cout << peso_total << ' ' << volumen_total << endl;
 }
 
-void Ciudad::poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias) {
+void Ciudad::poner_producto(Producto& producto, const int id_producto, const int unidades, const int unidades_necesarias) {
 
     InfoProductos[id_producto].unidades = unidades;
     InfoProductos[id_producto].unidades_necesarias = unidades_necesarias;
@@ -50,7 +50,7 @@ bool Ciudad::contiene_producto(int id) const {
     return (it != InfoProductos.end());
 }
 
-void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_necesarias, Producto& product) {
+void Ciudad::modificar_producto(const int id_producto, const int unidades, const int unidades_necesarias, Producto& product) {
     int cantidad = InfoProductos[id_producto].unidades;
 
     InfoProductos[id_producto].unidades = unidades;
@@ -68,13 +68,13 @@ void Ciudad::modificar_producto(int id_producto, int unidades, int unidades_nece
     cout << peso_total << ' ' << volumen_total << endl;
 }
 
-void Ciudad::caract_producto(int id_producto) const {
+void Ciudad::caract_producto(const int id_producto) const {
     map<int, amount_products>::const_iterator it = InfoProductos.find(id_producto);
 
     cout << (it->second).unidades << ' ' << (it->second).unidades_necesarias << endl;
 }
 
-void Ciudad::quitar_producto(int id_producto, Producto& product) {
+void Ciudad::quitar_producto(const int id_producto, Producto& product) {
 
     int cantidad = InfoProductos[id_producto].unidades;
 
@@ -93,7 +93,7 @@ int Ciudad::mida_inventario() const {
     return InfoProductos.size();
 }
 
-int Ciudad::exceso(int id_producto) const {
+int Ciudad::exceso(const int id_producto) const {
     map<int, amount_products>::const_iterator it = InfoProductos.find(id_producto);
 
     int cantidad = (it->second).unidades - (it->second).unidades_necesarias;
@@ -101,7 +101,7 @@ int Ciudad::exceso(int id_producto) const {
     return cantidad;
 }
 
-void Ciudad::reduccion(int id_producto, int cantidad, Producto& product) {
+void Ciudad::reduccion(const int id_producto, const int cantidad, Producto& product) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades -= cantidad;
@@ -113,7 +113,7 @@ void Ciudad::reduccion(int id_producto, int cantidad, Producto& product) {
     volumen_total -= vol_elim;
 }
 
-void Ciudad::adquisicion(int id_producto, int cantidad, Producto& product) {
+void Ciudad::adquisicion(const int id_producto, const int cantidad, Producto& product) {
     map<int, amount_products>::iterator it = InfoProductos.find(id_producto);
 
     (it->second).unidades += cantidad;

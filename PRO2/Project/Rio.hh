@@ -59,7 +59,7 @@ class Rio {
         \post El resultado es un booleano indicando la existencia de una ciudad en el río.
         \coste Constante
         */  
-        bool existe_ciudad(string id) const;
+        bool existe_ciudad(const string id) const;
 
         /** @brief Booleano producto. 
 
@@ -68,25 +68,7 @@ class Rio {
         \post El resultado es un rio con lista de ciudades y productos vacias.
         \coste Constante
         */  
-        bool existe_producto(int id) const;
-
-        /** @brief Consultora Ciudad. 
-
-        Se devuelve la ciudad con el identificador proporcionado.
-        \pre <em>Existe la ciudad</em>
-        \post El resultado es una Ciudad.
-        \coste Logarítmico: O(log(n))
-        */  
-        Ciudad consultar_ciudad(string id) const;
-
-        /** @brief Consultora Producto. 
-
-        Se devuelve el producto con el identificador proporcionado.
-        \pre <em>Existe el producto</em>
-        \post El resultado es un Producto.
-        \coste Logarítmico: O(log(n))
-        */  
-        Producto consultar_producto(int id) const;
+        bool existe_producto(const int id) const;
 
         /** @brief Leer Inventario de una Ciudad. 
 
@@ -95,7 +77,7 @@ class Rio {
         \post Se escribe en la consola el inventario de una ciudad.
         \coste Lineal: O(n)
         */  
-        void leer_inventario(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
+        void leer_inventario(const string id_ciudad, const int id_producto, const int unidades, const int unidades_necesarias);
 
         /** @brief Modificador del Barco. 
 
@@ -104,7 +86,7 @@ class Rio {
         \post El barco ahora contiene dos productos; uno que vende y otro que compra.
         \coste Constante
         */  
-        void modificar_barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
+        void modificar_barco(const int producto_a_comprar, const int producto_a_vender, const int unidades_a_comprar, const int unidades_a_vender);
 
         /** @brief Escritura del Barco. 
 
@@ -131,7 +113,7 @@ class Rio {
         \post El resultado es un vector con un producto máss.
         \coste Constante: O(c)
         */  
-        void agregar_productos(int peso, int volumen);
+        void agregar_productos(const int peso, const int volumen);
 
         /** @brief Escritura de producto. 
 
@@ -140,7 +122,7 @@ class Rio {
         \post Se imprime el peso y volumen de un producto.
         \coste Constante: O(c)
         */  
-        void escribir_producto(int id_producto) const;
+        void escribir_producto(const int id_producto) const;
 
         /** @brief Escritura de Ciudad. 
 
@@ -149,7 +131,7 @@ class Rio {
         \post Se imprime los productos que contiene un inventario.
         \coste Lineal: O(n)
         */  
-        void escribir_ciudad(string id_ciudad) const;
+        void escribir_ciudad(const string id_ciudad) const;
 
         /** @brief Se añade un producto.
         
@@ -157,16 +139,16 @@ class Rio {
         \post La ciudad añade un producto a su inventario
         \coste Logarítmico: log(n)
         */  
-        void poner_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
+        void poner_producto(const string id_ciudad, const int id_producto, const int unidades, const int unidades_necesarias);
 
-        /** @brief Contiene el producto la ciudad?. 
+        /** @brief Contiene el producto la ciudad?
 
         Se devuelve si la ciudad contiene el producto.
         \pre <em>Existe la ciudad y el producto</em>
         \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
         \coste Logarítmico: log(n)
         */  
-        bool existe_producto_ciudad(string id_ciudad, int id) const;
+        bool existe_producto_ciudad(const string id_ciudad, const int id) const;
 
         /** @brief Se añade un nuevo producto. 
 
@@ -175,7 +157,7 @@ class Rio {
         \post Hay un nuevo producto en el río con las características peso y volumen.
         \coste Constante: O(c)
         */  
-        void leer_productos(int peso, int volumen);
+        void leer_productos(const int peso, const int volumen);
 
         /** @brief Se inicializa el barco. 
 
@@ -193,7 +175,7 @@ class Rio {
         \post Las cantidades de un producto en una ciudad se reemplazan.
         \coste Logarítmico: log(n)
         */  
-        void modificar_producto(string id_ciudad, int id_producto, int unidades, int unidades_necesarias);
+        void modificar_producto(const string id_ciudad, const int id_producto, const int unidades, const int unidades_necesarias);
 
         /** @brief Se elimina el producto de una ciudad. 
 
@@ -202,7 +184,7 @@ class Rio {
         \post El producto se ha quitado de la ciudad.
         \coste Logarítmico: log(n)
         */  
-        void quitar_producto(string id_ciudad, int id_producto);
+        void quitar_producto(const string id_ciudad, const int id_producto);
 
         /** @brief Se escriben las características de un producto en una ciudad. 
 
@@ -211,29 +193,29 @@ class Rio {
         \post Se imprime en la consola las unidades y las unidades necesarias de un producto en la ciudad.
         \coste Lineal: O(n)
         */  
-        void caract_producto(string id_ciudad, int id_producto) const;
-//---------------------------------------------------------------------------
-        /** @brief Contiene el producto la ciudad?. 
+        void caract_producto(const string id_ciudad, const int id_producto) const;
 
-        Se devuelve si la ciudad contiene el producto.
-        \pre <em>Existe la ciudad y el producto</em>
-        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
-        \coste Logarítmico: log(n)
+        /** @brief Comercio entre dos ciudades. 
+
+        Se comercia entre dos ciudades determinadas.
+        \pre <em>Existen ambas ciudades</em>
+        \post Si las ciudades tienen productos en común, entonces se comercia.
+        \coste Lineal: O(n+m)
         */  
-        void comerciar(string id_ciudad1, string id_ciudad2);
+        void comerciar(const string id_ciudad1, const string id_ciudad2);
 
-        /** @brief Contiene el producto la ciudad?. 
+        /** @brief Redistribuir.
 
-        Se devuelve si la ciudad contiene el producto.
-        \pre <em>Existe la ciudad y el producto</em>
-        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
-        \coste Logarítmico: log(n)
+        Se redistribuye entre las ciudades del río.
+        \pre <em>cierto</em>
+        \post La ciudad comercia con la ciudad de la derecha y luego con el de la izquierda río arriba.
+        \coste Cuadrático: O(n*(k+m))
         */  
         void redistribuir();
 
-        /** @brief Contiene el producto la ciudad?. 
+        /** @brief El barco hace un viaje por la cuenca. 
 
-        Se devuelve si la ciudad contiene el producto.
+        El barco realiza la ruta más provechosa e hace comercio con las ciudades.
         \pre <em>Existe la ciudad y el producto</em>
         \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
         \coste Logarítmico: log(n)
@@ -300,19 +282,6 @@ class Rio {
         \pre <em>Existe la ciudad y el producto</em>
         \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
         \coste Logarítmico: log(n)
-        */  
-        void print_tree();
-
-        /** @brief Contiene el producto la ciudad?. 
-
-        Se devuelve si la ciudad contiene el producto.
-        \pre <em>Existe la ciudad y el producto</em>
-        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
-        \coste Logarítmico: log(n)
-        */  
-        void clear_inventory(string id_ciudad);
-
-        //BinTree<InfoNodo> travelled_tree_rec(const BinTree<string>& mapa_rio, int unidades_comprar_barco, int unidades_vender_barco);
-
-        //void travel_tree(const BinTree<InfoNodo>& travelled_tree, const BinTree<string>& mapa_rio, string& last_city);
+        */
+        void clear_inventory(const string id_ciudad);
 };

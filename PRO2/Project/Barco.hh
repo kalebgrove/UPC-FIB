@@ -50,7 +50,7 @@ class Barco {
     public:
         Barco();
 
-        Barco(int producto_a_comprar, int producto_a_vender, int unidades_a_comprar, int unidades_a_vender);
+        Barco(const int producto_a_comprar, const int producto_a_vender, const int unidades_a_comprar, const int unidades_a_vender);
 
         void escribir_barco() const;
 
@@ -58,15 +58,9 @@ class Barco {
 
         void hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos);
 
-        //list<string> encontrar_ruta(const BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos, int u_comprar, int u_vender);
-
         BinTree<InfoNodo> travelled_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, list<string>& ruta);
 
         void travel(list<string>& ruta, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos, int u_comprar, int u_vender, string& last_city);
-
-        void travel_tree(BinTree<InfoNodo> travelled_tree, BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, string& last_city, vector<Producto>& product);
-
-        //BinTree<int> change_tree(BinTree<InfoNodo> weighted_tree);
 
         void clear_travel();
 };

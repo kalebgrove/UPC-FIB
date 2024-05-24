@@ -39,8 +39,6 @@ int main() {
     cin >> id_prod_vender >> cant_vender;
 
     river.iniciar_barco(id_prod_comprar, id_prod_vender, cant_comprar, cant_vender);
-    
-    //river.print_tree();
 
     string s;
     cin >> s;

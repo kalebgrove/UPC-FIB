@@ -36,27 +36,27 @@ class Ciudad {
     public:
         Ciudad();
 
-        void anadir_inventario(Producto& producto, int id_prod, int unidades, int unidades_necesarias);
+        void anadir_inventario(Producto& producto, const int id_prod, const int unidades, const int unidades_necesarias);
 
         void escribir_ciudad() const;
 
-        void poner_producto(Producto& producto, int id_producto, int unidades, int unidades_necesarias);
+        void poner_producto(Producto& producto, const int id_producto, const int unidades, const int unidades_necesarias);
 
         bool contiene_producto(int id) const;
 
-        void modificar_producto(int id_producto, int unidades, int unidades_necesarias, Producto& product);
+        void modificar_producto(const int id_producto, const int unidades, const int unidades_necesarias, Producto& product);
 
-        void quitar_producto(int id_producto, Producto& product);
+        void quitar_producto(const int id_producto, Producto& product);
 
-        void caract_producto(int id_producto) const;
+        void caract_producto(const int id_producto) const;
 
         int mida_inventario() const;
 
-        int exceso(int id_producto) const;
+        int exceso(const int id_producto) const;
 
-        void reduccion(int id_producto, int cantidad, Producto& product);
+        void reduccion(const int id_producto, const int cantidad, Producto& product);
 
-        void adquisicion(int id_producto, int cantidad, Producto& product);
+        void adquisicion(const int id_producto, const int cantidad, Producto& product);
 
         void comerciar(Ciudad& city2, vector<Producto>& lista_productos);
 

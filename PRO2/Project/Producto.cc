@@ -5,7 +5,7 @@ Producto::Producto() {
     volumen = 0;
 }
 
-Producto::Producto(int peso, int volumen) {
+Producto::Producto(const int peso, const int volumen) {
     this->peso = peso;
     this->volumen = volumen;
 }
