@@ -89,7 +89,7 @@ void Ciudad::quitar_producto(const int id_producto, Producto& product) {
     cout << peso_total << ' ' << volumen_total << endl;
 }
 
-int Ciudad::mida_inventario() const {
+int Ciudad::tamaño_inventario() const {
     return InfoProductos.size();
 }
 
