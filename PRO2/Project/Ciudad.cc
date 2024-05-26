@@ -32,14 +32,7 @@ void Ciudad::escribir_ciudad() const {
 
 void Ciudad::poner_producto(Producto& producto, const int id_producto, const int unidades, const int unidades_necesarias) {
 
-    InfoProductos[id_producto].unidades = unidades;
-    InfoProductos[id_producto].unidades_necesarias = unidades_necesarias;
-
-    int peso2 = producto.consultar_peso()*unidades;
-    int volumen2 = producto.consultar_volumen()*unidades;
-
-    peso_total += peso2;
-    volumen_total += volumen2;
+    anadir_inventario(producto, id_producto, unidades, unidades_necesarias);
 
     cout << peso_total << ' ' << volumen_total << endl;
 }
@@ -89,7 +82,7 @@ void Ciudad::quitar_producto(const int id_producto, Producto& product) {
     cout << peso_total << ' ' << volumen_total << endl;
 }
 
-int Ciudad::tamaño_inventario() const {
+int Ciudad::tam_inventario() const {
     return InfoProductos.size();
 }
 

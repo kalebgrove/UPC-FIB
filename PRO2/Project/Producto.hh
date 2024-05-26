@@ -4,8 +4,8 @@ It's its own class, since there are getters and setters; change in attributes an
 #include <iostream>
 using namespace std;
 
-/** @file Prenda.hh
-    @brief Especificación de la clase Prenda 
+/** @file Producto.hh
+    @brief Especificación de la clase Producto. 
 */
 
 
@@ -24,12 +24,40 @@ class Producto {
 
     public:
     
+        /** @brief Constructora por defecto.
+
+        Se inicializan los parámetros privados a los valores por defecto.
+        \pre <em>cierto</em>
+        \post Los parámetros privados del parámetro implícito son inicializados a valores por defecto.
+        \coste Constante: O(1)
+        */  
         Producto();
 
+        /** @brief Constructora. 
+
+        Se inicializan los parámetros privados del producto.
+        \pre <em>cierto</em>
+        \post Los parámetros privados están inicializados a aquellos valores pasados como argumentos.
+        \coste Constante: O(1)
+        */  
         Producto(const int peso, const int volumen);
 
+        /** @brief Consultora de peso.
+
+        Se consulta el peso del parámetro privado.
+        \pre <em>cierto</em>
+        \post Se devuelve el peso del parámetro implícito.
+        \coste Constante: O(1)
+        */  
         int consultar_peso() const;
 
+        /** @brief Consultora de volumen.
+
+        Se consulta el volumen del parámetro implícito.
+        \pre <em>cierto</em>
+        \post Se devuelve el volumen del parámetro implícito.
+        \coste Constante: O(1)
+        */  
         int consultar_volumen() const;
 };
 

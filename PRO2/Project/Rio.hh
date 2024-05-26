@@ -4,13 +4,9 @@
 #include "BinTree.hh"
 #include <vector>
 
-/** @class Rio
-    @brief Representa el río con todos sus elementos.
-
-    Puede contener ciudades y productos. El barco es una entidad separada que no depende de la presencia de la cuenca.
+/** @file Rio.hh
+    @brief Especificación de la clase Rio. 
 */
-
-/*Define errors*/
 
 #define ERR_NO_CIUDAD "error: no existe la ciudad"
 #define ERR_NO_PRODUCTO "error: no existe el producto"

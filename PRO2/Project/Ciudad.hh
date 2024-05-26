@@ -5,7 +5,7 @@ The city can sell products to another city or to the boat iff these products are
 The inventory of the city doesn't have to contain all possible products, just some.*/
 
 /** @file Ciudad.hh
-    @brief Especificación de la clase Ciudad 
+    @brief Especificación de la clase Ciudad.
 */
 
 
@@ -59,7 +59,7 @@ class Ciudad {
         \post La función devuelve un integer que indica el tamaño del inventario.
         \coste Lineal: O(k+m)
         */  
-        int tamaño_inventario() const;
+        int tam_inventario() const;
 
         /** @brief Contiene el producto la ciudad? 
 
@@ -70,93 +70,93 @@ class Ciudad {
         */  
         bool contiene_producto(int id) const;
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se devuelve el exceso de un producto que tiene la ciudad.
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        El exceso determina si la ciudad quiere comprar o vender el producto: si el exceso es positivo, la ciudad tiene más unidades que las necesarias, y puede vender
+        el producto. En cambio, si el exceso es negativo, el parámetro implícito contiene menos unidades que las necesarias: necesita comprar el producto.
+        \pre <em>cierto</em>
+        \post Se devuelve la diferencia entre las unidades y las unidades necesarias de un producto que pertenece al inventario del parámetro implícito.
+        \coste Logarítmico: O(log(n))
         */  
         int exceso(const int id_producto) const;
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se escriben las unidades y unidades necesarias de un producto.
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        Se escribe en el canal de salida las características de un producto.
+        \pre <em>cierto</em>
+        \post Se escribe en la consola las características de un producto.
+        \coste Logarítmico: O(log(n))
         */  
         void caract_producto(const int id_producto) const;
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se añade un producto al inventario de la ciudad. 
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        Se añade un producto al inventario del parámetro implícito.
+        \pre <em>cierto</em>
+        \post El inventario de la ciudad adquiere un nuevo producto, con las características pasadas por copia.
+        \coste Logarítmico: O(log(n))
         */  
         void anadir_inventario(Producto& producto, const int id_prod, const int unidades, const int unidades_necesarias);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se añade un producto al inventario y se escribe el peso y el volumen total del parámetro implícito. 
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        \pre <em>cierto</em>
+        \post El inventario de la ciudad aquiere un producto y se escribe en el canal de salida el peso y volumen total.
+        \coste Logarítmico: O(log(n))
         */  
         void poner_producto(Producto& producto, const int id_producto, const int unidades, const int unidades_necesarias);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se modifican las características de un producto.
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        Las unidades y las unidades necesarias de un producto en el inventario se modifican.
+        \pre <em>cierto</em>
+        \post Las características de un producto cambian, y así el peso y el volumen total del parámetro implícito.
+        \coste Logarítmico: O(log(n))
         */  
         void modificar_producto(const int id_producto, const int unidades, const int unidades_necesarias, Producto& product);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se elimina un producto del inventario.
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        El inventario del parámetro implícito queda reducido, además del peso y volumen total.
+        \pre <em>cierto</em>
+        \post Se reduce el inventario de la ciudad y el peso y volumen total.
+        \coste Logarítmico: O(log(n))
         */  
         void quitar_producto(const int id_producto, Producto& product);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief La cantidad de un producto decrementa una cierta cantidad. 
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha vendido una cantidad de producto (exceso).
+        \pre <em>cierto</em>
+        \post La cantidad de un producto del inventario del parámetro implícito se reduce; el peso y el volumen total también.
+        \coste Logarítmico: O(log(n))
         */  
         void reduccion(const int id_producto, const int cantidad, Producto& product);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief La cantidad de un producto aumenta una cierta cantidad. 
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha comprado una cantidad de producto (exceso).
+        \pre <em>cierto</em>
+        \post La cantidad de un producto del inventario del parámetro implícito se aumenta; el peso y el volumen total también.
+        \coste Logarítmico: O(log(n))
         */  
         void adquisicion(const int id_producto, const int cantidad, Producto& product);
 
         /** @brief Comercio entre dos ciudades. 
 
         Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
+        \pre <em>cierto</em>
+        \post Si las ciudades tienen productos en común, entonces hay un intercambio.
         \coste Lineal: O(k+m)
         */  
         void comerciar(Ciudad& city2, vector<Producto>& lista_productos);
 
-        /** @brief Comercio entre dos ciudades. 
+        /** @brief Se reinicia el inventario del parámetro implícito. 
 
-        Se comercia entre dos ciudades determinadas.
-        \pre <em>Existen ambas ciudades</em>
-        \post Si las ciudades tienen productos en común, entonces se comercia.
-        \coste Lineal: O(k+m)
+        El inventario de la ciudad se inicializa al valor por defecto (vacío).
+        \pre <em>cierto</em>
+        \post Tanto el inventario como el peso y volumen total quedan inicializados a los valores por defecto.
+        \coste Logarítmico: O(log(n))
         */  
         void clear_inventory();
 };
