@@ -57,7 +57,7 @@ class Ciudad {
         Se devuelve el tamaño del inventario.
         \pre <em>cierto</em>
         \post La función devuelve un integer que indica el tamaño del inventario.
-        \coste Lineal: O(k+m)
+        \coste Constante: O(1)
         */  
         int tam_inventario() const;
 
@@ -83,7 +83,7 @@ class Ciudad {
         /** @brief Se escriben las unidades y unidades necesarias de un producto.
 
         Se escribe en el canal de salida las características de un producto.
-        \pre <em>cierto</em>
+        \pre <em>Existe el producto</em>
         \post Se escribe en la consola las características de un producto.
         \coste Logarítmico: O(log(n))
         */  

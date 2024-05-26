@@ -22,12 +22,25 @@ class Rio {
         BinTree<string> mapa_rio;
         Barco barco;
 
+        /** @brief Función auxiliar de leer el río. 
+
+        Es una función auxiliar recursiva que permite crear un árbol binario que contiene los identificadores de las ciudades como el valor del nodo.
+        \pre <em>cierto</em>
+        \post El resultado es un árbol binario con los identificadores de las ciudades como nodos.
+        \coste Lineal: O(n*log(n))
+        */  
         BinTree<string> leer_rio_rec();
 
+        /** @brief Función auxiliar de redistribuir. 
+
+        Es una función auxiliar que permite recorrer el árbol binario y hacer la redistribución.
+        \pre <em>cierto</em>
+        \post Se llama la función comerciar para cada par de ciudades.
+        \coste Lineal: O(n)
+        */  
         void redistribuir_rec(BinTree<string> mapa_rio);
 
     public:
-        //Constructora
 
         /** @brief Creadora por defecto. 
 

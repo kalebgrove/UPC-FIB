@@ -47,6 +47,26 @@ class Barco {
 
         list<string> ultima_ciudad_viaje;
 
+        /** @brief Devuelve un árbol binario que tiene una Struct como nodo. 
+
+        Se crea un árbol binario que contiene Structs como nodos. Esto permite almacenar la información de las rutas. Recorrido pre-orden e in-orden.
+        Lo importante es que la ruta se almacena dentro de una lista.
+        \pre <em>cierto</em>
+        \post Se devuelve un árbol binario además de una lista que contiene las ciudades que forman parte de la ruta.
+        \coste Lineal: O(n)
+        */  
+        BinTree<InfoNodo> travelled_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, list<string>& ruta);
+
+        /** @brief El barco realiza la ruta.
+
+        Se itera sobre la lista que se ha creado en la función recursiva así comerciando entre las ciudades y el barco.
+        \pre <em>cierto</em>
+        \post Los inventarios y los parámetros privados de las ciudades cambian si comercian con el barco. El vector privado del barco queda modificado: se añade la última ciudad con 
+        quien ha comerciado.
+        \coste Lineal: O(n)
+        */  
+        void travel(list<string>& ruta, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos, int u_comprar, int u_vender, string& last_city);
+
     public:
         /** @brief Constructora por defecto.
 
@@ -92,26 +112,6 @@ class Barco {
         \coste Lineal: O(n+k)
         */  
         void hacer_viaje(BinTree<string>& mapa_rio, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos);
-
-        /** @brief Devuelve un árbol binario que tiene una Struct como nodo. 
-
-        Se crea un árbol binario que contiene Structs como nodos. Esto permite almacenar la información de las rutas. Recorrido pre-orden e in-orden.
-        Lo importante es que la ruta se almacena dentro de una lista.
-        \pre <em>cierto</em>
-        \post Se devuelve un árbol binario además de una lista que contiene las ciudades que forman parte de la ruta.
-        \coste Lineal: O(n)
-        */  
-        BinTree<InfoNodo> travelled_tree_rec(BinTree<string> mapa_rio, map<string, Ciudad>& lista_ciudades, int unidades_comprar_barco, int unidades_vender_barco, list<string>& ruta);
-
-        /** @brief El barco realiza la ruta.
-
-        Se itera sobre la lista que se ha creado en la función recursiva así comerciando entre las ciudades y el barco.
-        \pre <em>cierto</em>
-        \post Los inventarios y los parámetros privados de las ciudades cambian si comercian con el barco. El vector privado del barco queda modificado: se añade la última ciudad con 
-        quien ha comerciado.
-        \coste Lineal: O(n)
-        */  
-        void travel(list<string>& ruta, map<string, Ciudad>& lista_ciudades, vector<Producto>& lista_productos, int u_comprar, int u_vender, string& last_city);
 
         /** @brief Se reinicia el vector de ciudades del barco. 
 
