@@ -1,0 +1,359 @@
+\hypertarget{class_ciudad}{}\doxysection{Ciudad Class Reference}
+\label{class_ciudad}\index{Ciudad@{Ciudad}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ciudad_a58cb38dda8085e38bb0358ff54ca0e0c}{Ciudad}} ()
+\begin{DoxyCompactList}\small\item\em Constructora por defecto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_a324076d0213839ed80cd57bfd4b257d1}{escribir\+\_\+ciudad}} () const
+\begin{DoxyCompactList}\small\item\em Escritura de la ciudad. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ciudad_ab6c1772a42acb81d164015c32e02fb3a}{tam\+\_\+inventario}} () const
+\begin{DoxyCompactList}\small\item\em Getter de la cantidad de productos del inventario. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ciudad_aeef3637dd769bef36d22a9791f646dd6}{contiene\+\_\+producto}} (int id) const
+\begin{DoxyCompactList}\small\item\em Contiene el producto la ciudad? \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_ciudad_a0d933ed64f1cb03fb8d9690413163372}{exceso}} (const int id\+\_\+producto) const
+\begin{DoxyCompactList}\small\item\em Se devuelve el exceso de un producto que tiene la ciudad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_a57a6bfc514295b40cf1eb24e8e8a03d3}{caract\+\_\+producto}} (const int id\+\_\+producto) const
+\begin{DoxyCompactList}\small\item\em Se escriben las unidades y unidades necesarias de un producto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_aa178693f94a9cc0c71dfb110e52fe818}{anadir\+\_\+inventario}} (\mbox{\hyperlink{class_producto}{Producto}} \&producto, const int id\+\_\+prod, const int unidades, const int unidades\+\_\+necesarias)
+\begin{DoxyCompactList}\small\item\em Se añade un producto al inventario de la ciudad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_a74f5650cdf151136400a0e4ab0aff53e}{poner\+\_\+producto}} (\mbox{\hyperlink{class_producto}{Producto}} \&producto, const int id\+\_\+producto, const int unidades, const int unidades\+\_\+necesarias)
+\begin{DoxyCompactList}\small\item\em Se añade un producto al inventario y se escribe el peso y el volumen total del parámetro implícito. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_ae5bd0f8885c27b3d1eae437e7d60e79b}{modificar\+\_\+producto}} (const int id\+\_\+producto, const int unidades, const int unidades\+\_\+necesarias, \mbox{\hyperlink{class_producto}{Producto}} \&product)
+\begin{DoxyCompactList}\small\item\em Se modifican las características de un producto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_aa437ac24d3ba5f013546e198b11e04bf}{quitar\+\_\+producto}} (const int id\+\_\+producto, \mbox{\hyperlink{class_producto}{Producto}} \&product)
+\begin{DoxyCompactList}\small\item\em Se elimina un producto del inventario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_afb29e365e5575ac24a999a22380c8ba9}{reduccion}} (const int id\+\_\+producto, const int cantidad, \mbox{\hyperlink{class_producto}{Producto}} \&product)
+\begin{DoxyCompactList}\small\item\em La cantidad de un producto decrementa una cierta cantidad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_adad99445febc31210f4cb04346e2563a}{adquisicion}} (const int id\+\_\+producto, const int cantidad, \mbox{\hyperlink{class_producto}{Producto}} \&product)
+\begin{DoxyCompactList}\small\item\em La cantidad de un producto aumenta una cierta cantidad. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_aeb93153f9a2715a0e19287660dba71bd}{comerciar}} (\mbox{\hyperlink{class_ciudad}{Ciudad}} \&city2, vector$<$ \mbox{\hyperlink{class_producto}{Producto}} $>$ \&lista\+\_\+productos)
+\begin{DoxyCompactList}\small\item\em Comercio entre dos ciudades. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ciudad_a766b7245c40545e16dac7da30a3889db}{clear\+\_\+inventory}} ()
+\begin{DoxyCompactList}\small\item\em Se reinicia el inventario del parámetro implícito. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ int, amount\+\_\+products $>$ \mbox{\hyperlink{class_ciudad_a0bf3e267467045e9fea407e83424997d}{Info\+Productos}}
+\item 
+int \mbox{\hyperlink{class_ciudad_acca02fdeea122b66162683bdb4a233e0}{peso\+\_\+total}}
+\item 
+int \mbox{\hyperlink{class_ciudad_a8f8767e000c1d7e9611bd0299d4942d9}{volumen\+\_\+total}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 31 of file Ciudad.\+hh.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ciudad_a58cb38dda8085e38bb0358ff54ca0e0c}\label{class_ciudad_a58cb38dda8085e38bb0358ff54ca0e0c}} 
+\index{Ciudad@{Ciudad}!Ciudad@{Ciudad}}
+\index{Ciudad@{Ciudad}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{Ciudad()}{Ciudad()}}
+{\footnotesize\ttfamily Ciudad\+::\+Ciudad (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructora por defecto. 
+
+Se inicializan los parámetros privados. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Los parámetros privados de la clase se inicializan. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Constante\+: O(1)}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ciudad_a324076d0213839ed80cd57bfd4b257d1}\label{class_ciudad_a324076d0213839ed80cd57bfd4b257d1}} 
+\index{Ciudad@{Ciudad}!escribir\_ciudad@{escribir\_ciudad}}
+\index{escribir\_ciudad@{escribir\_ciudad}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{escribir\_ciudad()}{escribir\_ciudad()}}
+{\footnotesize\ttfamily void Ciudad\+::escribir\+\_\+ciudad (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Escritura de la ciudad. 
+
+Se escriben en el canal de salida los parámetros privados de la ciudad. \begin{DoxyPrecond}{Precondition}
+{\itshape Existe la ciudad} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Se escribe en la consola los parámetros privados de la ciudad. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Lineal$>$ O(n)}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_ab6c1772a42acb81d164015c32e02fb3a}\label{class_ciudad_ab6c1772a42acb81d164015c32e02fb3a}} 
+\index{Ciudad@{Ciudad}!tam\_inventario@{tam\_inventario}}
+\index{tam\_inventario@{tam\_inventario}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{tam\_inventario()}{tam\_inventario()}}
+{\footnotesize\ttfamily int Ciudad\+::tam\+\_\+inventario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter de la cantidad de productos del inventario. 
+
+Se devuelve el tamaño del inventario. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La función devuelve un integer que indica el tamaño del inventario. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Constante\+: O(1)}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_aeef3637dd769bef36d22a9791f646dd6}\label{class_ciudad_aeef3637dd769bef36d22a9791f646dd6}} 
+\index{Ciudad@{Ciudad}!contiene\_producto@{contiene\_producto}}
+\index{contiene\_producto@{contiene\_producto}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{contiene\_producto()}{contiene\_producto()}}
+{\footnotesize\ttfamily bool Ciudad\+::contiene\+\_\+producto (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Contiene el producto la ciudad? 
+
+Se devuelve un booleano que indica la presencia de un producto en el inventario de la ciudad. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La función devuelve un booleano que indica si el producto está en el inventario de la ciudad. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_a0d933ed64f1cb03fb8d9690413163372}\label{class_ciudad_a0d933ed64f1cb03fb8d9690413163372}} 
+\index{Ciudad@{Ciudad}!exceso@{exceso}}
+\index{exceso@{exceso}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{exceso()}{exceso()}}
+{\footnotesize\ttfamily int Ciudad\+::exceso (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto }\end{DoxyParamCaption}) const}
+
+
+
+Se devuelve el exceso de un producto que tiene la ciudad. 
+
+El exceso determina si la ciudad quiere comprar o vender el producto\+: si el exceso es positivo, la ciudad tiene más unidades que las necesarias, y puede vender el producto. En cambio, si el exceso es negativo, el parámetro implícito contiene menos unidades que las necesarias\+: necesita comprar el producto. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Se devuelve la diferencia entre las unidades y las unidades necesarias de un producto que pertenece al inventario del parámetro implícito. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_a57a6bfc514295b40cf1eb24e8e8a03d3}\label{class_ciudad_a57a6bfc514295b40cf1eb24e8e8a03d3}} 
+\index{Ciudad@{Ciudad}!caract\_producto@{caract\_producto}}
+\index{caract\_producto@{caract\_producto}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{caract\_producto()}{caract\_producto()}}
+{\footnotesize\ttfamily void Ciudad\+::caract\+\_\+producto (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto }\end{DoxyParamCaption}) const}
+
+
+
+Se escriben las unidades y unidades necesarias de un producto. 
+
+Se escribe en el canal de salida las características de un producto. \begin{DoxyPrecond}{Precondition}
+{\itshape Existe el producto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Se escribe en la consola las características de un producto. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_aa178693f94a9cc0c71dfb110e52fe818}\label{class_ciudad_aa178693f94a9cc0c71dfb110e52fe818}} 
+\index{Ciudad@{Ciudad}!anadir\_inventario@{anadir\_inventario}}
+\index{anadir\_inventario@{anadir\_inventario}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{anadir\_inventario()}{anadir\_inventario()}}
+{\footnotesize\ttfamily void Ciudad\+::anadir\+\_\+inventario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{producto,  }\item[{const int}]{id\+\_\+prod,  }\item[{const int}]{unidades,  }\item[{const int}]{unidades\+\_\+necesarias }\end{DoxyParamCaption})}
+
+
+
+Se añade un producto al inventario de la ciudad. 
+
+Se añade un producto al inventario del parámetro implícito. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+El inventario de la ciudad adquiere un nuevo producto, con las características pasadas por copia. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_a74f5650cdf151136400a0e4ab0aff53e}\label{class_ciudad_a74f5650cdf151136400a0e4ab0aff53e}} 
+\index{Ciudad@{Ciudad}!poner\_producto@{poner\_producto}}
+\index{poner\_producto@{poner\_producto}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{poner\_producto()}{poner\_producto()}}
+{\footnotesize\ttfamily void Ciudad\+::poner\+\_\+producto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{producto,  }\item[{const int}]{id\+\_\+producto,  }\item[{const int}]{unidades,  }\item[{const int}]{unidades\+\_\+necesarias }\end{DoxyParamCaption})}
+
+
+
+Se añade un producto al inventario y se escribe el peso y el volumen total del parámetro implícito. 
+
+\begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+El inventario de la ciudad aquiere un producto y se escribe en el canal de salida el peso y volumen total. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_ae5bd0f8885c27b3d1eae437e7d60e79b}\label{class_ciudad_ae5bd0f8885c27b3d1eae437e7d60e79b}} 
+\index{Ciudad@{Ciudad}!modificar\_producto@{modificar\_producto}}
+\index{modificar\_producto@{modificar\_producto}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{modificar\_producto()}{modificar\_producto()}}
+{\footnotesize\ttfamily void Ciudad\+::modificar\+\_\+producto (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto,  }\item[{const int}]{unidades,  }\item[{const int}]{unidades\+\_\+necesarias,  }\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{product }\end{DoxyParamCaption})}
+
+
+
+Se modifican las características de un producto. 
+
+Las unidades y las unidades necesarias de un producto en el inventario se modifican. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Las características de un producto cambian, y así el peso y el volumen total del parámetro implícito. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_aa437ac24d3ba5f013546e198b11e04bf}\label{class_ciudad_aa437ac24d3ba5f013546e198b11e04bf}} 
+\index{Ciudad@{Ciudad}!quitar\_producto@{quitar\_producto}}
+\index{quitar\_producto@{quitar\_producto}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{quitar\_producto()}{quitar\_producto()}}
+{\footnotesize\ttfamily void Ciudad\+::quitar\+\_\+producto (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto,  }\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{product }\end{DoxyParamCaption})}
+
+
+
+Se elimina un producto del inventario. 
+
+El inventario del parámetro implícito queda reducido, además del peso y volumen total. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Se reduce el inventario de la ciudad y el peso y volumen total. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_afb29e365e5575ac24a999a22380c8ba9}\label{class_ciudad_afb29e365e5575ac24a999a22380c8ba9}} 
+\index{Ciudad@{Ciudad}!reduccion@{reduccion}}
+\index{reduccion@{reduccion}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{reduccion()}{reduccion()}}
+{\footnotesize\ttfamily void Ciudad\+::reduccion (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto,  }\item[{const int}]{cantidad,  }\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{product }\end{DoxyParamCaption})}
+
+
+
+La cantidad de un producto decrementa una cierta cantidad. 
+
+Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha vendido una cantidad de producto (exceso). \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La cantidad de un producto del inventario del parámetro implícito se reduce; el peso y el volumen total también. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_adad99445febc31210f4cb04346e2563a}\label{class_ciudad_adad99445febc31210f4cb04346e2563a}} 
+\index{Ciudad@{Ciudad}!adquisicion@{adquisicion}}
+\index{adquisicion@{adquisicion}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{adquisicion()}{adquisicion()}}
+{\footnotesize\ttfamily void Ciudad\+::adquisicion (\begin{DoxyParamCaption}\item[{const int}]{id\+\_\+producto,  }\item[{const int}]{cantidad,  }\item[{\mbox{\hyperlink{class_producto}{Producto}} \&}]{product }\end{DoxyParamCaption})}
+
+
+
+La cantidad de un producto aumenta una cierta cantidad. 
+
+Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha comprado una cantidad de producto (exceso). \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+La cantidad de un producto del inventario del parámetro implícito se aumenta; el peso y el volumen total también. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_aeb93153f9a2715a0e19287660dba71bd}\label{class_ciudad_aeb93153f9a2715a0e19287660dba71bd}} 
+\index{Ciudad@{Ciudad}!comerciar@{comerciar}}
+\index{comerciar@{comerciar}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{comerciar()}{comerciar()}}
+{\footnotesize\ttfamily void Ciudad\+::comerciar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ciudad}{Ciudad}} \&}]{city2,  }\item[{vector$<$ \mbox{\hyperlink{class_producto}{Producto}} $>$ \&}]{lista\+\_\+productos }\end{DoxyParamCaption})}
+
+
+
+Comercio entre dos ciudades. 
+
+Se comercia entre dos ciudades determinadas. \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Si las ciudades tienen productos en común, entonces hay un intercambio. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Lineal\+: O(k+m)}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{class_ciudad_a766b7245c40545e16dac7da30a3889db}\label{class_ciudad_a766b7245c40545e16dac7da30a3889db}} 
+\index{Ciudad@{Ciudad}!clear\_inventory@{clear\_inventory}}
+\index{clear\_inventory@{clear\_inventory}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{clear\_inventory()}{clear\_inventory()}}
+{\footnotesize\ttfamily void Ciudad\+::clear\+\_\+inventory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Se reinicia el inventario del parámetro implícito. 
+
+El inventario de la ciudad se inicializa al valor por defecto (vacío). \begin{DoxyPrecond}{Precondition}
+{\itshape cierto} 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Tanto el inventario como el peso y volumen total quedan inicializados a los valores por defecto. 
+\end{DoxyPostcond}
+\begin{DoxyParagraph}{Coste\textbackslash{}n Logarítmico\+: O(log(n))}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_ciudad_a0bf3e267467045e9fea407e83424997d}\label{class_ciudad_a0bf3e267467045e9fea407e83424997d}} 
+\index{Ciudad@{Ciudad}!InfoProductos@{InfoProductos}}
+\index{InfoProductos@{InfoProductos}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{InfoProductos}{InfoProductos}}
+{\footnotesize\ttfamily map$<$int, amount\+\_\+products$>$ Ciudad\+::\+Info\+Productos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 33 of file Ciudad.\+hh.
+
+\mbox{\Hypertarget{class_ciudad_acca02fdeea122b66162683bdb4a233e0}\label{class_ciudad_acca02fdeea122b66162683bdb4a233e0}} 
+\index{Ciudad@{Ciudad}!peso\_total@{peso\_total}}
+\index{peso\_total@{peso\_total}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{peso\_total}{peso\_total}}
+{\footnotesize\ttfamily int Ciudad\+::peso\+\_\+total\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 35 of file Ciudad.\+hh.
+
+\mbox{\Hypertarget{class_ciudad_a8f8767e000c1d7e9611bd0299d4942d9}\label{class_ciudad_a8f8767e000c1d7e9611bd0299d4942d9}} 
+\index{Ciudad@{Ciudad}!volumen\_total@{volumen\_total}}
+\index{volumen\_total@{volumen\_total}!Ciudad@{Ciudad}}
+\doxysubsubsection{\texorpdfstring{volumen\_total}{volumen\_total}}
+{\footnotesize\ttfamily int Ciudad\+::volumen\+\_\+total\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 36 of file Ciudad.\+hh.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_ciudad_8hh}{Ciudad.\+hh}}\end{DoxyCompactItemize}

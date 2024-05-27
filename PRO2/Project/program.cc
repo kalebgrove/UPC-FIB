@@ -264,7 +264,7 @@ int main() {
             river.redistribuir();
         }
         else if(s == "hacer_viaje" or s == "hv") {
-            
+           
             cout << '#' << s << endl;
 
             river.hacer_viaje();

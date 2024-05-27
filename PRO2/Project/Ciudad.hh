@@ -21,10 +21,12 @@ The inventory of the city doesn't have to contain all possible products, just so
 #endif                      // sí que las procesa correctamente  
 
 //Struct that contains the amount of products needed and the total amount of products.
+#ifndef AMOUNTPRODUCTS
 struct amount_products {
     int unidades_necesarias;
     int unidades;
 };
+#endif
 
 class Ciudad {
     private:

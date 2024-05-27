@@ -18,6 +18,7 @@
 /*The boat is the object that allows commerce between two cities. The boat will contain an additional inventory, with its own products, 
 such that it is allows to purchase and sell two DIFFERENT products.*/
 
+#ifndef INFONODO
 struct InfoNodo {
     int altura;
     int total_compra;
@@ -35,6 +36,7 @@ struct InfoNodo {
         venta = 0;
     }
 };
+#endif
 
 class Barco {
     private:
