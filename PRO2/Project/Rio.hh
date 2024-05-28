@@ -1,8 +1,10 @@
 #include "Ciudad.hh"
-#include "Producto.hh"
 #include "Barco.hh"
+
+#ifndef NO_DIAGRAM
 #include "BinTree.hh"
 #include <vector>
+#endif
 
 /** @file Rio.hh
     @brief Especificación de la clase Rio. 

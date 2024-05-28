@@ -12,30 +12,25 @@ The inventory of the city doesn't have to contain all possible products, just so
 #ifndef _CIUDAD_HH_
 #define _CIUDAD_HH_
 
-#ifndef NO_DIAGRAM          // esto hace que el Doxyfile de la sesión no 
 #include "Producto.hh"
+
+#ifndef NO_DIAGRAM          // esto hace que el Doxyfile de la sesión no 
 #include <map>
 #include <set>              // incluya estas clases en los diagramas modulares, 
-#include <iostream>         // mientras que el compilador de c++
+                            // mientras que el compilador de c++
 #include <vector>
 #endif                      // sí que las procesa correctamente  
 
 //Struct that contains the amount of products needed and the total amount of products.
-#ifndef AMOUNTPRODUCTS
-struct amount_products {
-    int unidades_necesarias;
-    int unidades;
-};
-#endif
 
 class Ciudad {
-    private:
-        map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
-
-        int peso_total;
-        int volumen_total;
-
     public:
+    
+        struct amount_products {
+            int unidades_necesarias;
+            int unidades;
+        };
+
         /** @brief Constructora por defecto. 
 
         Se inicializan los parámetros privados.
@@ -161,6 +156,13 @@ class Ciudad {
         \coste Logarítmico: O(log(n))
         */  
         void clear_inventory();
+    
+    private:
+        map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
+
+        int peso_total;
+        int volumen_total;
+
 };
 
 #endif

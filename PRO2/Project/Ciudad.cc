@@ -118,6 +118,8 @@ void Ciudad::adquisicion(const int id_producto, const int cantidad, Producto& pr
     volumen_total += vol_sum;
 }
 
+
+
 void Ciudad::comerciar(Ciudad& city2, vector<Producto>& lista_productos) {
     map<int, amount_products>::iterator it1 = this->InfoProductos.begin();
     map<int, amount_products>::iterator it2 = city2.InfoProductos.begin();

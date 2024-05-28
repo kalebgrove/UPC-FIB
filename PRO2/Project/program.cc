@@ -3,17 +3,14 @@
  
 En este ejemplo se construye un programa modular que ofrece un menú de opes para un comercio fluvial. Se introducen las clases <em>Rio</em>, <em>Ciudad</em>, <em>Barco</em> y <em>Producto</em>.
 
-Sólo se documentan elementos públicos. En una próxima sesión se verá un ejemplo
-de proyecto completamente documentado, incluyendo los elementos privados.
+Se documentan todas las funciones implementadas en los documentos mencionados anteriormente.
 */
 
-/** @file pro2_s8.cc
+/** @file program.cc
     @brief Programa principal para el ejercicio <em>Comercio Fluvial</em>.
 */
 
 #include "Rio.hh"
-#ifndef NO_DIAGRAM
-#endif
 
 int main() {
     
