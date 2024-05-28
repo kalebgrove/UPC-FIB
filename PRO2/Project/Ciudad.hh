@@ -23,14 +23,13 @@ The inventory of the city doesn't have to contain all possible products, just so
 
 //Struct that contains the amount of products needed and the total amount of products.
 
+/** @class Ciudad
+    @brief Especificación de la Ciudad que contiene un inventario con productos, en addición al peso y volumen total.
+*/
+
 class Ciudad {
     public:
     
-        struct amount_products {
-            int unidades_necesarias;
-            int unidades;
-        };
-
         /** @brief Constructora por defecto. 
 
         Se inicializan los parámetros privados.
@@ -45,7 +44,7 @@ class Ciudad {
         Se escriben en el canal de salida los parámetros privados de la ciudad.
         \pre <em>Existe la ciudad</em>
         \post Se escribe en la consola los parámetros privados de la ciudad.
-        \coste Lineal> O(n)
+        \coste Lineal: O(n), donde n es el número de productos del inventario.
         */  
         void escribir_ciudad() const;
 
@@ -63,7 +62,7 @@ class Ciudad {
         Se devuelve un booleano que indica la presencia de un producto en el inventario de la ciudad.
         \pre <em>cierto</em>
         \post La función devuelve un booleano que indica si el producto está en el inventario de la ciudad.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         bool contiene_producto(int id) const;
 
@@ -73,7 +72,7 @@ class Ciudad {
         el producto. En cambio, si el exceso es negativo, el parámetro implícito contiene menos unidades que las necesarias: necesita comprar el producto.
         \pre <em>cierto</em>
         \post Se devuelve la diferencia entre las unidades y las unidades necesarias de un producto que pertenece al inventario del parámetro implícito.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         int exceso(const int id_producto) const;
 
@@ -82,7 +81,7 @@ class Ciudad {
         Se escribe en el canal de salida las características de un producto.
         \pre <em>Existe el producto</em>
         \post Se escribe en la consola las características de un producto.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void caract_producto(const int id_producto) const;
 
@@ -91,7 +90,7 @@ class Ciudad {
         Se añade un producto al inventario del parámetro implícito.
         \pre <em>cierto</em>
         \post El inventario de la ciudad adquiere un nuevo producto, con las características pasadas por copia.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void anadir_inventario(Producto& producto, const int id_prod, const int unidades, const int unidades_necesarias);
 
@@ -99,7 +98,7 @@ class Ciudad {
 
         \pre <em>cierto</em>
         \post El inventario de la ciudad aquiere un producto y se escribe en el canal de salida el peso y volumen total.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void poner_producto(Producto& producto, const int id_producto, const int unidades, const int unidades_necesarias);
 
@@ -108,7 +107,7 @@ class Ciudad {
         Las unidades y las unidades necesarias de un producto en el inventario se modifican.
         \pre <em>cierto</em>
         \post Las características de un producto cambian, y así el peso y el volumen total del parámetro implícito.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void modificar_producto(const int id_producto, const int unidades, const int unidades_necesarias, Producto& product);
 
@@ -117,7 +116,7 @@ class Ciudad {
         El inventario del parámetro implícito queda reducido, además del peso y volumen total.
         \pre <em>cierto</em>
         \post Se reduce el inventario de la ciudad y el peso y volumen total.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void quitar_producto(const int id_producto, Producto& product);
 
@@ -126,7 +125,7 @@ class Ciudad {
         Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha vendido una cantidad de producto (exceso).
         \pre <em>cierto</em>
         \post La cantidad de un producto del inventario del parámetro implícito se reduce; el peso y el volumen total también.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void reduccion(const int id_producto, const int cantidad, Producto& product);
 
@@ -135,7 +134,7 @@ class Ciudad {
         Se ha comerciado con el barco o con otra ciudad, tal que el parámetro implícito ha comprado una cantidad de producto (exceso).
         \pre <em>cierto</em>
         \post La cantidad de un producto del inventario del parámetro implícito se aumenta; el peso y el volumen total también.
-        \coste Logarítmico: O(log(n))
+        \coste Logarítmico: O(log(n)), donde n es el número de productos del inventario de la ciudad.
         */  
         void adquisicion(const int id_producto, const int cantidad, Producto& product);
 
@@ -144,7 +143,8 @@ class Ciudad {
         Se comercia entre dos ciudades determinadas.
         \pre <em>cierto</em>
         \post Si las ciudades tienen productos en común, entonces hay un intercambio.
-        \coste Lineal: O(k+m)
+        \coste Lineal: O(k+m), donde k es el número de productos del inventario del parámetro implícito, y m es el número de productos del inventario de city2.
+        Dentro de cada iteración, si hay un intercambio de productos, se llama la función 'exceso' de coste logarítmico y 'reduccio' y 'adquisicion', todos tres de coste logarítmico.
         */  
         void comerciar(Ciudad& city2, vector<Producto>& lista_productos);
 
@@ -153,11 +153,21 @@ class Ciudad {
         El inventario de la ciudad se inicializa al valor por defecto (vacío).
         \pre <em>cierto</em>
         \post Tanto el inventario como el peso y volumen total quedan inicializados a los valores por defecto.
-        \coste Logarítmico: O(log(n))
+        \coste Lineal: O(n), donde n es el número de productos del inventario del parámetro implícito.
         */  
         void clear_inventory();
     
     private:
+
+        /** @struct amount_products
+            @brief Especificación del Struct amount_products que contiene la información sobre cada producto del inventario de la ciudad.
+        */
+
+        struct amount_products {
+            int unidades_necesarias;
+            int unidades;
+        };
+
         map<int, amount_products> InfoProductos;     //It relates the id of the product with the struct with info about needs.
 
         int peso_total;

@@ -15,6 +15,10 @@ It's its own class, since there are getters and setters; change in attributes an
 using namespace std;
 #endif
 
+/** @class Producto
+    @brief Especificación del Producto que contiene información sobre él mismo: peso y volumen.
+*/
+
 class Producto {
     private:
     
