@@ -67,7 +67,7 @@ class Barco {
 
         El barco realiza la ruta más provechosa e hace comercio con las ciudades.
         \pre <em>Existe la ciudad y el producto</em>
-        \post El resultado es un booleano que nos indica si la ciudad contiene el producto.
+        \post La función permite llamar a otras funciones que lleban a cabo la ruta que realiza el barco.
         \coste Lineal: O(n+k), donde n es el número de ciudades en el río (aunque este número puede cambiar dependiendo de si el barco llega a todas las hojas del árbol), y k es el número de ciudades que forman parte de la ruta.
         Para ver más concretamente el coste de la llamada recursiva, vé a la función 'travelled_tree_rec'.
         Para ver más concretamente el coste de la ruta realizada, vé a la función 'travel'.
