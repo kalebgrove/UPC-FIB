@@ -198,6 +198,7 @@ public:
     private:
       List *plist;
       Item *pitem;
+      bool hooked;
       // Add new attributes to remember if the iterator has an active 'hook'
       
   
@@ -205,6 +206,7 @@ public:
       
     iterator() {
       // Add initialization of new attributes.
+      hooked = false;
     }
     
     // Adapt this function so that moving beyond boundaries does not trigger error,
@@ -221,12 +223,26 @@ public:
     /* Post: el p.i apunta a l'element següent a E 
        el resultat és el p.i. */
     {
-      if (pitem == &(plist->itemsup)) {
-        cerr << "Error: ++iterator at the end of list" << endl;
-        exit(1);
+      if(pitem != &(plist->itemsup)) {
+        if(not hooked) {
+          pitem = pitem->next;
+        }
+        else if(pitem != plist->itemsup.prev) {
+          Item *ptr_next = pitem->next;
+          Item *ptr_prev = pitem->prev;
+          Item *ptr_next_next = ptr_next->next;
+
+          ptr_next->prev = ptr_prev;
+          ptr_prev->next = ptr_next;
+
+          ptr_next->next = pitem;
+          pitem->prev = ptr_next;
+
+          pitem->next = ptr_next_next;
+          ptr_next_next->prev = pitem;
+        }
       }
-      pitem = pitem->next;
-      return *this;
+        return *this;
     }
     
     // Postincrement
@@ -256,12 +272,27 @@ public:
     /* Post: el p.i apunta a l'element anterior a E,
        el resultat és el p.i. */
     {
-      if (pitem == plist->iteminf.next) {
-       cerr << "Error: --iterator at the beginning of list" << endl;
-       exit(1);
+
+      if(pitem != plist->iteminf.next) {
+        if(not hooked) {
+          pitem = pitem->prev;
+        }
+        else if() {
+          Item *ptr_prev = pitem->prev;
+          Item *ptr_next = pitem->next;
+          Item *ptr_prev_prev = ptr_prev->prev;
+
+          ptr_prev->next = ptr_next;
+          ptr_next->prev = ptr_prev;
+
+          ptr_prev->prev = pitem;
+          pitem->next = ptr_prev;
+
+          pitem->prev = ptr_prev_prev;
+          ptr_prev_prev->next = pitem;
+        }
       }
-      pitem = pitem->prev;
-      return *this;
+        return *this;
     }
 
     // Postdecrement
@@ -307,20 +338,23 @@ public:
     //      In particular, 'this' does not point to the end of a list.
     // Post: 'it' keeps pointing to the same element and has an active hook to this element.
     // Remove comment marks and implement this function:
-    // void hook() {
-    // }
+    void hook() {
+      hooked = true;
+    }
       
     // Pre: 'this' has an active hook.
     // Post: 'this' does not have an active hook.
     // Remove comment marks and implement this function:
-    // void stopHook() {
-    // }
+    void stopHook() {
+      hooked = false;
+    }
 
     // Pre:
     // Post: Returns true iff 'this' has an active hook.
     // Remove comment marks and implement this function:
-    // bool hasActiveHook() const {
-    // }
+    bool hasActiveHook() const {
+      return hooked;
+    }
   };
   
   // Operations with iterators:
