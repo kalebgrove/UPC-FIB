@@ -47,6 +47,13 @@
         "typeinfo": "cpp",
         "set": "cpp",
         "*.pro2": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "bit": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "unordered_set": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp",
+        "numbers": "cpp"
     }
 }
