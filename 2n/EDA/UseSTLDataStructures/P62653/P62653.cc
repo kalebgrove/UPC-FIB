@@ -1,83 +1,72 @@
 #include <iostream>
+#include <queue>
 #include <vector>
-#include <algorithm>
 #include <string>
 
 using namespace std;
 
-bool comp(string &a, string &b) {
-    if(a.size() != b.size()) {
+
+string c;
+
+struct Compare {
+    bool operator()(const string& a, const string& b) {
+        if(a.size() == b.size()) {
+            string m = c.substr(0, a.size());
+            if(a == m) return false;
+            else if(b == m) return true;
+            else if(a < b) {
+                if (a < m and b > m) return true;
+                return false;
+            } else {
+                if(b < m and a > m) return false;
+                return true;
+            }
+        }
         return a.size() > b.size();
     }
-    //If they're the same size, we want the one that comes before in lexicographic order to be second, so that the vector "starts" from the back.
-    return a > b;
-}
+};
+
 
 int main() {
     string first;
 
-    while(cin >> first) {    
-        int tickets = 0;
+    priority_queue<string, vector<string>, Compare> supporters;
 
-        vector<string> before;
-        vector<string> after;
+    int tickets = 0;
 
-        char op;
-        while(cin >> op and op != 'E') {
+    string op;
+    while(cin >> op) {
 
-            if(op == 'T') {
-                ++tickets;
+        if(op == "S") {
+            string name;
+            cin >> name;
 
-                if(!before.empty()) {
-                    sort(before.begin(), before.end(), comp);
+            supporters.push(name);
 
-                    sort(after.begin(), after.end(), comp);
-
-                    while(!before.empty() and !after.empty() and tickets > 0) {
-                        if(before.back().size() < after.back().size()) {
-                            cout << before.back() << endl;
-                            before.pop_back();
-                        } else if(before.back().size() > after.back().size()) {
-                            cout << after.back() << endl;
-                            after.pop_back();
-                        } else {
-                            cout << after.back() << endl;
-                            after.pop_back();
-                        }
-
-                        --tickets;
-                    }
-
-                    while(!before.empty() and tickets > 0) {
-                        cout << before.back() << endl;
-                        before.pop_back();
-                        --tickets;
-                    }
-
-                    while(!after.empty() and tickets > 0) {
-                        cout << after.back() << endl;
-                        after.pop_back();
-                        --tickets;
-                    }
-                }
-
-
-            } else if(op == 'S') {
-                string name;
-                cin >> name;
-
-                //Name is larger than first means it comes afterwards.
-                if(name >= first.substr(0, name.size())) {
-                    after.push_back(name);
-                } else {
-                    before.push_back(name);
-                }
+            while(tickets > 0 and !supporters.empty()) {
+                cout << supporters.top() << endl;
+                supporters.pop();
+                --tickets;
             }
+        } else if(op == "T") {
+            if(!supporters.empty()) {
+                cout << supporters.top() << endl;
+                supporters.pop();
+            }
+            else {
+                ++tickets;
+            }
+        } else if(op == "E") {
+            cout << tickets << " ticket(s) left" << endl;
+            cout << supporters.size() << " supporter(s) with no ticket" << endl;
+
+            cout << endl;
+
+            supporters = priority_queue<string, vector<string>, Compare> ();
+            tickets = 0;
         }
-
-        cout << tickets << " ticket(s) left" << endl;
-        cout << before.size() + after.size() << " supporter(s) with no ticket" << endl;
-
-        cout << endl;
+        else {
+            c = op;
+        }
     }
 }
